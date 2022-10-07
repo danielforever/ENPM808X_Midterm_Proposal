@@ -9,6 +9,15 @@
 #include<vector>
 #include "opencv2/opencv.hpp"
 
+class Camera
+{
+    private:
+
+        VideoCapture video;
+        float Hight;
+        float Weight;
+}
+
 /**
  * @Brief  A class that detect and create Person object for the system
  */
@@ -47,7 +56,7 @@ class Detector
          */
         void ScanFrame();
         /**
-         *  @Brief Calculate the center point for the person object
+         *  @Brief To trunsform the cooridnate to Robot frame
          *
          */
         void CoordinateTransform();
