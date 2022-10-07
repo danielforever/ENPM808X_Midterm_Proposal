@@ -27,9 +27,7 @@ class Detector
          *
          */
         
-        Detector(string videodirectory){
-            VideoDirectory = videodirectory;
-        }
+        Detector(string videodirectory);
         /**
          *  @Brief Saving video into Reading video
          *  
