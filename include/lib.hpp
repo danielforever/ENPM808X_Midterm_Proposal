@@ -11,11 +11,28 @@
 
 class Camera
 {
+    
     private:
-
-        VideoCapture video;
-        float Hight;
+        /**
+         *  @Brief Constructor
+         *  
+         *  @Param VideoObject This store the object of the video
+         *  @Param Height the height of the video  
+         *  @Param Weight the weight of the video
+         *
+         */  
+        VideoCapture VideoObject;
+        float Height;
         float Weight;
+
+    public:
+        /**
+         *  @Brief Constructor
+         *  
+         *  @Param VideoDirectory Read video directory from system
+         *
+         */    
+        LoadVideo(string videodirectory);
 }
 
 /**
@@ -26,25 +43,16 @@ class Detector
 {
     private:
 
-        string VideoDirectory;
         std::vector<Person> PersonVectorDetector;
 
         /**
          *  @Brief Constructor
          *  
-         *  @Param VideoDirectory Read video directory from system
          *  @Param PersonVectorDetector Save all the detected people into vector
          *
          */
         
-        Detector(string videodirectory);
-        /**
-         *  @Brief Saving video into Reading video
-         *  
-         *  @Param VideoDirectory Read video directory from system
-         *
-         */
-        void ReadVideo(string VideoDirectory);
+        Detector();
         /**
          *  @Brief Create an object Person for every detected person
          *

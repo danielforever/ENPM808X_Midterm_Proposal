@@ -9,7 +9,7 @@ using namespace std;
 using namespace cv;
 
 
-void Detector::ReadVideo(string videodirectory){
+void Camera::LoadVideo(string videodirectory){
     VideoCapture cap(videodirectory);
 
     if(!cap.isOpened()){
