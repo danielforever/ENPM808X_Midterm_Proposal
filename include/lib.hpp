@@ -1,5 +1,5 @@
 /* Copyright 2022
- * Author(s) Po-Yu Huang, Aman Sharma,   
+ * Author(s) Po-Yu Huang, Aman Sharma, Shantanu
  *
  */
 
@@ -48,13 +48,13 @@ class Detector
          */
         void ScanFrame();
         /**
-         *  @Brief 
+         *  @Brief Calculate the center point for the person object
          *
          */
         void CoordinateTransform();
 };
 /**
- * @Brief  A tracker system that verified
+ * @Brief  A tracker system that verified the Person object  
  */
 
 class Tracker
@@ -66,21 +66,45 @@ class Tracker
          *
          */
         void Tracking();
-
+        /**
+         *  @Brief Delete the Object Person that existed in the perivous image 
+         *
+         */
         void DeletePerson();
 };
+/**
+ * @Brief  An object that is person
+ */
 
 class Person
 {
     private:
+        /**
+         *  @Brief Compare the coordinate to check whether this object had appeared 
+         *
+         */
         int id;
-        int tracker_id;
-        float center_point;
-        std::vector<float> bounding_coordinates;
-        float confidence;
+        int TrackerID;
+        std::pair <float,float> CenterPoint;
+        std::vector<float> BoundingCoordinates;
+        float Confidence;
 
     public:
-        Person(int idInput, int TrackerIDInput, float CenterPointInput, float X_CoorInput, float Y_CoorInput, float ConfidenceInput)
+        /**
+         *  @Brief Constructor
+         *  
+         *  @Param id an ID for a detected person
+         *  @Param TrackerID an ID that gave in tracker function
+         *  @Param CenterPoint add the center point for every object
+         *  @Param BoundingCoordinates 
+         *  @Param Confidence cofidence for the detected person
+         *
+         */
+        Person(int idInput, int TrackerIDInput,float X_BoundingBox, float Y_BoundingBox float X_CoorInput, float Y_CoorInput, float ConfidenceInput)
+        /**
+         *  @Brief Destructor
+         *
+         */
         ~Person()
 
 
