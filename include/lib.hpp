@@ -18,12 +18,13 @@ class Detector
     private:
 
         string VideoDirectory;
-        std::vector<Person> PersonVectorDector;
+        std::vector<Person> PersonVectorDetector;
 
         /**
          *  @Brief Constructor
          *  
          *  @Param VideoDirectory Read video directory from system
+         *  @Param PersonVectorDetector Save all the detected people into vector
          *
          */
         
