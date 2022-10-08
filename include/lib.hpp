@@ -17,13 +17,10 @@ class Camera
          *  @Brief Constructor
          *  
          *  @Param VideoObject This store the object of the video
-         *  @Param Height the height of the video  
-         *  @Param Weight the weight of the video
          *
          */  
         VideoCapture VideoObject;
-        float Height;
-        float Weight;
+
 
     public:
         /**

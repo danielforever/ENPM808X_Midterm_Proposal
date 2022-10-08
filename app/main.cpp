@@ -4,18 +4,30 @@
  */
 #include <iostream>
 #include <lib.hpp>
+#include "opencv2/opencv.hpp"
 
 using namespace std;
 using namespace cv;
 
 
 void Camera::LoadVideo(string videodirectory){
-    VideoCapture cap(videodirectory);
+    VideoCapture VideoObject(videodirectory);
 
-    if(!cap.isOpened()){
+    if(!VideoObject.isOpened()){
         cout << "Error for opening video input!" << endl;
         return -1;
     }
+    else{
+        
+    }
+}
+
+Detector::Detector(){
+
+}
+
+void CreatObjectPerson(){
+
 }
 
 int main()
