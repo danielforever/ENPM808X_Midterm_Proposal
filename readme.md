@@ -7,6 +7,12 @@
 > - *Driver*         **Po-Yu Huang**  <phuang14@umd.edu>
 > - *Design Keeper*  **Shantanu Parab**  <sparab@umd.edu>
 
+
+**Course:** Software Development for Robotics
+**Code:** ENPM808X
+**Semester:** Fall 2022
+**School:** A. James Clark School of Engineering, University of Maryland
+
 ***
 ### Brief
 
