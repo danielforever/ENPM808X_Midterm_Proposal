@@ -9,6 +9,41 @@
 #include<vector>
 #include "opencv2/opencv.hpp"
 
+class Person
+{
+    private:
+        /**
+         *  @Brief Compare the coordinate to check whether this object had appeared 
+         *
+         */
+        int id;
+        int TrackerID;
+        std::pair <float,float> CenterPoint;
+        std::vector<float> BoundingCoordinates;
+        float Confidence;
+
+    public:
+        /**
+         *  @Brief Constructor
+         *  
+         *  @Param id an ID for a detected person
+         *  @Param TrackerID an ID that gave in tracker function
+         *  @Param CenterPoint add the center point for every object
+         *  @Param BoundingCoordinates 
+         *  @Param Confidence cofidence for the detected person
+         *
+         */
+        Person(int idInput, int TrackerIDInput,float X_BoundingBox, float Y_BoundingBox, float X_CoorInput, float Y_CoorInput, float ConfidenceInput);
+        /**
+         *  @Brief Destructor
+         *
+         */
+        ~Person();
+
+
+
+};
+
 class Camera
 {
     
@@ -21,7 +56,7 @@ class Camera
          *  @Param ImageHeight Store image height
          *
          */  
-        VideoCapture VideoObject;
+        cv::VideoCapture VideoObject;
         float ImageWeight;
         float ImageHeight;
 
@@ -34,19 +69,18 @@ class Camera
          *  @Param VideoDirectory Read video directory from system
          *
          */    
-        int LoadVideo(string videodirectory);
+        int LoadVideo(std::string videodirectory);
 
-}
+};
 
 /**
  * @Brief  A class that detect and create Person object for the system
  */
-https://docs.google.com/document/d/18_QibaMs4-CO457TljFzS8PHDbbjT1YHUXSP0PK5Vic/edit?usp=sharing
 class Detector 
 {
     private:
 
-        std::vector<Person> PersonVectorDetector;
+        std::vector<Person*> PersonVectorDetector;
 
         /**
          *  @Brief Constructor
@@ -85,7 +119,7 @@ class Detector
 class Tracker
 {
     private:
-        std::vector<Person> PersonaVectorTracker;
+        std::vector<Person*> PersonaVectorTracker;
         /**
          *  @Brief Compare the coordinate to check whether this object had appeared 
          *
@@ -101,37 +135,4 @@ class Tracker
  * @Brief  An object that is person
  */
 
-class Person
-{
-    private:
-        /**
-         *  @Brief Compare the coordinate to check whether this object had appeared 
-         *
-         */
-        int id;
-        int TrackerID;
-        std::pair <float,float> CenterPoint;
-        std::vector<float> BoundingCoordinates;
-        float Confidence;
 
-    public:
-        /**
-         *  @Brief Constructor
-         *  
-         *  @Param id an ID for a detected person
-         *  @Param TrackerID an ID that gave in tracker function
-         *  @Param CenterPoint add the center point for every object
-         *  @Param BoundingCoordinates 
-         *  @Param Confidence cofidence for the detected person
-         *
-         */
-        Person(int idInput, int TrackerIDInput,float X_BoundingBox, float Y_BoundingBox float X_CoorInput, float Y_CoorInput, float ConfidenceInput);
-        /**
-         *  @Brief Destructor
-         *
-         */
-        ~Person();
-
-
-
-};

@@ -15,9 +15,7 @@ opencv2/opencv.hpp
 ../include/opencv2/opencv.hpp
 
 /home/poyuhuang/Documents/robotic/Midterm/ENPM808X_Midterm_Proposal/app/perception.cpp
-iostream
--
-perception.h
+./perception.h
 -
 opencv2/opencv.hpp
 /home/poyuhuang/Documents/robotic/Midterm/ENPM808X_Midterm_Proposal/app/opencv2/opencv.hpp
