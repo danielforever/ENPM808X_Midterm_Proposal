@@ -1,0 +1,2 @@
+/usr/bin/ar qc libperception.a  CMakeFiles/perception.dir/perception.cpp.o
+/usr/bin/ranlib libperception.a

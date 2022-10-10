@@ -9,33 +9,53 @@
 #include<vector>
 #include "opencv2/opencv.hpp"
 
+class Camera
+{
+    
+    private:
+        /**
+         *  @Brief Constructor
+         *  
+         *  @Param VideoObject This store the object of the video
+         *  @Param ImageWeight Store image weight
+         *  @Param ImageHeight Store image height
+         *
+         */  
+        VideoCapture VideoObject;
+        float ImageWeight;
+        float ImageHeight;
+
+
+
+    public:
+        /**
+         *  @Brief Constructor
+         *  
+         *  @Param VideoDirectory Read video directory from system
+         *
+         */    
+        int LoadVideo(string videodirectory);
+
+}
+
 /**
  * @Brief  A class that detect and create Person object for the system
  */
-
+https://docs.google.com/document/d/18_QibaMs4-CO457TljFzS8PHDbbjT1YHUXSP0PK5Vic/edit?usp=sharing
 class Detector 
 {
     private:
 
-        string VideoDirectory;
         std::vector<Person> PersonVectorDetector;
 
         /**
          *  @Brief Constructor
          *  
-         *  @Param VideoDirectory Read video directory from system
          *  @Param PersonVectorDetector Save all the detected people into vector
          *
          */
         
-        Detector(string videodirectory);
-        /**
-         *  @Brief Saving video into Reading video
-         *  
-         *  @Param VideoDirectory Read video directory from system
-         *
-         */
-        void ReadVideo(string VideoDirectory);
+        Detector();
         /**
          *  @Brief Create an object Person for every detected person
          *
@@ -47,10 +67,16 @@ class Detector
          */
         void ScanFrame();
         /**
-         *  @Brief Calculate the center point for the person object
+         *  @Brief To transform the cooridnate to Robot frame
          *
          */
         void CoordinateTransform();
+        /**
+         *  @Brief Draw bounding box for the image
+         *
+         */
+        void DrawBoundingBox();
+
 };
 /**
  * @Brief  A tracker system that verified the Person object  
@@ -99,12 +125,12 @@ class Person
          *  @Param Confidence cofidence for the detected person
          *
          */
-        Person(int idInput, int TrackerIDInput,float X_BoundingBox, float Y_BoundingBox float X_CoorInput, float Y_CoorInput, float ConfidenceInput)
+        Person(int idInput, int TrackerIDInput,float X_BoundingBox, float Y_BoundingBox float X_CoorInput, float Y_CoorInput, float ConfidenceInput);
         /**
          *  @Brief Destructor
          *
          */
-        ~Person()
+        ~Person();
 
 
 
