@@ -17,9 +17,14 @@ class Camera
          *  @Brief Constructor
          *  
          *  @Param VideoObject This store the object of the video
+         *  @Param ImageWeight Store image weight
+         *  @Param ImageHeight Store image height
          *
          */  
         VideoCapture VideoObject;
+        float ImageWeight;
+        float ImageHeight;
+
 
 
     public:
@@ -29,13 +34,14 @@ class Camera
          *  @Param VideoDirectory Read video directory from system
          *
          */    
-        LoadVideo(string videodirectory);
+        int LoadVideo(string videodirectory);
+
 }
 
 /**
  * @Brief  A class that detect and create Person object for the system
  */
-
+https://docs.google.com/document/d/18_QibaMs4-CO457TljFzS8PHDbbjT1YHUXSP0PK5Vic/edit?usp=sharing
 class Detector 
 {
     private:
@@ -61,10 +67,16 @@ class Detector
          */
         void ScanFrame();
         /**
-         *  @Brief To trunsform the cooridnate to Robot frame
+         *  @Brief To transform the cooridnate to Robot frame
          *
          */
         void CoordinateTransform();
+        /**
+         *  @Brief Draw bounding box for the image
+         *
+         */
+        void DrawBoundingBox();
+
 };
 /**
  * @Brief  A tracker system that verified the Person object  
@@ -113,12 +125,12 @@ class Person
          *  @Param Confidence cofidence for the detected person
          *
          */
-        Person(int idInput, int TrackerIDInput,float X_BoundingBox, float Y_BoundingBox float X_CoorInput, float Y_CoorInput, float ConfidenceInput)
+        Person(int idInput, int TrackerIDInput,float X_BoundingBox, float Y_BoundingBox float X_CoorInput, float Y_CoorInput, float ConfidenceInput);
         /**
          *  @Brief Destructor
          *
          */
-        ~Person()
+        ~Person();
 
 
 
