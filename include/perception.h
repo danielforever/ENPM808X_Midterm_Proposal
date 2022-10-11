@@ -101,7 +101,7 @@ class Detector
          */
         void ScanFrame();
         /**
-         *  @Brief To transform the cooridnate to Robot frame
+         *  @Brief To transform the cooridnate to Robot frame and calculate the center point
          *
          */
         void CoordinateTransform();
