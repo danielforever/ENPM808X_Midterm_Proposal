@@ -2,19 +2,16 @@
  * Author(s) Po-Yu Huang, Aman Sharma, Shantanu
  *
  */
-#include <iostream>
-#include <perception.h>
+#include <./perception.h>
 #include "opencv2/opencv.hpp"
 
-using namespace std;
-using namespace cv;
 
 
-int Camera::LoadVideo(string videodirectory){
-    VideoCapture VideoObject(videodirectory);
+int Camera::LoadVideo(std::string _videodirectory){
+    cv::VideoCapture VideoObject(_videodirectory);
 
     if(!VideoObject.isOpened()){
-        cout << "Error for opening video input!" << endl;
+        std::cout << "Error for opening video input!" << std::endl;
         return -1;
     }
     else{
@@ -24,7 +21,6 @@ int Camera::LoadVideo(string videodirectory){
 
 
 Detector::Detector(){
-    return 0;
 }
 
 void Detector::CreatObjectPerson(){
@@ -51,7 +47,7 @@ void Tracker::DeletePerson(){
 
 }
 
-void Person::Person(){
+Person::Person(int idInput, int TrackerIDInput,float X_BoundingBox, float Y_BoundingBox, float X_CoorInput, float Y_CoorInput, float ConfidenceInput){
 
 }
 
