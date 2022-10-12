@@ -36,11 +36,7 @@ The focus of the project is to develope best practices for Software Develpoement
 
 4. [Activity Diagram](submission/uml/Activity%20Diagram.pdf)
 
-<<<<<<< HEAD
 5.  [Video](https://youtu.be/RBK_uPH3j8g)
-=======
-5.  [Video](https://www.youtube.com/watch?v=RBK_uPH3j8g)
->>>>>>> 80d37cb7cf4500f4787dbf48df94b0d6e1252c85
 
 ****
 ### License  
