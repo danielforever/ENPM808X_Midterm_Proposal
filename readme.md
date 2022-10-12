@@ -40,5 +40,5 @@ The focus of the project is to develope best practices for Software Develpoement
 
 ****
 ### License  
-[GNU GENERAL PUBLIC LICENSE](assets/License.pdf)
+[GNU GENERAL PUBLIC LICENSE](assets/GNU%20GENERAL%20PUBLIC%20LICENSE.pdf)
 
