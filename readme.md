@@ -20,7 +20,7 @@ The focus of the project is to develope best practices for Software Develpoement
 
 
 **Human Obstacle Detection Software**  *(ACME Robotics)*  
-**Algorithm:** `YOLO`  
+**Algorithm:** `YOLO`  `Kalman Filter`  
 **Libraries:** `OpenCV`  
 **Programming Language:** `C++`  
 **Memory Profiling:** `Valgrind`  
