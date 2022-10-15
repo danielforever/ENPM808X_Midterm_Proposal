@@ -47,13 +47,15 @@ void Tracker::DeletePerson(){
 
 }
 
-Person::Person(int idInput, int TrackerIDInput,float X_BoundingBox, float Y_BoundingBox, float X_CoorInput, float Y_CoorInput, float ConfidenceInput){
-
+Person::Person(int _idInput, int _TrackerIDInput,float _X_BoundingBox, float _Y_BoundingBox, float _X_CoorInput, float _Y_CoorInput, float _ConfidenceInput){
+    id = _idInput;
+    TrackerID = _TrackerIDInput;
+    Confidence = _ConfidenceInput;
+    
 }
 
 int main()
 {
-    //dummy();
     return 0;
 
 }
