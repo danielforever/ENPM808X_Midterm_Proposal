@@ -9,22 +9,21 @@
  * 
  */
 #include <gtest/gtest.h>
-#include "perception.h"
+#include "perception.hpp"
 
 std::string image_path = "asset/images/pedestrian_single.jpg";
 std::string video_path = "asset/videos/double_person.mp4";
-Human_Tracker image1(image_path);
-Human_Tracker video1(video_path);
-
+Human_Tracker image1;
+image1.ReadInput(image_path);
+Human_Tracker video1;
+video1.ReadInput(video_path);
 
 TEST(Path, ImagePathCheck) {
-  path_test= image1.MediaPath;
+  std::string path_test = image1.MediaPath;
   EXPECT_EQ(path_test,image_path);
 }
 
 TEST(Path, VideoPathCheck) {
-  path_test= video1.MediaPath;
+  std::string path_test = video1.MediaPath;
   EXPECT_EQ(path_test,video_path);
 }
-
-

@@ -31,12 +31,12 @@ class Human_Tracker
          *  @Brief Constructor
          *
          */
-        Human_Tracker(std::string videodirectory);
+        void ReadInput(std::string videodirectory);
         /**
          *  @Brief Destructor
          *
          */
-        ~Human_Tracker();
+        ~Human_Tracker() = default;
 
 };
 /**

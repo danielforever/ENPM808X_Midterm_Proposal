@@ -1,7 +1,6 @@
-add_executable(shell-app main.cpp)
+add_executable(shell-app main.cpp ../include/perception.hpp perception.cpp)
 include_directories(
-    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/include ${OpenCV_INCLUDE_DIRS}
 )
-
-
-add_library(perception perception.cpp)
+find_package( OpenCV REQUIRED)
+target_link_libraries( shell-app ${OpenCV_LIBS} )
