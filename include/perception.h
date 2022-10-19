@@ -1,12 +1,19 @@
-/* Copyright 2022
- * Author(s) Po-Yu Huang, Aman Sharma, Shantanu
- *
+/**
+ * @file perception.h
+ * @Author(s) Po-Yu Huang, Aman Sharma, Shantanu
+ * @brief 
+ * @version 0.1
+ * @date 2022-10-19
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
-
 #pragma once
 
 #include<iostream>
 #include<vector>
+#include "opencv2/opencv.hpp"
+
 /**
  * @Brief  A class that starts the whole system
  */
