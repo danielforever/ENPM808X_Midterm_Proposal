@@ -24,9 +24,9 @@ class Human_Tracker
          *  @Brief Create a Human Tracker class  
          *
          */
-
+        
     public:
-
+	std::string MediaPath; 
         /**
          *  @Brief Constructor
          *
@@ -83,7 +83,7 @@ class Detector
          *  @Param Confidences Store the confidences into a vector
          *
          */ 
-    	std::vector<Rect> boxes;
+    	std::vector<cv::Rect> boxes;
     	std::vector<float> Confidences;
 
     private:
