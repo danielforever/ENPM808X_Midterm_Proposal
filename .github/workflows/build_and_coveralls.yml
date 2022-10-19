@@ -36,7 +36,26 @@ jobs:
       # Install some system pacakges
       - name: Install packages
         run: sudo apt install -y lcov
+      
+      # Install opencv
+      - name: Clone opencv package 
+        run: git clone https://github.com/opencv/opencv.git
+      - name: Step into opencv
+        run: cd opencv 
+      - name: into check point
+        run: git checkout 4.4.0
+      - name: mkdir opencv_build
+        run: mkdir opencv_build
+      - name: cd opencv_build
+        run: cd opencv_build
+             sudo cmake  -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_ENABLE_NONFREE=ON -D WITH_IPP=OFF -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_QT=ON -D WITH_OPENGL=ON  ..
+             sudo make -j$(nproc)
+             sudo make install
+             sudo /bin/bash -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
+             sudo ldconfig
+             cd ../..
 
+        
       # Run CMake to setup compilation flags
       - name: Configure Coverage CMake 
         run: cmake -D COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug -B ${{github.workspace}}/build 
