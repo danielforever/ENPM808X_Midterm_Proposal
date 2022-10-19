@@ -29,7 +29,9 @@ class Human_Tracker
         ~Human_Tracker();
 
 };
-
+/**
+ * @Brief  A class that read images or videos from the directory
+ */
 class Camera
 {
     
