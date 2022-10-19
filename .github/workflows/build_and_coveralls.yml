@@ -42,8 +42,6 @@ jobs:
         run: git clone https://github.com/opencv/opencv.git
       - name: Step into opencv
         run: cd opencv 
-      - name: into check point
-        run: git checkout 4.4.0
       - name: mkdir opencv_build
         run: mkdir opencv_build
       - name: cd opencv_build
