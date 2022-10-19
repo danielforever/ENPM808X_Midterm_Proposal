@@ -63,3 +63,36 @@ class Camera
 
 };
 
+/**
+ * @Brief  A class that detect and add Person object for the vector
+ */
+class Detector 
+{
+    private:
+
+        std::vector<Person*> PersonVectorDetector;
+
+        /**
+         *  @Brief Constructor
+         *  
+         *  @Param PersonVectorDetector Save all the detected people into vector
+         *
+         */
+        Detector();
+        /**
+         *  @Brief Create an object Person for every detected person
+         *
+         */        
+        void CreatObjectPerson();
+        /**
+         *  @Brief To transform the cooridnate to Robot frame and calculate the center point
+         *
+         */
+        void CoordinateTransform();
+        /**
+         *  @Brief Draw bounding box for the image
+         *
+         */
+        void DrawBoundingBox();
+
+};
