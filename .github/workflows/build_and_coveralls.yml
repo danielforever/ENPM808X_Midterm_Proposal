@@ -42,13 +42,11 @@ jobs:
         run: git clone https://github.com/opencv/opencv.git
       - name: Step into opencv
         run: cd opencv 
-      - name: checkout
-        run: git checkout 4.x 
       - name: mkdir opencv_build
         run: mkdir opencv_build
       - name: cd opencv_build
         run: cd opencv_build
-             sudo cmake  -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_ENABLE_NONFREE=ON -D WITH_IPP=OFF -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_QT=ON -D WITH_OPENGL=ON  ..
+             sudo cmake  -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_ENABLE_NONFREE=ON  ..
              sudo make -j$(nproc)
              sudo make install
              sudo /bin/bash -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
