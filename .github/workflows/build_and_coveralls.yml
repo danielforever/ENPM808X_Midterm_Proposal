@@ -45,13 +45,14 @@ jobs:
       - name: mkdir opencv_build
         run: mkdir opencv_build
       - name: cd opencv_build
-        run: cd opencv_build
-             sudo cmake  -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_ENABLE_NONFREE=ON  ..
-             sudo make -j$(nproc)
-             sudo make install
-             sudo /bin/bash -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
-             sudo ldconfig
-             cd ../..
+        run: 
+          cd opencv_build
+          sudo cmake  -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_ENABLE_NONFREE=ON  ..
+          sudo make -j$(nproc)
+          sudo make install
+          sudo /bin/bash -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
+          sudo ldconfig
+          cd ../..
 
         
       # Run CMake to setup compilation flags
