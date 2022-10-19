@@ -96,3 +96,31 @@ class Detector
         void DrawBoundingBox();
 
 };
+
+/**
+ * @Brief  A tracker system that verified the Person object  
+ */
+
+class Tracker
+{
+    private:
+        std::vector<Person*> PersonaVectorTracker;
+        /**
+         *  @Brief Compare the coordinate to check whether this object had appeared 
+         *
+         */
+        void Tracking();
+        /**
+         *  @Brief Compare the coordinate to check whether this object had appeared 
+         *
+         */
+        void DistanceCalculation();
+        /**
+         *  @Brief Delete the Object Person that existed in the perivous image 
+         *
+         */
+        void DeletePerson();
+};
+/**
+ * @Brief  An object that is person
+ */
