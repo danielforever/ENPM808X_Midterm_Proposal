@@ -29,3 +29,33 @@ class Human_Tracker
         ~Human_Tracker();
 
 };
+
+class Camera
+{
+    
+    private:
+        /**
+         *  @Brief Constructor
+         *  
+         *  @Param VideoObject This store the object of the video
+         *  @Param ImageWeight Store image weight
+         *  @Param ImageHeight Store image height
+         *
+         */  
+        cv::VideoCapture VideoObject;
+        float ImageWeight;
+        float ImageHeight;
+
+
+
+    public:
+        /**
+         *  @Brief Constructor
+         *  
+         *  @Param VideoDirectory Read video directory from system
+         *
+         */    
+        int LoadVideo(std::string videodirectory);
+
+};
+
