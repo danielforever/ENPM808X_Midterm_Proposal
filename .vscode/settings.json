@@ -60,5 +60,8 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "bit": "cpp"
+    },
+    "files.exclude": {
+        "**/.git": false
     }
 }
