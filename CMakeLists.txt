@@ -20,9 +20,10 @@ if (COVERAGE)
 else()
     set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -g")
 endif()
-include_directories(${OpenCV_INCLUDE_DIRS})
 
+include_directories(${OpenCV_INCLUDE_DIRS})
 add_executable( main app/main.cpp )
+
 target_link_libraries( main ${OpenCV_LIBS} )
 include(CMakeToolsHelpers OPTIONAL)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
