@@ -1,3 +1,6 @@
+[![Build Status](https://github.com/TommyChangUMD/cpp-boilerplate/actions/workflows/build_and_coveralls.yml/badge.svg)](https://github.com/danielforever/ENPM808X_Midterm_Proposal/actions/workflows/build_and_coveralls.yml)
+[![Coverage Status](https://coveralls.io/repos/github/TommyChangUMD/cpp-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/danielforever/ENPM808X_Midterm_Proposal?branch=master
+
 # MID_TERM_PROPOSAL_PHASE_0
 ***
 **Collaborators**
