@@ -45,7 +45,7 @@ jobs:
       - name: mkdir opencv_build
         run: mkdir opencv_build
       - name: cd opencv_build
-        run: 
+        run: |
           cd opencv_build
           sudo cmake  -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_ENABLE_NONFREE=ON  ..
           sudo make -j$(nproc)
