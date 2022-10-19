@@ -7,7 +7,9 @@
 
 #include<iostream>
 #include<vector>
-
+/**
+ * @Brief  A class that starts the whole system
+ */
 class Human_Tracker
 {
     private:
