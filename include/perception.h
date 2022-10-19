@@ -19,11 +19,12 @@ class Human_Tracker
          */
 
     public:
+
         /**
          *  @Brief Constructor
          *
          */
-        Human_Tracker();
+        Human_Tracker(std::string videodirectory);
         /**
          *  @Brief Destructor
          *
@@ -39,7 +40,6 @@ class Camera
     
     private:
         /**
-         *  @Brief Constructor
          *  
          *  @Param VideoObject This store the object of the video
          *  @Param ImageWeight Store image weight
@@ -54,7 +54,6 @@ class Camera
 
     public:
         /**
-         *  @Brief Constructor
          *  
          *  @Param VideoDirectory Read video directory from system
          *
@@ -68,10 +67,21 @@ class Camera
  */
 class Detector 
 {
+
+
+    public:
+        /**
+         *  
+         *  @Param boxes Store the bounding box coordinate into a vector
+         *  @Param Confidences Store the confidences into a vector
+         *
+         */ 
+    	std::vector<Rect> boxes;
+    	std::vector<float> Confidences;
+
     private:
 
-        std::vector<Person*> PersonVectorDetector;
-
+        
         /**
          *  @Brief Constructor
          *  
@@ -104,7 +114,6 @@ class Detector
 class Tracker
 {
     private:
-        std::vector<Person*> PersonaVectorTracker;
         /**
          *  @Brief Compare the coordinate to check whether this object had appeared 
          *
