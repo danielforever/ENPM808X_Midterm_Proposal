@@ -22,8 +22,12 @@ int Camera::LoadVideo(std::string Videodirectory){
     return 1;
 }
 
-Detector::Detector(){}
-Detector::~Detector(){}
+Detector::Detector(){
+    isInitialized=true;
+}
+Detector::~Detector(){
+    isInitialized=false;
+}
 
 bool Detector::DetectorSystem(){
     return true;
@@ -37,8 +41,12 @@ int Detector::DrawBoundingBox(){
     return 0;
 }
 
-Tracker::Tracker(){}
-Tracker::~Tracker(){}
+Tracker::Tracker(){
+        isInitialized=true;
+}
+Tracker::~Tracker(){
+        isInitialized=false;
+}
 
 int Tracker::Tracking(){
     return 0;
