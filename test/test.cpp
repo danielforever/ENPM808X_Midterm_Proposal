@@ -61,3 +61,7 @@ Tracker system1_tracker;
 TEST(Number, TrackingObjectCheck) {
   EXPECT_EQ(system1_tracker.Tracking(),2);
 }
+
+TEST(Number, DistanceCalculationCheck) {
+  EXPECT_EQ(system1_tracker.DistanceCalculation(),0);
+}
