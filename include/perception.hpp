@@ -23,7 +23,8 @@ class Human_Tracker
      *  @Brief Create a Human Tracker class
      *
      */
-public:
+
+public: 
     std::string videodirectory = "";
     /**
      *  @Brief Constructor
@@ -120,7 +121,9 @@ public:
 
 class Tracker
 {
-public:
+
+ public:
+    bool isInitialized = false;
     /**
      *  @Brief Compare the coordinate to check whether this object had appeared
      *

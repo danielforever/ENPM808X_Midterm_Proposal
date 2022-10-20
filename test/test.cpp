@@ -58,6 +58,20 @@ TEST(Number, BoundingBoxCheck) {
 
 Tracker system1_tracker;
 
+/**
+ * @brief Construct a new TEST object
+ * To check if the constructor is being called
+ */
+TEST(TrackerTest, TrackerConstructor) {
+  Tracker trackerObject;
+  EXPECT_EQ(trackerObject.isInitialized, true);
+}
+TEST(TrackerTest, TrackerDestructor) {
+  Tracker trackerObject;
+  trackerObject.~Tracker();
+  EXPECT_EQ(trackerObject.isInitialized, false);
+}
+
 TEST(Number, TrackingObjectCheck) {
   EXPECT_EQ(system1_tracker.Tracking(),2);
 }

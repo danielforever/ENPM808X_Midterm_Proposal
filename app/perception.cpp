@@ -37,8 +37,12 @@ int Detector::DrawBoundingBox(){
     return 0;
 }
 
-Tracker::Tracker(){}
-Tracker::~Tracker(){}
+Tracker::Tracker(){
+        isInitialized=true;
+}
+Tracker::~Tracker(){
+        isInitialized=false;
+}
 
 int Tracker::Tracking(){
     return 0;
