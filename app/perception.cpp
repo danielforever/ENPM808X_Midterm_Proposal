@@ -2,14 +2,15 @@
  * Author(s) Po-Yu Huang, Aman Sharma, Shantanu
  *
  */
-#include <./perception.hpp>
+#include "../include/perception.hpp"
 
-void Human_Tracker::setInput(std::string Videodirectory){
-    videodirectory = Videodirectory;
-    
+void Human_Tracker::setInput(std::string Videodirectory) {
+    this->videodirectory = Videodirectory;
 }
 
-std::string Human_Tracker::getInput(){
+std::string Human_Tracker::getInput() {
     return videodirectory;
 }
 
+Human_Tracker::Human_Tracker(){} 
+Human_Tracker::~Human_Tracker(){}
