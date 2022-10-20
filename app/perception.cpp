@@ -19,7 +19,6 @@ Camera::Camera(){}
 Camera::~Camera(){}
 
 int Camera::LoadVideo(){
-    
     return 1;
 }
 
