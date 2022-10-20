@@ -95,20 +95,20 @@ private:
      */
     Detector();
     /**
-     *  @Brief Create an object Person for every detected person
+     *  @Brief Send to object regonition system
      *
      */
-    void CreatObjectPerson();
+    bool DetectorSystem();
     /**
      *  @Brief To transform the cooridnate to Robot frame and calculate the center point
      *
      */
-    void CoordinateTransform();
+    int CoordinateTransform();
     /**
      *  @Brief Draw bounding box for the image
      *
      */
-    void DrawBoundingBox();
+    int DrawBoundingBox();
     /**
      *  @Brief Distructor
      *

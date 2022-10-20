@@ -22,4 +22,17 @@ int Camera::LoadVideo(){
     return 1;
 }
 
+Detector::Detector(){}
+Detector::~Detector(){}
 
+bool Detector::DetectorSystem(){
+    return true;
+}
+
+int Detector::CoordinateTransform(){
+    return 0;
+}
+
+int Detector::DrawBoundingBox(){
+    return 0;
+}
