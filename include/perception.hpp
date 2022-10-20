@@ -120,7 +120,7 @@ public:
 
 class Tracker
 {
-private:
+public:
     /**
      *  @Brief Compare the coordinate to check whether this object had appeared
      *

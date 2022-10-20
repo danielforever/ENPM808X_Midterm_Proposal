@@ -65,3 +65,7 @@ TEST(Number, TrackingObjectCheck) {
 TEST(Number, DistanceCalculationCheck) {
   EXPECT_EQ(system1_tracker.DistanceCalculation(),0);
 }
+
+TEST(Number, DeletePersonCheck) {
+  EXPECT_EQ(system1_tracker.DeletePerson(),3);
+}
