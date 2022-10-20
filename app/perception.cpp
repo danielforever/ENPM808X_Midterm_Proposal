@@ -5,49 +5,33 @@
 #include "../include/perception.hpp"
 
 void Human_Tracker::SetVideoDirectory(std::string Videodirectory) {
-    this->videodirectory = Videodirectory;
+  this->videodirectory = Videodirectory;
 }
 
-std::string Human_Tracker::GetVideoDirectory() {
-    return videodirectory;
-}
+std::string Human_Tracker::GetVideoDirectory() { return videodirectory; }
 
-Human_Tracker::Human_Tracker(){} 
-Human_Tracker::~Human_Tracker(){}
+Human_Tracker::Human_Tracker() { isInitialized = true; }
+Human_Tracker::~Human_Tracker() { isInitialized = false; }
 
-Camera::Camera(){}
-Camera::~Camera(){}
+Camera::Camera() {}
+Camera::~Camera() {}
 
-int Camera::LoadVideo(std::string Videodirectory){
-    return 1;
-}
+int Camera::LoadVideo(std::string Videodirectory) { return 1; }
 
-Detector::Detector(){}
-Detector::~Detector(){}
+Detector::Detector() {}
+Detector::~Detector() {}
 
-bool Detector::DetectorSystem(){
-    return true;
-}
+bool Detector::DetectorSystem() { return true; }
 
-int Detector::CoordinateTransform(){
-    return 0;
-}
+int Detector::CoordinateTransform() { return 0; }
 
-int Detector::DrawBoundingBox(){
-    return 0;
-}
+int Detector::DrawBoundingBox() { return 0; }
 
-Tracker::Tracker(){}
-Tracker::~Tracker(){}
+Tracker::Tracker() {}
+Tracker::~Tracker() {}
 
-int Tracker::Tracking(){
-    return 0;
-}
+int Tracker::Tracking() { return 0; }
 
-int Tracker::DistanceCalculation(){
-    return 0;
-}
+int Tracker::DistanceCalculation() { return 0; }
 
-int Tracker::DeletePerson(){
-    return 0;
-}
+int Tracker::DeletePerson() { return 0; }
