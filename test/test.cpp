@@ -32,12 +32,12 @@ TEST(Path, VideoPathCheck) {
   EXPECT_EQ(path_test,video_path);
 }
 
-TEST(Object, ImageObjectCheck) {
+TEST(Number, ImageObjectCheck) {
   int value = Camera1.LoadVideo(image1.GetVideoDirectory());
   EXPECT_EQ(value,1);
 }
 
-TEST(Object, VideoObjectCheck) {
+TEST(Number, VideoObjectCheck) {
   int value = Camera2.LoadVideo(video1.GetVideoDirectory());
   EXPECT_EQ(value,1);
 }
@@ -50,4 +50,8 @@ TEST(Coordinate, CoordinateCheck) {
   EXPECT_EQ(CoordinateTransform(),1);
 }
 
+
+TEST(Number, BoundingBoxCheck) {
+  EXPECT_EQ(DrawBoundingBox(),2);
+}
 
