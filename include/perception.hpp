@@ -127,17 +127,20 @@ private:
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    void Tracking();
+    Tracker();
+    ~Tracker();
+
+    int Tracking();
     /**
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    void DistanceCalculation();
+    int DistanceCalculation();
     /**
      *  @Brief Delete the Object Person that existed in the perivous image
      *
      */
-    void DeletePerson();
+    int DeletePerson();
 };
 /**
  * @Brief  An object that is person

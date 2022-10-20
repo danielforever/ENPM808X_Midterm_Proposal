@@ -36,3 +36,18 @@ int Detector::CoordinateTransform(){
 int Detector::DrawBoundingBox(){
     return 0;
 }
+
+Tracker::Tracker(){}
+Tracker::~Tracker(){}
+
+int Tracker::Tracking(){
+    return 0;
+}
+
+int Tracker::DistanceCalculation(){
+    return 0;
+}
+
+int Tracker::DeletePerson(){
+    return 0;
+}
