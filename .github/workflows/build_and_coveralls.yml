@@ -38,10 +38,9 @@ jobs:
         run: sudo apt install -y lcov
       
       # Install opencv
-      # Install opencv
-        - name: Dependency
-          run: |
-              sudo apt install libopencv-dev
+     
+      - name: Dependency
+        run: sudo apt install libopencv-dev
 
         
       # Run CMake to setup compilation flags
