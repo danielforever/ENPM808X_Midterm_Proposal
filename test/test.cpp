@@ -13,9 +13,9 @@
 
 std::string image_path = "asset/images/pedestrian_single.jpg";
 std::string video_path = "asset/videos/double_person.mp4";
-Human_Tracker image1;
 
-Human_Tracker video1;
+Human_Tracker image1 = new Human_Tracker();
+Human_Tracker video1 = new Human_Tracker();
 
 
 TEST(Path, ImagePathCheck) {

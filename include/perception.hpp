@@ -30,16 +30,16 @@ class Human_Tracker{
          *  @Brief Constructor
          *
          */
-         Human_Tracker(){}
+         Human_Tracker();
         // Setter
-        std::string setInput(std::string Videodirectory);
+        void setInput(std::string Videodirectory);
         // Getter
         std::string getInput();
         /**
          *  @Brief Destructor
          *
          */
-        ~Human_Tracker(){}
+        ~Human_Tracker();
 
 };
 /**
