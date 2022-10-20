@@ -1,13 +1,18 @@
 [![Build Status](https://github.com/TommyChangUMD/cpp-boilerplate/actions/workflows/build_and_coveralls.yml/badge.svg)](https://github.com/danielforever/ENPM808X_Midterm_Proposal/actions/workflows/build_and_coveralls.yml)
-[![Coverage Status](https://coveralls.io/repos/github/danielforever/ENPM808X_Midterm_Proposal/badge.svg?branch=master)](https://coveralls.io/github/danielforever/ENPM808X_Midterm_Proposal?branch=main
-
+[![Coverage Status](https://coveralls.io/repos/github/danielforever/ENPM808X_Midterm_Proposal/badge.svg?branch=master)](https://coveralls.io/github/danielforever/ENPM808X_Midterm_Proposal?branch=main)
+[![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](LICENSE.md)
 # MID_TERM_PROPOSAL_PHASE_0
 ***
 **Collaborators**
-> - *Navigator*      **Aman Sharma**    
+> - *Navigator*      **Aman Sharma** <ashrm007@umd.edu>
 > - *Driver*         **Po-Yu Huang**  <phuang14@umd.edu>
 > - *Design Keeper*  **Shantanu Parab**  <sparab@umd.edu>
 
+### AIP Document 
+[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://docs.google.com/spreadsheets/d/1YIb6e1S-9IIIN0XqMSaTiWy73bQwWlGtOVpeUz_p5m0/edit?usp=sharing)
+
+## Sprint Planning Review Document
+[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://docs.google.com/document/d/1yf7floh_fHxyug6Ytcp7xqqo3Nc4zX4OPCIcwfu8p-A/edit?usp=sharing)
 
 **Course:** Software Development for Robotics  
 **Code:** ENPM808X  
