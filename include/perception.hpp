@@ -19,23 +19,21 @@
  */
 class Human_Tracker
 {
-private:
     /**
      *  @Brief Create a Human Tracker class
      *
      */
-    std::string videodirectory = "";
-
 public:
+    std::string videodirectory = "";
     /**
      *  @Brief Constructor
      *
      */
     Human_Tracker();
     // Setter
-    void setInput(std::string Videodirectory);
+    void SetVideoDirectory(std::string Videodirectory);
     // Getter
-    std::string getInput();
+    std::string GetVideoDirectory();
     /**
      *  @Brief Destructor
      *
@@ -65,7 +63,7 @@ public:
      *  @Param VideoDirectory Read video directory from system
      *
      */
-    int LoadVideo();
+    int LoadVideo(std::string Videodirectory);
     Camera();
     ~Camera();
 };

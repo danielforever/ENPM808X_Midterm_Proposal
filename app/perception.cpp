@@ -4,11 +4,11 @@
  */
 #include "../include/perception.hpp"
 
-void Human_Tracker::setInput(std::string Videodirectory) {
+void Human_Tracker::SetVideoDirectory(std::string Videodirectory) {
     this->videodirectory = Videodirectory;
 }
 
-std::string Human_Tracker::getInput() {
+std::string Human_Tracker::GetVideoDirectory() {
     return videodirectory;
 }
 
@@ -18,7 +18,7 @@ Human_Tracker::~Human_Tracker(){}
 Camera::Camera(){}
 Camera::~Camera(){}
 
-int Camera::LoadVideo(){
+int Camera::LoadVideo(std::string Videodirectory){
     return 1;
 }
 
