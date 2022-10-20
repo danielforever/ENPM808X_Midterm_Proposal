@@ -1,7 +1,7 @@
 
 
 cmake_minimum_required(VERSION 3.2.1)
-project (scratch)
+project ( Perception )
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules)
 find_package(OpenCV REQUIRED) 
 # Add project cmake modules to path.
@@ -14,7 +14,7 @@ if (COVERAGE)
     include(CodeCoverage)
     set(LCOV_REMOVE_EXTRA "'vendor/*'")
     setup_target_for_coverage(code_coverage test/cpp-test coverage)
-    set(COVERAGE_SRCS app/main.cpp app/percention.cpp include/lib.hpp inlcude/perception.hpp)
+    set(COVERAGE_SRCS app/main.cpp app/percention.cpp include/lib.hpp )
 
     SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
     SET(CMAKE_C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
@@ -23,14 +23,18 @@ else()
     set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -g")
 endif()
 
-include_directories(${OpenCV_INCLUDE_DIRS})
-add_executable( main app/main.cpp )
 
-target_link_libraries( main ${OpenCV_LIBS} )
 include(CMakeToolsHelpers OPTIONAL)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+add_executable( Perception app/main.cpp )
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 14)
+link_directories(app)
+
 
 add_subdirectory(app)
 add_subdirectory(test)
 add_subdirectory(vendor/googletest/googletest)
+target_link_libraries( Perception ${OpenCV_LIBS} )

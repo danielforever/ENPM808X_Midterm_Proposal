@@ -17,26 +17,29 @@
 /**
  * @Brief  A class that starts the whole system
  */
-class Human_Tracker
-{
+class Human_Tracker{
     private:
         /**
          *  @Brief Create a Human Tracker class  
          *
          */
-        
+        std::string videodirectory= ""; 
     public:
-	std::string MediaPath; 
+    	
         /**
          *  @Brief Constructor
          *
          */
-        void ReadInput(std::string videodirectory);
+         Human_Tracker(){}
+        // Setter
+        std::string setInput(std::string Videodirectory);
+        // Getter
+        std::string getInput();
         /**
          *  @Brief Destructor
          *
          */
-        ~Human_Tracker() = default;
+        ~Human_Tracker(){}
 
 };
 /**
