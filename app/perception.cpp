@@ -14,3 +14,13 @@ std::string Human_Tracker::getInput() {
 
 Human_Tracker::Human_Tracker(){} 
 Human_Tracker::~Human_Tracker(){}
+
+Camera::Camera(){}
+Camera::~Camera(){}
+
+int Camera::LoadVideo(){
+    
+    return 1;
+}
+
+

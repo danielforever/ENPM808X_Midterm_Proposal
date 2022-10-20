@@ -17,7 +17,8 @@ std::string video_path = "asset/videos/double_person.mp4";
 Human_Tracker image1;
 
 Human_Tracker video1;
-
+Camera Camera1;
+Camera Camera2;
 
 TEST(Path, ImagePathCheck) {
   image1.setInput(image_path);
@@ -30,3 +31,5 @@ TEST(Path, VideoPathCheck) {
   std::string path_test = video1.getInput();
   EXPECT_EQ(path_test,video_path);
 }
+
+
