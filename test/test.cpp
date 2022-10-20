@@ -42,7 +42,18 @@ TEST(Number, VideoObjectCheck) {
   EXPECT_EQ(value,1);
 }
 
+TEST(Detector, DetectorConstructor) {
+  Detector trackerObject;
+  EXPECT_EQ(trackerObject.isInitialized, true);
+}
+TEST(Detector, DetectorDestructor) {
+  Detector trackerObject;
+  trackerObject.~Detector();
+  EXPECT_EQ(trackerObject.isInitialized, false);
+}
+
 Detector system1;
+
 TEST(Object, DetectObjectCheck) {
   EXPECT_EQ(system1.DetectorSystem(),true);
 }

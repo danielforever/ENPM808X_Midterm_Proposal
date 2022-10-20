@@ -76,6 +76,7 @@ class Detector
 {
 
 public:
+    bool isInitialized = false;
     /**
      *
      *  @Param boxes Store the bounding box coordinate into a vector
