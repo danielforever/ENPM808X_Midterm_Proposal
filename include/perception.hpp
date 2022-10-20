@@ -10,9 +10,16 @@
  */
 #pragma once
 
-#include "opencv2/opencv.hpp"
 #include <iostream>
 #include <vector>
+#include <string>
+
+#include <opencv4/opencv2/core.hpp>
+#include <opencv4/opencv2/imgcodecs.hpp>
+#include <opencv4/opencv2/highgui.hpp>
+
+
+
 
 /**
  * @Brief  A class that starts the whole system
@@ -40,32 +47,8 @@ public:
    *
    */
   ~Human_Tracker();
-
-class Human_Tracker
-{
-    /**
-     *  @Brief Create a Human Tracker class
-     *
-     */
-
-public: 
-    std::string videodirectory = "";
-    /**
-     *  @Brief Constructor
-     *
-     */
-    Human_Tracker();
-    // Setter
-    void SetVideoDirectory(std::string Videodirectory);
-    // Getter
-    std::string GetVideoDirectory();
-    /**
-     *  @Brief Destructor
-     *
-     */
-    ~Human_Tracker();
-
 };
+
 /**
  * @Brief  A class that read images or videos from the directory
  */
@@ -90,6 +73,7 @@ public:
    *
    */
   int LoadVideo(std::string Videodirectory);
+  int LoadImage(std::string path);
   Camera();
   ~Camera();
 };
@@ -100,7 +84,7 @@ public:
 class Detector {
 
 public:
-
+     bool isInitialized = false;
   /**
    *
    *  @Param boxes Store the bounding box coordinate into a vector
@@ -134,78 +118,9 @@ public:
    *
    */
   int DrawBoundingBox();
-  /**
-   *  @Brief Distructor
-   *
-
-    bool isInitialized = false;
-    /**
-     *
-     *  @Param boxes Store the bounding box coordinate into a vector
-     *  @Param Confidences Store the confidences into a vector
-     *
-     */
-    std::vector<cv::Rect> boxes;
-    std::vector<float> Confidences;
-    Detector();
-    ~Detector();
-    /**
-     *  @Brief Constructor
-     *
-     *  @Param PersonVectorDetector Save all the detected people into vector
-     *
-     */
-    
-    /**
-     *  @Brief Send to object regonition system
-     *
-     */
-    bool DetectorSystem();
-    /**
-     *  @Brief To transform the cooridnate to Robot frame and calculate the center point
-     *
-     */
-    int CoordinateTransform();
-    /**
-     *  @Brief Draw bounding box for the image
-     *
-     */
-    int DrawBoundingBox();
-    /**
-     *  @Brief Distructor
-     *
-     */
 
 };
 
-/**
- * @Brief  A tracker system that verified the Person object
- */
-
-
-class Tracker {
-public:
-  /**
-   *  @Brief Compare the coordinate to check whether this object had appeared
-   *
-   */
-  Tracker();
-  ~Tracker();
-  /**
-   *  @Brief Compare the coordinate to check whether this object had appeared
-   *
-   */
-  int Tracking();
-  /**
-   *  @Brief Calculate the distance for the detected object
-   *
-   */
-  int DistanceCalculation();
-  /**
-   *  @Brief Delete the Object Person that existed in the perivous image
-   *
-   */
-  int DeletePerson();
 
 class Tracker
 {
@@ -235,6 +150,4 @@ class Tracker
     int DeletePerson();
 
 };
-/**
- * @Brief  An object that is person
- */
+
