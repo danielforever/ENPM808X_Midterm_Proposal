@@ -55,8 +55,25 @@ TEST(Number, VideoObjectCheck) {
   EXPECT_EQ(value, 1);
 }
 
+TEST(Detector, DetectorConstructor) {
+  Detector trackerObject;
+  EXPECT_EQ(trackerObject.isInitialized, true);
+}
+TEST(Detector, DetectorDestructor) {
+  Detector trackerObject;
+  trackerObject.~Detector();
+  EXPECT_EQ(trackerObject.isInitialized, false);
+}
+
 Detector system1;
+
 TEST(Object, DetectObjectCheck) { EXPECT_EQ(system1.DetectorSystem(), true); }
+
+
+TEST(Object, DetectObjectCheck) {
+  EXPECT_EQ(system1.DetectorSystem(),true);
+}
+
 
 TEST(Coordinate, CoordinateCheck) {
   EXPECT_EQ(system1.CoordinateTransform(), 1);
@@ -66,7 +83,27 @@ TEST(Number, BoundingBoxCheck) { EXPECT_EQ(system1.DrawBoundingBox(), 2); }
 
 Tracker system1_tracker;
 
+
 TEST(Number, TrackingObjectCheck) { EXPECT_EQ(system1_tracker.Tracking(), 2); }
+
+/**
+ * @brief Construct a new TEST object
+ * To check if the constructor is being called
+ */
+TEST(TrackerTest, TrackerConstructor) {
+  Tracker trackerObject;
+  EXPECT_EQ(trackerObject.isInitialized, true);
+}
+TEST(TrackerTest, TrackerDestructor) {
+  Tracker trackerObject;
+  trackerObject.~Tracker();
+  EXPECT_EQ(trackerObject.isInitialized, false);
+}
+
+TEST(Number, TrackingObjectCheck) {
+  EXPECT_EQ(system1_tracker.Tracking(),2);
+}
+
 
 TEST(Number, DistanceCalculationCheck) {
   EXPECT_EQ(system1_tracker.DistanceCalculation(), 0);
