@@ -42,16 +42,16 @@ TEST(Number, VideoObjectCheck) {
   EXPECT_EQ(value,1);
 }
 
+Detector system1;
 TEST(Object, DetectObjectCheck) {
-  EXPECT_EQ(DetectorSystem(),true);
+  EXPECT_EQ(system1.DetectorSystem(),true);
 }
 
 TEST(Coordinate, CoordinateCheck) {
-  EXPECT_EQ(CoordinateTransform(),1);
+  EXPECT_EQ(system1.CoordinateTransform(),1);
 }
 
 
 TEST(Number, BoundingBoxCheck) {
-  EXPECT_EQ(DrawBoundingBox(),2);
+  EXPECT_EQ(system1.DrawBoundingBox(),2);
 }
-

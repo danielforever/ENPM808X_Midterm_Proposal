@@ -83,15 +83,15 @@ public:
      */
     std::vector<cv::Rect> boxes;
     std::vector<float> Confidences;
-
-private:
+    Detector();
+    ~Detector();
     /**
      *  @Brief Constructor
      *
      *  @Param PersonVectorDetector Save all the detected people into vector
      *
      */
-    Detector();
+    
     /**
      *  @Brief Send to object regonition system
      *
@@ -111,7 +111,7 @@ private:
      *  @Brief Distructor
      *
      */
-    ~Detector();
+    
 };
 
 /**
@@ -127,10 +127,13 @@ private:
      */
     Tracker();
     ~Tracker();
-
-    int Tracking();
     /**
      *  @Brief Compare the coordinate to check whether this object had appeared
+     *
+     */
+    int Tracking();
+    /**
+     *  @Brief Calculate the distance for the detected object
      *
      */
     int DistanceCalculation();
