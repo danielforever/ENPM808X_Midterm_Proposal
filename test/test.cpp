@@ -55,3 +55,9 @@ TEST(Coordinate, CoordinateCheck) {
 TEST(Number, BoundingBoxCheck) {
   EXPECT_EQ(system1.DrawBoundingBox(),2);
 }
+
+Tracker system1_tracker;
+
+TEST(Number, TrackingObjectCheck) {
+  EXPECT_EQ(system1_tracker.Tracking(),2);
+}
