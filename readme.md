@@ -46,7 +46,9 @@ The focus of the project is to develope best practices for Software Develpoement
 
 4. [Activity Diagram](submission/uml/Activity%20Diagram.pdf)
 
-5.  [Video](https://youtu.be/RBK_uPH3j8g)
+5.  [Video Phase 0](https://youtu.be/RBK_uPH3j8g)
+
+6. [Video Phase 1](https://youtu.be/Oaej38F-kNk)
 
 ***
 ## Run cppcheck and cpplint
