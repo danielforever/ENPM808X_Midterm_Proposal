@@ -56,7 +56,7 @@ int Camera::LoadVideo(std::string Videodirectory) { return 1; }
  */
 int Camera::LoadImage(std::string path) {
     std::string image_path = cv::samples::findFile(path);
-    cv::Mat img = cv::imread(image_path, IMREAD_COLOR);
+    cv::Mat img = cv::imread(image_path, cv::IMREAD_COLOR);
     if (img.empty()) {
         std::cout << "Could not read the image: " << image_path << std::endl;
         return 1;
