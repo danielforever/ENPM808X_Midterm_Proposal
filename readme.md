@@ -46,7 +46,21 @@ The focus of the project is to develope best practices for Software Develpoement
 
 5.  [Video](https://youtu.be/RBK_uPH3j8g)
 
-****
+***
+## Run cppcheck and cpplint
+Run cppcheck: Results are stored in `./results/cppcheck_process.txt`, `./results/cppcheck_result.txt` 
+
+`sh run_cppcheck.sh`
+
+
+Run cpplint: Results are stored in `./results/cpplint_result.txt`
+
+`sh run_cpplint.sh`
+
+
+No cpp-lint and cpp-check issues were found.
+
+***
 ### License  
 [GNU GENERAL PUBLIC LICENSE](assets/GNU%20GENERAL%20PUBLIC%20LICENSE.pdf)
 
