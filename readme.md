@@ -63,6 +63,21 @@ Run cpplint: Results are stored in `./results/cpplint_result.txt`
 No cpp-lint and cpp-check issues were found.
 
 ***
-### License  
-[GNU GENERAL PUBLIC LICENSE](assets/GNU%20GENERAL%20PUBLIC%20LICENSE.pdf)
+
+### Running the human detection app
+
+
+git clone --recursive https://github.com/danielforever/ENPM808X_Midterm_Proposal.git  
+`cd ENPM808X_Midterm_Proposal`  
+`mkdir build`  
+`cd build`  
+`cmake ..`  
+`make`  
+Run tests: `./test/cpp-test`  
+Run the main human detection pipeline: `./app/shell-app`  
+
+
+
+***
+
 
