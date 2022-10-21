@@ -10,3 +10,4 @@ build/
 
 # Python
 *.pyc
+cfg/yolov3.weights

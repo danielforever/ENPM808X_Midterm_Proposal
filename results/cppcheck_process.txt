@@ -1,0 +1,33 @@
+app/src/perception.cpp:28:9: warning: Member variable 'Camera::ImageWeight' is not initialized in the constructor. [uninitMemberVar]
+Camera::Camera() {}
+        ^
+app/src/perception.cpp:28:9: warning: Member variable 'Camera::ImageHeight' is not initialized in the constructor. [uninitMemberVar]
+Camera::Camera() {}
+        ^
+app/src/perception.cpp:14:51: performance: Function parameter 'Videodirectory' should be passed by const reference. [passedByValue]
+void Human_Tracker::SetVideoDirectory(std::string Videodirectory) {
+                                                  ^
+app/src/perception.cpp:31:35: performance: Function parameter 'Videodirectory' should be passed by const reference. [passedByValue]
+int Camera::LoadVideo(std::string Videodirectory) { return 1; }
+                                  ^
+app/src/perception.cpp:56:32: performance: Function parameter 'path' should be passed by const reference. [passedByValue]
+Detector::Detector(std::string path) {
+                               ^
+test/test.cpp:71:12: style: Local variable 'system1' shadows outer variable [shadowVariable]
+  Detector system1("../assests/pedestrian_single.jpg");
+           ^
+test/test.cpp:80:10: note: Shadowed declaration
+Detector system1;
+         ^
+test/test.cpp:71:12: note: Shadow variable
+  Detector system1("../assests/pedestrian_single.jpg");
+           ^
+test/test.cpp:76:12: style: Local variable 'system1' shadows outer variable [shadowVariable]
+  Detector system1("../assests/pedestrian-walk-car-waiting.jpg");
+           ^
+test/test.cpp:80:10: note: Shadowed declaration
+Detector system1;
+         ^
+test/test.cpp:76:12: note: Shadow variable
+  Detector system1("../assests/pedestrian-walk-car-waiting.jpg");
+           ^

@@ -1,13 +1,20 @@
 [![Build Status](https://github.com/TommyChangUMD/cpp-boilerplate/actions/workflows/build_and_coveralls.yml/badge.svg)](https://github.com/danielforever/ENPM808X_Midterm_Proposal/actions/workflows/build_and_coveralls.yml)
 [![Coverage Status](https://coveralls.io/repos/github/danielforever/ENPM808X_Midterm_Proposal/badge.svg?branch=master)](https://coveralls.io/github/danielforever/ENPM808X_Midterm_Proposal?branch=main)
+[![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](LICENSE.md)
+
 
 # MID_TERM_PROPOSAL_PHASE_0
 ***
 **Collaborators**
-> - *Navigator*      **Aman Sharma**    
+> - *Navigator*      **Aman Sharma** <ashrm007@umd.edu>
 > - *Driver*         **Po-Yu Huang**  <phuang14@umd.edu>
 > - *Design Keeper*  **Shantanu Parab**  <sparab@umd.edu>
 
+### AIP Document 
+[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://docs.google.com/spreadsheets/d/1YIb6e1S-9IIIN0XqMSaTiWy73bQwWlGtOVpeUz_p5m0/edit?usp=sharing)
+
+## Sprint Planning Review Document
+[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://docs.google.com/document/d/1yf7floh_fHxyug6Ytcp7xqqo3Nc4zX4OPCIcwfu8p-A/edit?usp=sharing)
 
 **Course:** Software Development for Robotics  
 **Code:** ENPM808X  
@@ -41,7 +48,21 @@ The focus of the project is to develope best practices for Software Develpoement
 
 5.  [Video](https://youtu.be/RBK_uPH3j8g)
 
-****
+***
+## Run cppcheck and cpplint
+Run cppcheck: Results are stored in `./results/cppcheck_process.txt`, `./results/cppcheck_result.txt` 
+
+`sh run_cppcheck.sh`
+
+
+Run cpplint: Results are stored in `./results/cpplint_result.txt`
+
+`sh run_cpplint.sh`
+
+
+No cpp-lint and cpp-check issues were found.
+
+***
 ### License  
 [GNU GENERAL PUBLIC LICENSE](assets/GNU%20GENERAL%20PUBLIC%20LICENSE.pdf)
 
