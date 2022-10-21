@@ -3,7 +3,7 @@
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](LICENSE.md)
 
 
-# MID_TERM_PROPOSAL_PHASE_0
+# MID_TERM_PROPOSAL_PHASE_1
 ***
 **Collaborators**
 > - *Navigator*      **Aman Sharma** <ashrm007@umd.edu>
@@ -79,5 +79,7 @@ Run the main human detection pipeline: `./app/shell-app`
 
 
 ***
-
+#Doxygen Generation  
+`cd doxygen`  
+`doxygen Doxyfile`
 
