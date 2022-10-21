@@ -65,6 +65,15 @@ TEST(Detector, DetectorDestructor) {
   EXPECT_EQ(trackerObject.isInitialized, false);
 }
 
+TEST(Detector,DetectObjectCheck0) { 
+  Detector system1("../assests/pedestrian_single.jpg");
+  EXPECT_EQ(system1.DetectorSystem(),1); }
+
+TEST(Detector, DetectObjectCheck1) { 
+  Detector system1("../assests/pedestrian-walk-car-waiting.jpg");
+  EXPECT_EQ(system1.DetectorSystem(),2); 
+}
+
 Detector system1;
 
 

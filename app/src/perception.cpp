@@ -56,8 +56,12 @@ Detector::~Detector(){
     isInitialized=false;
 }
 
+Detector::Detector(std::string path){
+    isInitialized=true;
+}
 
-bool Detector::DetectorSystem() { return true; }
+
+bool Detector::DetectorSystem() { return 0; }
 
 int Detector::CoordinateTransform() { return 0; }
 

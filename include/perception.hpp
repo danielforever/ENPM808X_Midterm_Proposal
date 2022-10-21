@@ -94,6 +94,7 @@ public:
   std::vector<cv::Rect> boxes;
   std::vector<float> Confidences;
   Detector();
+  Detector(std::string path);
   ~Detector();
   /**
    *  @Brief Constructor
