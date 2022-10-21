@@ -10,7 +10,10 @@
  */
 
 #include <gtest/gtest.h>
-#include "../include/perception.hpp"
+#include <camera.hpp>
+#include <tracker.hpp>
+#include <human_tracker.hpp>
+#include <detector.hpp>
 
 
 

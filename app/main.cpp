@@ -10,11 +10,19 @@
  */
 #include <iostream>
 
-#include <perception.hpp>
+#include <camera.hpp>
+#include <tracker.hpp>
+#include <human_tracker.hpp>
+#include <detector.hpp>
 
 
 
 int main() {
-  Human_Tracker h;
+  Camera h;
+  std::string path = "../assets/images/pedestrian_single.jpg";
+  h.LoadImage(path);
+  Human_Tracker a;
+  Detector d;
+  Tracker t;
   return 0;
 }
