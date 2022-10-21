@@ -17,12 +17,12 @@ void Human_Tracker::SetVideoDirectory(std::string Videodirectory) {
 
 std::string Human_Tracker::GetVideoDirectory() { return videodirectory; }
 
-Human_Tracker::Human_Tracker() { 
+Human_Tracker::Human_Tracker() {
     isInitialized = true;
     Camera camera;
-    std::string path="../assets/images/pedestrian_single.jpg";
-    camera.LoadImage(path);
- }
+    std::string path = "../assets/images/pedestrian_single.jpg";
+    camera.LoadImage(path);}
+
 Human_Tracker::~Human_Tracker() { isInitialized = false; }
 
 Camera::Camera() {}
@@ -30,34 +30,31 @@ Camera::~Camera() {}
 
 int Camera::LoadVideo(std::string Videodirectory) { return 1; }
 
-int Camera::LoadImage(std::string path){
-  
+int Camera::LoadImage(std::string path) {
     std::string image_path = samples::findFile(path);
     Mat img = imread(image_path, IMREAD_COLOR);
-    if(img.empty())
-    {
+    if (img.empty()) {
         std::cout << "Could not read the image: " << image_path << std::endl;
         return 1;
     }
     imshow("Display window", img);
-    int k = waitKey(0); // Wait for a keystroke in the window
-    if(k == 's')
-    {
+    int k = waitKey(0);  // Wait for a keystroke in the window
+    if (k == 's') {
         imwrite("starry_night.png", img);
     }
     return 0;
 }
 
 
-Detector::Detector(){
-    isInitialized=true;
+Detector::Detector() {
+    isInitialized = true;
 }
-Detector::~Detector(){
-    isInitialized=false;
+Detector::~Detector() {
+    isInitialized = false;
 }
 
-Detector::Detector(std::string path){
-    isInitialized=true;
+Detector::Detector(std::string path) {
+    isInitialized = true;
 }
 
 
@@ -69,11 +66,11 @@ int Detector::DrawBoundingBox() { return 0; }
 
 
 
-Tracker::Tracker(){
-        isInitialized=true;
+Tracker::Tracker() {
+        isInitialized = true;
 }
-Tracker::~Tracker(){
-        isInitialized=false;
+Tracker::~Tracker() {
+        isInitialized = false;
 }
 
 

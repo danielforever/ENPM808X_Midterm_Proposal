@@ -11,8 +11,8 @@
 #include "../include/perception.hpp"
 #include <gtest/gtest.h>
 
-std::string image_path = "asset/images/pedestrian_single.jpg";
-std::string video_path = "asset/videos/double_person.mp4";
+
+
 
 Human_Tracker image1;
 Human_Tracker video1;
@@ -34,12 +34,14 @@ Camera Camera1;
 Camera Camera2;
 
 TEST(Path, ImagePathCheck) {
+  std::string image_path = "asset/images/pedestrian_single.jpg";
   image1.SetVideoDirectory(image_path);
   std::string path_test = image1.GetVideoDirectory();
   EXPECT_EQ(path_test, image_path);
 }
 
 TEST(Path, VideoPathCheck) {
+  std::string video_path = "asset/videos/double_person.mp4";
   video1.SetVideoDirectory(video_path);
   std::string path_test = video1.GetVideoDirectory();
   EXPECT_EQ(path_test, video_path);
@@ -65,13 +67,14 @@ TEST(Detector, DetectorDestructor) {
   EXPECT_EQ(trackerObject.isInitialized, false);
 }
 
-TEST(Detector,DetectObjectCheck0) { 
+TEST(Detector, DetectObjectCheck0) {
   Detector system1("../assests/pedestrian_single.jpg");
-  EXPECT_EQ(system1.DetectorSystem(),1); }
+  EXPECT_EQ(system1.DetectorSystem(), 1);
+  }
 
-TEST(Detector, DetectObjectCheck1) { 
+TEST(Detector, DetectObjectCheck1) {
   Detector system1("../assests/pedestrian-walk-car-waiting.jpg");
-  EXPECT_EQ(system1.DetectorSystem(),2); 
+  EXPECT_EQ(system1.DetectorSystem(), 2);
 }
 
 Detector system1;
@@ -79,7 +82,7 @@ Detector system1;
 
 
 TEST(Object, DetectObjectCheck) {
-  EXPECT_EQ(system1.DetectorSystem(),true);
+  EXPECT_EQ(system1.DetectorSystem(), true);
 }
 
 

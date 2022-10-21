@@ -30,7 +30,7 @@ class Human_Tracker {
    *  @Brief Create a Human Tracker class
    *
    */
-public:
+ public:
   bool isInitialized = false;
   std::string videodirectory = "";
   /**
@@ -53,8 +53,7 @@ public:
  * @Brief  A class that read images or videos from the directory
  */
 class Camera {
-
-private:
+ private:
   /**
    *
    *  @Param VideoObject This store the object of the video
@@ -66,7 +65,7 @@ private:
   float ImageWeight;
   float ImageHeight;
 
-public:
+ public:
   /**
    *
    *  @Param VideoDirectory Read video directory from system
@@ -82,8 +81,7 @@ public:
  * @Brief  A class that detect and add Person object for the vector
  */
 class Detector {
-
-public:
+ public:
      bool isInitialized = false;
   /**
    *
@@ -94,7 +92,7 @@ public:
   std::vector<cv::Rect> boxes;
   std::vector<float> Confidences;
   Detector();
-  Detector(std::string path);
+  explicit Detector(std::string path);
   ~Detector();
   /**
    *  @Brief Constructor
