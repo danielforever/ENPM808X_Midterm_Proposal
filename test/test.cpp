@@ -67,7 +67,6 @@ TEST(Detector, DetectorDestructor) {
 
 Detector system1;
 
-TEST(Object, DetectObjectCheck) { EXPECT_EQ(system1.DetectorSystem(), true); }
 
 
 TEST(Object, DetectObjectCheck) {
@@ -100,9 +99,6 @@ TEST(TrackerTest, TrackerDestructor) {
   EXPECT_EQ(trackerObject.isInitialized, false);
 }
 
-TEST(Number, TrackingObjectCheck) {
-  EXPECT_EQ(system1_tracker.Tracking(),2);
-}
 
 
 TEST(Number, DistanceCalculationCheck) {

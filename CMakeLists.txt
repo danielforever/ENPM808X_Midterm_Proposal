@@ -25,16 +25,12 @@ endif()
 
 
 include(CMakeToolsHelpers OPTIONAL)
-include_directories(${OpenCV_INCLUDE_DIRS})
-
-add_executable( Perception app/main.cpp )
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 14)
-link_directories(app)
 
 
 add_subdirectory(app)
+add_subdirectory(app/src)
 add_subdirectory(test)
 add_subdirectory(vendor/googletest/googletest)
-target_link_libraries( Perception ${OpenCV_LIBS} )
+
