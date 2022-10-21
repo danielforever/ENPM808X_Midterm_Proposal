@@ -117,13 +117,10 @@ class Detector {
    *
    */
   int DrawBoundingBox();
-
 };
 
 
-class Tracker
-{
-
+class Tracker {
  public:
     bool isInitialized = false;
     /**
@@ -147,6 +144,4 @@ class Tracker
      *
      */
     int DeletePerson();
-
 };
-

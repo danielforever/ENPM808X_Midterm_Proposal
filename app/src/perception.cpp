@@ -6,7 +6,7 @@
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 #include "../../include/perception.hpp"
-using namespace cv;
+
 /**
  * @brief set the video directory that will be required for the loading video
  * 
@@ -55,14 +55,14 @@ int Camera::LoadVideo(std::string Videodirectory) { return 1; }
  * @return int 
  */
 int Camera::LoadImage(std::string path) {
-    std::string image_path = samples::findFile(path);
-    Mat img = imread(image_path, IMREAD_COLOR);
+    std::string image_path = cv::samples::findFile(path);
+    cv::Mat img = cv::imread(image_path, IMREAD_COLOR);
     if (img.empty()) {
         std::cout << "Could not read the image: " << image_path << std::endl;
         return 1;
     }
     imshow("Display window", img);
-    int k = waitKey(0);  // Wait for a keystroke in the window
+    int k = cv::waitKey(0);  // Wait for a keystroke in the window
     if (k == 's') {
         imwrite("starry_night.png", img);
     }
