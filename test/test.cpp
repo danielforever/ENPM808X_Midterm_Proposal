@@ -67,8 +67,10 @@ TEST(Path, VideoPathCheck) {
  * @brief Testing the Video Loading 
  * 
  */
+cv::VideoCapture cap2 = Camera2.LoadVideo(video1.GetVideoDirectory());
+
 TEST(Number, VideoObjectCheck) {
-  cv::VideoCapture cap2 = Camera2.LoadVideo(video1.GetVideoDirectory());
+  
   int value = 1;
   if(!cap2.isOpened()){
     value = 0;
@@ -80,7 +82,7 @@ TEST(Number, VideoObjectCheck) {
  * 
  */
 TEST(Detector, DetectorConstructor) {
-  Detector trackerObject;
+  Detector trackerObject(cap2);
   EXPECT_EQ(trackerObject.isInitialized, true);
 }
 /**
@@ -88,7 +90,7 @@ TEST(Detector, DetectorConstructor) {
  * 
  */
 TEST(Detector, DetectorDestructor) {
-  Detector trackerObject;
+  Detector trackerObject(cap2);
   trackerObject.~Detector();
   EXPECT_EQ(trackerObject.isInitialized, false);
 }
@@ -104,17 +106,9 @@ TEST(Detector, DetectObjectCheck0) {
  * @brief Testing the Detector counting function for double pedestrian image
  * 
  */
+Detector system1("../assests/pedestrian-walk-car-waiting.jpg");
 TEST(Detector, DetectObjectCheck1) {
-  Detector system1("../assests/pedestrian-walk-car-waiting.jpg");
   EXPECT_EQ(system1.DetectorSystem(), 2);
-}
-/**
- * @brief Testing the Detection system function using object check
- * 
- */
-Detector system1;
-TEST(Object, DetectObjectCheck) {
-  EXPECT_EQ(system1.DetectorSystem(), true);
 }
 
 /**

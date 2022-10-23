@@ -8,7 +8,15 @@
  * @brief Construct a new Detector:: Detector object
  * 
  */
-Detector::Detector() {
+Detector::Detector(cv::VideoCapture cap) {
+    cv::Mat frame;
+    while (cv::waitKey(1) < 0){
+        cap >> frame;
+        if(frame.empty()){
+            std::cout << "Error no file input" << std::endl;
+            break;
+        }
+    }
     isInitialized = true;
 }
 /**

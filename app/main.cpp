@@ -24,7 +24,7 @@ int main() {
   std::string video_path = "../assets/videos/double_person.mp4";
   cv::VideoCapture cap = h.LoadVideo(video_path);
   Human_Tracker a;
-  Detector d;
+  Detector d(cap);
   Tracker t;
   return 0;
 }

@@ -29,7 +29,7 @@ class Detector {
    */
   std::vector<cv::Rect> boxes;
   std::vector<float> Confidences;
-  Detector();
+  Detector(cv::VideoCapture cap);
   explicit Detector(std::string path);
   ~Detector();
   /**
