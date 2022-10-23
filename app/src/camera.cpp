@@ -16,8 +16,8 @@ Camera::~Camera() {}
  * @return cv::VideoCapture 
  */
 cv::VideoCapture Camera::LoadVideo(std::string Videodirectory) { 
-    cv::VideoCapture cap;
-    return cap; 
+    cv::VideoCapture cap(Videodirectory);
+    return cap;
     }
 /**
  * @brief 
