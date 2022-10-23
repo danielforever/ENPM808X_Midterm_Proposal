@@ -37,7 +37,7 @@ class Camera {
    *  @Param VideoDirectory Read video directory from system
    *
    */
-  int LoadVideo(std::string Videodirectory);
+  cv::VideoCapture LoadVideo(std::string Videodirectory);
   int LoadImage(std::string path);
   Camera();
   ~Camera();

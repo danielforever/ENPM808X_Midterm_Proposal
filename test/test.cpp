@@ -48,7 +48,7 @@ Camera Camera2;
  * 
  */
 TEST(Path, ImagePathCheck) {
-  std::string image_path = "asset/images/pedestrian_single.jpg";
+  std::string image_path = "assets/images/pedestrian_single.jpg";
   image1.SetVideoDirectory(image_path);
   std::string path_test = image1.GetVideoDirectory();
   EXPECT_EQ(path_test, image_path);
@@ -58,25 +58,21 @@ TEST(Path, ImagePathCheck) {
  * 
  */
 TEST(Path, VideoPathCheck) {
-  std::string video_path = "asset/videos/double_person.mp4";
+  std::string video_path = "assets/videos/double_person.mp4";
   video1.SetVideoDirectory(video_path);
   std::string path_test = video1.GetVideoDirectory();
   EXPECT_EQ(path_test, video_path);
-}
-/**
- * @brief Testing the camera for video directory 
- * 
- */
-TEST(Number, ImageObjectCheck) {
-  int value = Camera1.LoadVideo(image1.GetVideoDirectory());
-  EXPECT_EQ(value, 1);
 }
 /**
  * @brief Testing the Video Loading 
  * 
  */
 TEST(Number, VideoObjectCheck) {
-  int value = Camera2.LoadVideo(video1.GetVideoDirectory());
+  cv::VideoCapture cap2 = Camera2.LoadVideo(video1.GetVideoDirectory());
+  int value = 1;
+  if(!cap2.isOpened()){
+    value = 0;
+  }
   EXPECT_EQ(value, 1);
 }
 /**

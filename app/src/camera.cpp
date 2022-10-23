@@ -13,9 +13,12 @@ Camera::~Camera() {}
  * @brief 
  * 
  * @param Videodirectory Loadin the Video Directory
- * @return int 
+ * @return cv::VideoCapture 
  */
-int Camera::LoadVideo(std::string Videodirectory) { return 1; }
+cv::VideoCapture Camera::LoadVideo(std::string Videodirectory) { 
+    cv::VideoCapture cap;
+    return cap; 
+    }
 /**
  * @brief 
  * 
