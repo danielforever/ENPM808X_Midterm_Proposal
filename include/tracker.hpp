@@ -19,11 +19,14 @@
 #include <opencv4/opencv2/highgui.hpp>
 
 
+
+
+
 /**
  * @brief Class for Tracking the Humans
  * 
  */
-class Tracker {
+class Tracker{
  public:
     bool isInitialized = false;
     /**
@@ -36,7 +39,7 @@ class Tracker {
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    int Tracking();
+    virtual int Tracking();
     /**
      *  @Brief Calculate the distance for the detected object
      *

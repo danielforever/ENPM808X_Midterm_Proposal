@@ -33,7 +33,7 @@ class Human_Tracker {
    */
   Human_Tracker();
   // Setter
-  void SetVideoDirectory(std::string Videodirectory);
+  void SetVideoDirectory(const std::string& Videodirectory);
   // Getter
   std::string GetVideoDirectory();
   /**

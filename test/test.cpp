@@ -67,7 +67,7 @@ TEST(Path, VideoPathCheck) {
  * @brief Testing the Video Loading 
  * 
  */
-cv::VideoCapture cap2 = Camera2.LoadVideo(video1.GetVideoDirectory());
+cv::VideoCapture cap2 = Camera2.LoadVideo(video1.GetVideoDirectory(),"video");
 
 TEST(Number, VideoObjectCheck) {
   
@@ -82,7 +82,7 @@ TEST(Number, VideoObjectCheck) {
  * 
  */
 TEST(Detector, DetectorConstructor) {
-  Detector trackerObject(cap2);
+  Detector trackerObject(cap2,"video");
   EXPECT_EQ(trackerObject.isInitialized, true);
 }
 /**
@@ -90,7 +90,7 @@ TEST(Detector, DetectorConstructor) {
  * 
  */
 TEST(Detector, DetectorDestructor) {
-  Detector trackerObject(cap2);
+  Detector trackerObject(cap2,"video");
   trackerObject.~Detector();
   EXPECT_EQ(trackerObject.isInitialized, false);
 }
@@ -99,14 +99,14 @@ TEST(Detector, DetectorDestructor) {
  * 
  */
 TEST(Detector, DetectObjectCheck0) {
-  Detector system1("../assests/pedestrian_single.jpg");
-  EXPECT_EQ(system1.DetectorSystem(), 1);
+  Detector trackerObject(cap2,"video");
+  EXPECT_EQ(trackerObject.DetectorSystem(), 1);
   }
 /**
  * @brief Testing the Detector counting function for double pedestrian image
  * 
  */
-Detector system1("../assests/pedestrian-walk-car-waiting.jpg");
+Detector system1(cap2,"video");
 TEST(Detector, DetectObjectCheck1) {
   EXPECT_EQ(system1.DetectorSystem(), 2);
 }
@@ -122,7 +122,7 @@ TEST(Coordinate, CoordinateCheck) {
  * @brief Bouding box testing 
  * 
  */
-TEST(Number, BoundingBoxCheck) { EXPECT_EQ(system1.DrawBoundingBox(), 2); }
+//TEST(Number, BoundingBoxCheck) { EXPECT_EQ(system1.DrawBoundingBox(), 2); }
 /**
  * @brief Testing the Tracker
  * 
