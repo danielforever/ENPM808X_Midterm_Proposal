@@ -221,7 +221,7 @@ TEST(DetectorTest, DetectorTestDestructor) {
   t.DeletePerson();
   t.DistanceCalculation();
   d.DrawBoundingBox();
-  d.~Tracker();
+  d.~Detector();
   EXPECT_EQ(d.isInitialized, false);
 }
 /**
