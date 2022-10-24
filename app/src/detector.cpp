@@ -1,38 +1,47 @@
 #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
+#include <opencv4/opencv2/imgproc/imgproc.hpp>
+#include <opencv4/opencv2/dnn.hpp>
+#include <chrono>
 #include "../../include/detector.hpp"
+
 
 
 /**
  * @brief Construct a new Detector:: Detector object
  * 
  */
-Detector::Detector(cv::VideoCapture cap) {
-    cv::Mat frame;
-    while (cv::waitKey(1) < 0){
-        cap >> frame;
-        if(frame.empty()){
-            std::cout << "Error no file input" << std::endl;
-            break;
-        }
-    }
-    isInitialized = true;
+Detector::Detector(VideoCapture Cap, const string& InputType) {
+
+}
+void Detector::createClass(){
+ 
+}
+
+void Detector::drawPred(int classId, float conf, int left, int top, int right, int bottom, Mat& frame)
+{
+
+}
+
+
+vector<String> Detector::getOutputsNames(const Net& net)
+{
+    static vector<String> names;
+
+    return names;
 }
 /**
  * @brief Destroy the Detector:: Detector object
  * 
  */
+bool Detector::DetectorSystem() { 
+
+    return 0; 
+}
 Detector::~Detector() {
     isInitialized = false;
-}
-/**
- * @brief Construct a new Detector:: Detector object
- * 
- * @param path 
- */
-Detector::Detector(std::string path) {
-    isInitialized = true;
+
 }
 
 /**
@@ -41,9 +50,20 @@ Detector::Detector(std::string path) {
  * @return true 
  * @return false 
  */
-bool Detector::DetectorSystem() { return 0; }
+
 
 int Detector::CoordinateTransform() { return 0; }
 
-int Detector::DrawBoundingBox() { return 0; }
 
+
+void Detector::DrawBoundingBox(Mat& frame, Mat& oldframe, const vector<Mat>& outs)
+{
+
+}
+
+
+
+Size Detector::letterbox(Mat frame) {
+    return frame.size();
+    
+}

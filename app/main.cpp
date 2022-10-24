@@ -22,9 +22,12 @@ int main() {
   std::string path = "../assets/images/pedestrian_single.jpg";
   h.LoadImage(path);
   std::string video_path = "../assets/videos/double_person.mp4";
-  cv::VideoCapture cap = h.LoadVideo(video_path);
+  cv::VideoCapture cap = h.LoadVideo(video_path, "video");
+  // cv::VideoCapture cap1 = h.LoadVideo(path, "image");
   Human_Tracker a;
-  Detector d(cap);
-  Tracker t;
+  cout << "check: " << endl;
+
+  Detector d(cap, h.videoorimage);
+  cout << "check" << endl;
   return 0;
 }

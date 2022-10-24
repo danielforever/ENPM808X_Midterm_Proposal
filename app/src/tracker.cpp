@@ -2,6 +2,8 @@
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 #include "../../include/tracker.hpp"
+#include "../../include/detector.hpp"
+
 
 /**
  * @brief Construct a new Tracker:: Tracker object
