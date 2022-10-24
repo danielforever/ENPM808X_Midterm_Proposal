@@ -46,13 +46,13 @@ bool Detector::DetectorSystem() {
 
     net.setPreferableBackend(DNN_BACKEND_OPENCV);
     net.setPreferableTarget(DNN_TARGET_CPU);
-    cout<< this->inputtype<<endl;
+    cout<< this->inputStype<<endl;
     try {
-        if (this->inputtype == "image")
+        if (this->inputStype == "image")
         {
             this->outputFile = "result.jpg";
         }
-        else if (this->inputtype == "video")
+        else if (this->inputStype == "video")
         {
             this->outputFile = "result.avi";
         }
@@ -63,7 +63,7 @@ bool Detector::DetectorSystem() {
         cout << "Error: Did not detect any valid input file." << endl;
         return 0;
     }
-    if (this->inputtype == "image") {
+    if (this->inputStype == "image") {
         video.open(this->outputFile, VideoWriter::fourcc('M','J','P','G'), 28, Size(cap.get(CAP_PROP_FRAME_WIDTH), cap.get(CAP_PROP_FRAME_HEIGHT)));
     }
 
@@ -86,34 +86,30 @@ bool Detector::DetectorSystem() {
         cout << "After Resize:" << newSize.width << " " << newSize.height << endl;
         cout << "Before Resize:" << frame.cols << " " << frame.rows << endl;
 
-        blobFromImage(frame, blob, 1/255.0, Size(inpWidth, newSize.height), Scalar(0,0,0), true, false);
+        blobFromImage(frame, blob, 1/255.0, Size(inputWidth, newSize.height), Scalar(0,0,0), true, false);
         
         net.setInput(blob);
         
         vector<Mat> frameResult;
+        Mat detectedFrame;
         static vector<String> names;
         if (names.empty()){
         
         vector<int> outLayers = net.getUnconnectedOutLayers();
         
-        //get the names of all the layers in the network
         vector<String> layersNames = net.getLayerNames();
         
-        // Get the names of the output layers in names
         names.resize(outLayers.size());
         for (size_t i = 0; i < outLayers.size(); ++i)
         names[i] = layersNames[outLayers[i] - 1];
     }
         net.forward(frameResult, getOutputsNames(net));
         
-        DrawBoundingBox(frame, frameResult);
+        //DrawBoundingBox(frame, frameResult);
         
-            
-        // Write the frame with the detection boxes
-        Mat detectedFrame;
         frame.convertTo(detectedFrame, CV_8U);
         cv::cvtColor(detectedFrame,detectedFrame, COLOR_RGB2BGR);
-        if (inputtype == "image") imwrite(this->outputFile, detectedFrame);
+        if (inputStype == "image") imwrite(this->outputFile, detectedFrame);
         else video.write(detectedFrame);
         
         imshow("Yolov3", frame);
@@ -121,7 +117,7 @@ bool Detector::DetectorSystem() {
     }
 
     cap.release();
-    if (!(inputtype == "image")) video.release();
+    if (!(inputStype == "image")) video.release();
    
     return 0; }
 Detector::~Detector() { isInitialized = false; }
@@ -138,4 +134,21 @@ int Detector::CoordinateTransform() { return 0; }
 void Detector::DrawBoundingBox(Mat& frame,
                                const vector<Mat>& frameResult) {}
 
-Size Detector::resize(Mat frame) { return frame.size(); }
+Size Detector::resize(Mat frame) { 
+    int width = frame.cols;
+    int height = frame.rows;
+    float yoloPixel = 416.0;
+    float maxPixel = max(width, height);
+    float ratio = yoloPixel/maxPixel;
+    int resizeWidth = int(((416 - int(round(width * ratio))) % 32 )/2);
+    int resizeheight = int(((416 - int(round(height * ratio))) % 32 )/2);
+    int top = int(round(resizeheight - 0.1));
+    int bottom = int(round(resizeheight + 0.1));
+    int left = int(round(resizeWidth - 0.1));
+    int right = int(round(resizeWidth + 0.1));
+
+    cv::resize(frame, frame, cv::Size(416, 416), 0, 0, 1);
+    Scalar value(127.5, 127.5, 127.5);
+    cv::copyMakeBorder(frame, frame, top, bottom, left, right, cv::BORDER_CONSTANT, value);
+    return frame.size(); 
+    }
