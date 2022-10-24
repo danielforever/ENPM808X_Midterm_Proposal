@@ -80,18 +80,18 @@ class Detector {
    *  @Brief Draw bounding box for the image and filter the low confident
    *
    */
-  void DrawBoundingBox(Mat& frame, Mat& oldframe, const vector<Mat>& outs);
+  void DrawBoundingBox(Mat& frame, const vector<Mat>& frameResult);
   /**
    *  @Brief Distructor for the Dectector class
    *
    */
   ~Detector();
-  Size letterbox(Mat frame);
+  Size resize(Mat frame);
 
   void drawPred(int classId, float conf, int left, int top, int right,
                 int bottom, Mat& frame);
 
-  void createClass();
+  void inputClass();
 
   vector<String> getOutputsNames(const Net& net);
 };

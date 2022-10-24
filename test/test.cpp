@@ -115,8 +115,10 @@ TEST(Detector, DetectObjectCheck1) {
  * @brief Coordinate system transformation tests 
  * 
  */
-TEST(Coordinate, CoordinateCheck) {
-  EXPECT_EQ(system1.CoordinateTransform(), 1);
+TEST(FrameSize, resizeCheck) {
+  Mat frame;
+  //cap2
+  EXPECT_EQ(system1.resize(), 1);
 }
 /**
  * @brief Bouding box testing 
