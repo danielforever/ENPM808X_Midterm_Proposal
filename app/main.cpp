@@ -14,7 +14,6 @@
 #include <tracker.hpp>
 #include <human_tracker.hpp>
 #include <detector.hpp>
-#include <person.hpp>
 
 
 
@@ -30,16 +29,15 @@ int main() {
   while (waitKey(1) < 0){
     d.cap >> frame;
     if (frame.empty()) {
-      cout << "Done processing !!!" << endl;
-      cout << "Output file is stored as " << outputFile << endl;
       waitKey(3000);
       break;
     }
     d.DetectorSystem(frame);
     t.Tracking(d.preOuts,d.curOuts);
+    
     t.DeletePerson();
     t.DistanceCalculation();
-    d.DrawBoundingBox()
+    d.DrawBoundingBox();
 
   }
 

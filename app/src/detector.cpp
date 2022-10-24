@@ -40,8 +40,7 @@ int Detector::getOutputsNames() {
  * @brief Destroy the Detector:: Detector object
  *
  */
-bool Detector::DetectorSystem(Mat& Frame) { 
-    this->frame = Frame;
+bool Detector::DetectorSystem(const Mat& frame) { 
     return 0; }
 Detector::~Detector() { isInitialized = false; }
 

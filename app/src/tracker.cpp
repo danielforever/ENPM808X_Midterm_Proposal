@@ -2,7 +2,6 @@
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 #include "../../include/tracker.hpp"
-#include "../../include/detector.hpp"
 
 
 
@@ -28,7 +27,8 @@ int Tracker::Tracking(const vector<Mat>& Preouts,const vector<Mat>& Curouts) { r
  * 
  * @return int 
  */
-int Tracker::DistanceCalculation() { return 0; }
+int Tracker::DistanceCalculation() { 
+        return 0; }
 /**
  * @brief 
  * 

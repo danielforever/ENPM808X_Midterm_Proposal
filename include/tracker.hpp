@@ -15,10 +15,13 @@
 #include <string>
 
 #include <opencv4/opencv2/core.hpp>
+#include <opencv4/opencv2/dnn.hpp>
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 
-
+using namespace cv;
+using namespace cv::dnn;
+using namespace std;
 
 
 
@@ -28,8 +31,8 @@
  */
 class Tracker{
  public:
-    vector<Mat>& preOuts;
-    vector<Mat>& curOuts;
+    vector<Mat> preOuts;
+    vector<Mat> curOuts;
     bool isInitialized = false;
     vector<int> curNameIds;
     vector<float> curConfidences;
@@ -38,7 +41,7 @@ class Tracker{
     vector<float> preConfidences;
     vector<Rect> preBoxes;
     vector<float> distance;
-    
+
     /**
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
@@ -49,7 +52,7 @@ class Tracker{
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    virtual int Tracking();
+    int Tracking(const vector<Mat>& Preouts,const vector<Mat>& Curouts);
     /**
      *  @Brief Calculate the distance for the detected object
      *

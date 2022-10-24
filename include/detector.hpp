@@ -63,7 +63,7 @@ class Detector {
   vector<Mat> curOuts;
   vector<string> names;
   VideoWriter video;
-  vector<Mat>& frameResult
+  vector<Mat> frameResult;
   Mat frame, blob;
   string fileName;
   string str;
@@ -84,7 +84,7 @@ class Detector {
    *  @Brief Send to object regonition system
    *
    */
-  bool DetectorSystem();
+  bool DetectorSystem(const Mat& frame);
   /**
    *  @Brief Draw bounding box for the image and filter the low confident
    *
