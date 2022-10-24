@@ -59,18 +59,17 @@ class Detector {
   vector<float> objectConfidences;
   VideoCapture cap;
   string inputStype;
-  vector<float> Preconfidences;
-  vector<Rect> Preboxes;
-  vector<string> PreNameId;
-  vector<float> Curconfidences;
-  vector<Rect> Curboxes;
-  vector<string> CurNameId;
+  vector<Mat> preOuts;
+  vector<Mat> curOuts;
   vector<string> names;
   VideoWriter video;
+  vector<Mat>& frameResult
   Mat frame, blob;
   string fileName;
   string str;
   int DrawBoundingBoxcheck = 0;
+  int resizecheck = 0;
+  int left, top, right, bottom;
   Net net;
   Size newSize;
 
@@ -87,26 +86,20 @@ class Detector {
    */
   bool DetectorSystem();
   /**
-   *  @Brief To transform the cooridnate to Robot frame and calculate the center
-   * point
-   *
-   */
-  int CoordinateTransform();
-  /**
    *  @Brief Draw bounding box for the image and filter the low confident
    *
    */
-  void DrawBoundingBox(Mat& frame, const vector<Mat>& frameResult);
+  int DrawBoundingBox();
+
+  int resize();
+
+  int drawPred();
+
+  int getOutputsNames();
   /**
    *  @Brief Distructor for the Dectector class
    *
    */
   ~Detector();
-  Size resize(Mat frame);
-
-  void drawPred(int classId, float conf, int left, int top, int right,
-                int bottom, Mat& frame);
-
-  vector<String> getOutputsNames(const Net& net);
 
 };

@@ -26,20 +26,22 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
   
 }
 
-void Detector::drawPred(int classId, float conf, int left, int top, int right,
-                        int bottom, Mat& frame) {}
+int Detector::drawPred() {
 
-vector<String> Detector::getOutputsNames(const Net& net) {
+    return 0;
+}
+
+int Detector::getOutputsNames() {
   
 
-  return names;
+  return 0;
 }
 /**
  * @brief Destroy the Detector:: Detector object
  *
  */
-bool Detector::DetectorSystem() { 
-
+bool Detector::DetectorSystem(Mat& Frame) { 
+    this->frame = Frame;
     return 0; }
 Detector::~Detector() { isInitialized = false; }
 
@@ -50,13 +52,10 @@ Detector::~Detector() { isInitialized = false; }
  * @return false
  */
 
-int Detector::CoordinateTransform() { return 0; }
-
-void Detector::DrawBoundingBox(Mat& frame,
-                               const vector<Mat>& frameResult) {
-    
+int Detector::DrawBoundingBox() {
+    return 0;
 }
 
-Size Detector::resize(Mat frame) { 
-    return frame.size(); 
+int Detector::resize() { 
+    return 0;
     }

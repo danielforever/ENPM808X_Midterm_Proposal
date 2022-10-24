@@ -28,7 +28,17 @@
  */
 class Tracker{
  public:
+    vector<Mat>& preOuts;
+    vector<Mat>& curOuts;
     bool isInitialized = false;
+    vector<int> curNameIds;
+    vector<float> curConfidences;
+    vector<Rect> curBoxes;
+    vector<int> preNameIds;
+    vector<float> preConfidences;
+    vector<Rect> preBoxes;
+    vector<float> distance;
+    
     /**
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
@@ -50,4 +60,5 @@ class Tracker{
      *
      */
     int DeletePerson();
+
 };

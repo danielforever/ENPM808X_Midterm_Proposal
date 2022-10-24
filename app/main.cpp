@@ -24,9 +24,23 @@ int main() {
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
+  Mat frame;
+  Tracker t;
+  while (waitKey(1) < 0){
+    d.cap >> frame;
+    if (frame.empty()) {
+      cout << "Done processing !!!" << endl;
+      cout << "Output file is stored as " << outputFile << endl;
+      waitKey(3000);
+      break;
+    }
+    d.DetectorSystem(frame);
+    t.Tracking(d.preOuts,d.curOuts);
+    t.DeletePerson();
+    t.DistanceCalculation();
+    d.DrawBoundingBox()
 
+  }
 
-  
-  cout << "check" << endl;
   return 0;
 }

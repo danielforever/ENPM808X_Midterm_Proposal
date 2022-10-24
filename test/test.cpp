@@ -21,6 +21,11 @@
 
 Human_Tracker image1;
 Human_Tracker video1;
+Human_Tracker a;
+Camera h;
+
+
+
 /**
  * @brief Test for the Human Tracker Constructor and Destructor
  *
@@ -100,17 +105,14 @@ TEST(Detector, DetectorDestructor) {
  * 
  */
 TEST(Detector, DetectObjectCheck0) {
+  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+
+  h.LoadImage(a.GetVideoDirectory());
+  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
+  Detector d(cap, h.videoorimage);
   Detector trackerObject(cap2,"video");
-  EXPECT_EQ(trackerObject.DetectorSystem(), 1);
+  EXPECT_EQ(trackerObject.isInitialized, 1);
   }
-/**
- * @brief Testing the Detector counting function for double pedestrian image
- * 
- */
-Detector system1(cap2,"video");
-TEST(Detector, DetectObjectCheck1) {
-  EXPECT_EQ(system1.DetectorSystem(), 2);
-}
 
 /**
  * @brief Coordinate system transformation tests 
@@ -121,7 +123,7 @@ TEST(FrameSize, resizeCheck) {
   cap2 >> frame;
   Size newSize;
   newSize = system1.resize(frame);
-  EXPECT_EQ(newSize.width, 256);
+  EXPECT_EQ(system1.resizecheck, 1);
 }
 /**
  * @brief Bouding box testing 
