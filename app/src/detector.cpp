@@ -25,10 +25,7 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
   isInitialized = true;
   
 }
-
-int Detector::drawPred() {
-
-    return 0;
+void Detector::drawPred() {
 }
 
 void Detector::getOutputsNames() {}

@@ -74,6 +74,7 @@ class Detector {
   int resizeheight;
   Net net;
   Size newSize;
+  string label;
 
   /**
    *  @Brief Constructor
@@ -95,7 +96,7 @@ class Detector {
 
   int resize();
 
-  int drawPred();
+  void drawPred();
 
   void getOutputsNames();
   /**
