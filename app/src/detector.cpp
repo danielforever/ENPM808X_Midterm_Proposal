@@ -25,7 +25,6 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
   isInitialized = true;
   DetectorSystem();
 }
-void Detector::inputClass() {}
 
 void Detector::drawPred(int classId, float conf, int left, int top, int right,
                         int bottom, Mat& frame) {}
@@ -42,6 +41,18 @@ vector<String> Detector::getOutputsNames(const Net& net) {
 bool Detector::DetectorSystem() { 
     VideoWriter video;
     Mat frame, blob;
+    string fileName;
+    ifstream in(fileName.c_str());
+    string str;
+    if(!in)
+    {
+        cout << "Cannot open the File : " << fileName << endl;
+        return false;
+    }
+    while (getline(in, str))
+    {
+        if(str.size() > 0) this->classes.push_back(str);
+    }
     Net net = readNetFromDarknet(modelConfiguration, modelWeights);
 
     net.setPreferableBackend(DNN_BACKEND_OPENCV);
@@ -101,9 +112,9 @@ bool Detector::DetectorSystem() {
         
         names.resize(outLayers.size());
         for (size_t i = 0; i < outLayers.size(); ++i)
-        names[i] = layersNames[outLayers[i] - 1];
-    }
-        net.forward(frameResult, getOutputsNames(net));
+            names[i] = layersNames[outLayers[i] - 1];
+        }
+        net.forward(frameResult, names(net));
         
         //DrawBoundingBox(frame, frameResult);
         

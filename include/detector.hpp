@@ -38,6 +38,7 @@ class Detector {
    *  @Param inputHeight Height of the input image
    *  @Param modelConfiguration yolov3.cfg directory
    *  @Param modelWeights yolov3.weights directory
+   *  @Param classes store the coco.names classes
    *  @Param objectClasses Store the object class into a vector
    *  @Param outputFile string that store output directory
    *  @Param objectConfidences Store the object confidence into a vector
@@ -52,6 +53,7 @@ class Detector {
   int inputHeight = 416;     // Height of network's input image
   String modelConfiguration = "../cfg/yolov3.cfg";
   String modelWeights = "../cfg/yolov3.weights";
+  vector<string> classes;
   vector<string> objectClasses;
   string outputFile;
   vector<float> objectConfidences;
@@ -91,7 +93,4 @@ class Detector {
   void drawPred(int classId, float conf, int left, int top, int right,
                 int bottom, Mat& frame);
 
-  void inputClass();
-
-  vector<String> getOutputsNames(const Net& net);
 };
