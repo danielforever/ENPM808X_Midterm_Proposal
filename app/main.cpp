@@ -24,8 +24,9 @@ int main() {
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
-  Mat frame;
   Tracker t;
+  Mat frame;
+
   while (waitKey(1) < 0){
     d.cap >> frame;
     if (frame.empty()) {

@@ -41,6 +41,7 @@ class Tracker{
     vector<float> preConfidences;
     vector<Rect> preBoxes;
     vector<float> distance;
+    int Trackingcheck = 0;
 
     /**
      *  @Brief Compare the coordinate to check whether this object had appeared

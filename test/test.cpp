@@ -118,9 +118,8 @@ TEST(Detector, DetectObjectCheck0) {
  * @brief Coordinate system transformation tests 
  * 
  */
-  Human_Tracker a;
-  Camera h;
-  Mat frame;
+
+  Mat frame1;
   Tracker t;
 
 TEST(FrameSize, resizeCheck) {
@@ -129,12 +128,12 @@ TEST(FrameSize, resizeCheck) {
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
   while (waitKey(1) < 0){
-    d.cap >> frame;
-    if (frame.empty()) {
+    d.cap >> frame1;
+    if (frame1.empty()) {
       waitKey(3000);
       break;
     }
-    d.DetectorSystem(frame);
+    d.DetectorSystem(frame1);
 
   }
   EXPECT_EQ(d.resizecheck, 1);
@@ -148,10 +147,23 @@ String modelConfiguration = "../cfg/yolov3.cfg";
 String modelWeights = "../cfg/yolov3.weights";
 Mat frame, blob;
 
-TEST(Number, BoundingBoxCheck) {
+TEST(Number, DrawBoundingBoxCheck) {
+  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  h.LoadImage(a.GetVideoDirectory());
+  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
+  Detector d(cap, h.videoorimage);
+  while (waitKey(1) < 0){
+    d.cap >> frame;
+    if (frame.empty()) {
+      waitKey(3000);
+      break;
+    }
+    d.DetectorSystem(frame);
 
-  int pass = d.DrawBoundingBoxcheck;
-  EXPECT_EQ(pass, 1); 
+  }
+  int test = d.DrawBoundingBoxcheck;
+  
+  EXPECT_EQ(test, 1); 
 }
 /**
  * @brief Testing the Tracker
@@ -160,9 +172,10 @@ TEST(Number, BoundingBoxCheck) {
 Tracker system1_tracker;
 
 
-TEST(Number, TrackingObjectCheck) {
+TEST(Number, TrackingFunctionCheck) {
+
   
-  EXPECT_EQ(system1_tracker.Tracking(), 2); }
+  EXPECT_EQ(t.Trackingcheck, 1); }
 
 /**
  * @brief Construct a new TEST object
