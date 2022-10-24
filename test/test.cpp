@@ -163,6 +163,19 @@ TEST(Number, DrawBoundingBoxCheck) {
 
   EXPECT_EQ(test, 1); 
 }
+TEST(String, getOutputsNamesCheck) {
+  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  h.LoadImage(a.GetVideoDirectory());
+  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
+  Detector d(cap, h.videoorimage);
+  d.getOutputsNames();
+  ifstream in(d.fileName.c_str());
+  bool test = true;
+  if(!in){
+    test = false;
+  }
+  EXPECT_EQ(test, true); 
+}
 /**
  * @brief Testing the Tracker
  * 

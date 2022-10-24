@@ -26,7 +26,7 @@ int main() {
   Detector d(cap, h.videoorimage);
   Tracker t;
   Mat frame;
-
+  d.getOutputsNames();
   while (waitKey(1) < 0){
     d.cap >> frame;
     if (frame.empty()) {

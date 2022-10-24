@@ -97,7 +97,7 @@ class Detector {
 
   int drawPred();
 
-  int getOutputsNames();
+  void getOutputsNames();
   /**
    *  @Brief Distructor for the Dectector class
    *

@@ -31,11 +31,7 @@ int Detector::drawPred() {
     return 0;
 }
 
-int Detector::getOutputsNames() {
-  
-
-  return 0;
-}
+void Detector::getOutputsNames() {}
 /**
  * @brief Destroy the Detector:: Detector object
  *
