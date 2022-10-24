@@ -126,7 +126,7 @@ TEST(FrameSize, resizeCheck) {
  * @brief Bouding box testing 
  * 
  */
-//TEST(Number, BoundingBoxCheck) { EXPECT_EQ(system1.DrawBoundingBox(), 2); }
+TEST(Number, BoundingBoxCheck) { EXPECT_EQ(system1.DrawBoundingBox(), 2); }
 /**
  * @brief Testing the Tracker
  * 

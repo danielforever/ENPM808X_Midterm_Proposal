@@ -91,7 +91,7 @@ bool Detector::DetectorSystem() {
         net.setInput(blob);
         
         vector<Mat> frameResult;
-        Mat detectedFrame;
+        Mat resultFrame;
         static vector<String> names;
         if (names.empty()){
         
@@ -107,10 +107,10 @@ bool Detector::DetectorSystem() {
         
         //DrawBoundingBox(frame, frameResult);
         
-        frame.convertTo(detectedFrame, CV_8U);
-        cv::cvtColor(detectedFrame,detectedFrame, COLOR_RGB2BGR);
-        if (inputStype == "image") imwrite(this->outputFile, detectedFrame);
-        else video.write(detectedFrame);
+        frame.convertTo(resultFrame, CV_8U);
+        cv::cvtColor(resultFrame,resultFrame, COLOR_RGB2BGR);
+        if (inputStype == "image") imwrite(this->outputFile, resultFrame);
+        else video.write(resultFrame);
         
         imshow("Yolov3", frame);
         
