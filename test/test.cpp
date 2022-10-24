@@ -203,6 +203,28 @@ TEST(checkFlag, drawPredCheck) {
   EXPECT_EQ(d.drawPredcheck, 1); 
 }
 /**
+ * @brief Test case for Detector destructor
+ * 
+ */
+TEST(DetectorTest, DetectorTestDestructor) {
+  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  h.LoadImage(a.GetVideoDirectory());
+  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
+  Detector d(cap, h.videoorimage);
+  d.getOutputsNames();
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  t.Tracking(d.preOuts,d.curOuts);
+    
+  t.DeletePerson();
+  t.DistanceCalculation();
+  d.DrawBoundingBox();
+  d.~Tracker();
+  EXPECT_EQ(d.isInitialized, false);
+}
+/**
  * @brief Testing the Tracker
  * 
  */
