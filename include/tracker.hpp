@@ -31,6 +31,20 @@ using namespace std;
  */
 class Tracker{
  public:
+    /**
+    *  @Brief preOuts previous detected result of the vector
+    *  @Param curOuts current detected result of the vector
+    *  @Param isInitialized check if the system is initial
+    *  @Param curNameIds store name id 
+    *  @Param curConfidences store confident 
+    *  @Param curBoxes store the bounding box information
+    *  @Param preNameIds store pervious name id 
+    *  @Param preConfidences store pervious confident
+    *  @Param preBoxes store pervious the bounding box information
+    *  @Param distance store distance information
+    *  @Param Trackingcheck store the checking information for tracking function
+    * 
+    */
     vector<Mat> preOuts;
     vector<Mat> curOuts;
     bool isInitialized = false;
@@ -44,10 +58,14 @@ class Tracker{
     int Trackingcheck = 0;
 
     /**
-     *  @Brief Compare the coordinate to check whether this object had appeared
+     *  @Brief Constructor for Tracker
      *
      */
     Tracker();
+    /**
+     *  @Brief Destructor for Tracker
+     *
+     */
     ~Tracker();
     /**
      *  @Brief Compare the coordinate to check whether this object had appeared

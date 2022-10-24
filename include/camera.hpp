@@ -30,7 +30,6 @@ class Camera {
    *  @Param VideoObject This store the object of the video
    *
    */
-  // cv::VideoCapture VideoObject;
 
  public:
   /**
