@@ -70,6 +70,8 @@ class Detector {
   int DrawBoundingBoxcheck = 0;
   int resizecheck = 0;
   int left, top, right, bottom;
+  int resizeWidth;
+  int resizeheight;
   Net net;
   Size newSize;
 

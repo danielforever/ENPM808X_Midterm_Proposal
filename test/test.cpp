@@ -127,16 +127,14 @@ TEST(FrameSize, resizeCheck) {
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
-  while (waitKey(1) < 0){
-    d.cap >> frame1;
-    if (frame1.empty()) {
-      waitKey(3000);
-      break;
-    }
-    d.DetectorSystem(frame1);
-
-  }
-  EXPECT_EQ(d.resizecheck, 1);
+  d.cap >> frame1;
+  int width = frame1.cols;
+  int height = frame1.rows;
+  float yoloPixel = 416.0;
+  float maxPixel = max(width, height);
+  float ratio = yoloPixel/maxPixel;
+  int test = int(((416 - int(round(width * ratio))) % 32 )/2);
+  EXPECT_EQ(d.resizeWidth, test);
 }
 /**
  * @brief Bouding box testing 
@@ -162,7 +160,7 @@ TEST(Number, DrawBoundingBoxCheck) {
 
   }
   int test = d.DrawBoundingBoxcheck;
-  
+
   EXPECT_EQ(test, 1); 
 }
 /**
