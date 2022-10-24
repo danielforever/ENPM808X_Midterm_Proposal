@@ -362,3 +362,37 @@ vector<String> getOutputsNames(const Net& net)
     }
     return names;
 }
+
+
+    vector<float> confidences;
+    vector<Rect> boxes;
+    vecotr<string> NameId;
+    
+    for (size_t i = 0; i < frameResult.size(); ++i)
+    {
+        // Scan through all the bounding boxes output from the network and keep only the
+        // ones with high confidence scores. Assign the box's class label as the class
+        // with the highest score for the box.
+        float* data = (float*)frameResult[i].data;
+        for (int j = 0; j < frameResult[i].rows; ++j, data += frameResult[i].cols)
+        {
+            Mat scores = frameResult[i].row(j).colRange(5, frameResult[i].cols);
+            Point classIdPoint;
+            double confidence;
+            // Get the value and location of the maximum score
+            minMaxLoc(scores, 0, &confidence, 0, &classIdPoint);
+            if (confidence > confThreshold and classIdPoint.x==0)
+            {
+                int centerX = (int)(data[0] * frame.cols);
+                int centerY = (int)(data[1] * frame.rows);
+                int width = (int)(data[2] * frame.cols);
+                int height = (int)(data[3] * frame.rows);
+                int left = centerX - width / 2;
+                int top = centerY - height / 2;
+                
+                classIds.push_back(classIdPoint.x);
+                confidences.push_back((float)confidence); 
+                boxes.push_back(Rect(left, top, width, height));
+                //boxes.push_back(newbox);
+            }
+        }

@@ -36,9 +36,11 @@ class Camera {
   /**
    *
    *  @Param VideoDirectory Read video directory from system
+   *  @Param cap Load video into the VideoCapture
    *
    */
   string videoorimage;
+  cv::VideoCapture cap;
   cv::VideoCapture LoadVideo(string Videodirectory, const string& VideoOrImage);
   int LoadImage(string path);
   Camera();

@@ -18,16 +18,15 @@
 
 
 int main() {
-  Camera h;
-  std::string path = "../assets/images/pedestrian_single.jpg";
-  h.LoadImage(path);
-  std::string video_path = "../assets/videos/double_person.mp4";
-  cv::VideoCapture cap = h.LoadVideo(video_path, "video");
-  // cv::VideoCapture cap1 = h.LoadVideo(path, "image");
   Human_Tracker a;
-  cout << "check: " << endl;
-
+  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  Camera h;
+  h.LoadImage(a.GetVideoDirectory());
+  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
+
+
+  
   cout << "check" << endl;
   return 0;
 }

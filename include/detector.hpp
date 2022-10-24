@@ -59,6 +59,20 @@ class Detector {
   vector<float> objectConfidences;
   VideoCapture cap;
   string inputStype;
+  vector<float> Preconfidences;
+  vector<Rect> Preboxes;
+  vector<string> PreNameId;
+  vector<float> Curconfidences;
+  vector<Rect> Curboxes;
+  vector<string> CurNameId;
+  vector<string> names;
+  VideoWriter video;
+  Mat frame, blob;
+  string fileName;
+  string str;
+  int DrawBoundingBoxcheck = 0;
+  Net net;
+  Size newSize;
 
   /**
    *  @Brief Constructor
@@ -92,5 +106,7 @@ class Detector {
 
   void drawPred(int classId, float conf, int left, int top, int right,
                 int bottom, Mat& frame);
+
+  vector<String> getOutputsNames(const Net& net);
 
 };

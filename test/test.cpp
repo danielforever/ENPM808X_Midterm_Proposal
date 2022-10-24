@@ -43,6 +43,7 @@ TEST(HumanTrackerTest, HumanTrackerDestructor) {
  */
 Camera Camera1;
 Camera Camera2;
+Camera Camera3;
 /**
  * @brief Testing for the Human Tracker Function against an image
  * 
@@ -68,7 +69,7 @@ TEST(Path, VideoPathCheck) {
  * 
  */
 cv::VideoCapture cap2 = Camera2.LoadVideo(video1.GetVideoDirectory(),"video");
-
+cv::VideoCapture cap3 = Camera3.LoadVideo(video1.GetVideoDirectory(),"video");
 TEST(Number, VideoObjectCheck) {
   
   int value = 1;
@@ -126,7 +127,15 @@ TEST(FrameSize, resizeCheck) {
  * @brief Bouding box testing 
  * 
  */
-TEST(Number, BoundingBoxCheck) { EXPECT_EQ(system1.DrawBoundingBox(), 2); }
+
+String modelConfiguration = "../cfg/yolov3.cfg";
+String modelWeights = "../cfg/yolov3.weights";
+Mat frame, blob;
+
+TEST(Number, BoundingBoxCheck) { 
+  int pass = system1.DrawBoundingBoxcheck;
+  EXPECT_EQ(pass, 1); 
+}
 /**
  * @brief Testing the Tracker
  * 

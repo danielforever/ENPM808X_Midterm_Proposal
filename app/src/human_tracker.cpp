@@ -34,9 +34,6 @@ std::string Human_Tracker::GetVideoDirectory() { return videodirectory; }
  */
 Human_Tracker::Human_Tracker() {
   isInitialized = true;
-  Camera camera;
-  std::string path = "../assets/images/pedestrian_single.jpg";
-  camera.LoadImage(path);
 }
 /**
  * @brief Destroy the Human_Tracker::Human_Tracker object
