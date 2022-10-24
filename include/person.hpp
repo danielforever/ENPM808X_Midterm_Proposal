@@ -28,13 +28,20 @@
  */
 class Person{
  public:
+    vector<Mat>& preOuts;
+    vector<Mat>& curOuts;
+    float confidences;
+    float distance;
+    float xCoordinate;
+    float yCoordinate;
+    float xBoundingBox;
+    float yBoundingBox;
 
-    
     /**
      *  @Brief Constructor for the Person object
      *
      */
-    Person(vector<Mat>& preouts,vector<Mat>& curouts;);
+    Person(const vector<Mat>& preouts, const vector<Mat>& curouts);
     /**
      *  @Brief Distructor for the Person object
      *
