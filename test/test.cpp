@@ -117,8 +117,9 @@ TEST(Detector, DetectObjectCheck1) {
  */
 TEST(FrameSize, resizeCheck) {
   Mat frame;
-  //cap2
-  EXPECT_EQ(system1.resize(), 1);
+  cap2 >> frame
+  sz = system1.resize(frame)
+  EXPECT_EQ(sz.width, 256);
 }
 /**
  * @brief Bouding box testing 

@@ -43,7 +43,7 @@ bool Detector::DetectorSystem() {
     VideoWriter video;
     Mat frame, blob;
     Net net = readNetFromDarknet(modelConfiguration, modelWeights);
-    
+
     net.setPreferableBackend(DNN_BACKEND_OPENCV);
     net.setPreferableTarget(DNN_TARGET_CPU);
     cout<< this->inputtype<<endl;
@@ -68,7 +68,7 @@ bool Detector::DetectorSystem() {
     }
 
     namedWindow("Yolov3", WINDOW_NORMAL);
-    Size sz;
+    Size newSize;
 
     
     while (waitKey(1) < 0)
@@ -82,11 +82,11 @@ bool Detector::DetectorSystem() {
 
         cv::cvtColor(frame, frame, COLOR_BGR2RGB);
 
-        sz = resize(frame);
-        cout<<"After = "<< sz.width << " " << sz.height << endl;
-        cout<<frame.cols << " " << frame.rows << endl;
+        newSize = resize(frame);
+        cout << "After Resize:" << newSize.width << " " << newSize.height << endl;
+        cout << "Before Resize:" << frame.cols << " " << frame.rows << endl;
 
-        blobFromImage(frame, blob, 1/255.0, Size(inpWidth, sz.height), Scalar(0,0,0), true, false);
+        blobFromImage(frame, blob, 1/255.0, Size(inpWidth, newSize.height), Scalar(0,0,0), true, false);
         
         net.setInput(blob);
         
