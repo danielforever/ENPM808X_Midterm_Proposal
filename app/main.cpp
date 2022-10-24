@@ -14,6 +14,7 @@
 #include <tracker.hpp>
 #include <human_tracker.hpp>
 #include <detector.hpp>
+#include <person.hpp>
 
 
 
