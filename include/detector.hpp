@@ -69,6 +69,7 @@ class Detector {
   string str;
   int DrawBoundingBoxcheck = 0;
   int resizecheck = 0;
+  int drawPredcheck = 0;
   int left, top, right, bottom;
   int resizeWidth;
   int resizeheight;

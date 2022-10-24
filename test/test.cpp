@@ -163,6 +163,10 @@ TEST(Number, DrawBoundingBoxCheck) {
 
   EXPECT_EQ(test, 1); 
 }
+/**
+ * @brief get the label name from coc,names
+ * 
+ */
 TEST(String, getOutputsNamesCheck) {
   a.SetVideoDirectory("../assets/videos/double_person.mp4");
   h.LoadImage(a.GetVideoDirectory());
@@ -175,6 +179,28 @@ TEST(String, getOutputsNamesCheck) {
     test = false;
   }
   EXPECT_EQ(test, true); 
+}
+/**
+ * @brief Bouding box testing 
+ * 
+ */
+TEST(checkFlag, drawPredCheck) {
+  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  h.LoadImage(a.GetVideoDirectory());
+  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
+  Detector d(cap, h.videoorimage);
+  d.getOutputsNames();
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  t.Tracking(d.preOuts,d.curOuts);
+    
+  t.DeletePerson();
+  t.DistanceCalculation();
+  d.DrawBoundingBox();
+
+  EXPECT_EQ(d.drawPredcheck, 1); 
 }
 /**
  * @brief Testing the Tracker
