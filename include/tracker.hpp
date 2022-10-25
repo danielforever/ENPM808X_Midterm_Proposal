@@ -43,6 +43,7 @@ class Tracker{
     *  @Param preBoxes store pervious the bounding box information
     *  @Param distance store distance information
     *  @Param Trackingcheck store the checking information for tracking function
+    *  @Param deletePersoncheck check the deletePerson function
     * 
     */
     vector<Mat> preOuts;
@@ -56,6 +57,7 @@ class Tracker{
     vector<Rect> preBoxes;
     vector<float> distance;
     int Trackingcheck = 0;
+    int deletePersoncheck = 0;
 
     /**
      *  @Brief Constructor for Tracker

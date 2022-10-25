@@ -105,7 +105,7 @@ TEST(Detector, DetectorDestructor) {
  * 
  */
 TEST(Detector, DetectObjectCheck0) {
-  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  a.SetVideoDirectory("assets/videos/double_person.mp4");
 
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
@@ -123,7 +123,7 @@ TEST(Detector, DetectObjectCheck0) {
   Tracker t;
 
 TEST(FrameSize, resizeCheck) {
-  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  a.SetVideoDirectory("assets/videos/double_person.mp4");
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
@@ -141,24 +141,18 @@ TEST(FrameSize, resizeCheck) {
  * 
  */
 
-String modelConfiguration = "../cfg/yolov3.cfg";
-String modelWeights = "../cfg/yolov3.weights";
+String modelConfiguration = "cfg/yolov3.cfg";
+String modelWeights = "cfg/yolov3.weights";
 Mat frame, blob;
 
 TEST(Number, DrawBoundingBoxCheck) {
-  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  std::string image_path = "assets/videos/double_person.mp4";
+  a.SetVideoDirectory(image_path);
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
-  while (waitKey(1) < 0){
-    d.cap >> frame;
-    if (frame.empty()) {
-      waitKey(3000);
-      break;
-    }
-    d.DetectorSystem(frame);
-
-  }
+  d.cap >> frame;
+  d.DetectorSystem(frame);
   int test = d.DrawBoundingBoxcheck;
 
   EXPECT_EQ(test, 1); 
@@ -168,7 +162,7 @@ TEST(Number, DrawBoundingBoxCheck) {
  * 
  */
 TEST(String, getOutputsNamesCheck) {
-  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  a.SetVideoDirectory("assets/videos/double_person.mp4");
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
@@ -185,7 +179,7 @@ TEST(String, getOutputsNamesCheck) {
  * 
  */
 TEST(checkFlag, drawPredCheck) {
-  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  a.SetVideoDirectory("assets/videos/double_person.mp4");
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
@@ -207,7 +201,7 @@ TEST(checkFlag, drawPredCheck) {
  * 
  */
 TEST(DetectorTest, DetectorTestDestructor) {
-  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  a.SetVideoDirectory("assets/videos/double_person.mp4");
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
@@ -251,7 +245,7 @@ TEST(TrackerTest, TrackerDestructor) {
  * 
  */
 TEST(Distance, DistanceCalculationCheck) {
-  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  a.SetVideoDirectory("assets/videos/double_person.mp4");
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
@@ -273,7 +267,7 @@ TEST(Distance, DistanceCalculationCheck) {
  * 
  */
 TEST(Number, TrackingFunctionCheck) {
-  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  a.SetVideoDirectory("assets/videos/double_person.mp4");
   h.LoadImage(a.GetVideoDirectory());
   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
   Detector d(cap, h.videoorimage);
@@ -291,5 +285,17 @@ TEST(Number, TrackingFunctionCheck) {
  * 
  */
 TEST(Number, DeletePersonCheck) {
+  a.SetVideoDirectory("assets/videos/double_person.mp4");
+  h.LoadImage(a.GetVideoDirectory());
+  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
+  Detector d(cap, h.videoorimage);
+  d.getOutputsNames();
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  t.Tracking(d.preOuts,d.curOuts);
+  t.DeletePerson();
+
   EXPECT_EQ(system1_tracker.DeletePerson(), 3);
 }
