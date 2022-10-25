@@ -217,7 +217,6 @@ TEST(DetectorTest, DetectorTestDestructor) {
   d.cap >> frame;
   d.DetectorSystem(frame);
   t.Tracking(d.preOuts,d.curOuts);
-    
   t.DeletePerson();
   t.DistanceCalculation();
   d.DrawBoundingBox();
@@ -257,8 +256,23 @@ TEST(TrackerTest, TrackerDestructor) {
  * @brief Test case for Distance Calculation
  * 
  */
-TEST(Number, DistanceCalculationCheck) {
-  EXPECT_EQ(system1_tracker.DistanceCalculation(), 0);
+TEST(Distance, DistanceCalculationCheck) {
+  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  h.LoadImage(a.GetVideoDirectory());
+  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
+  Detector d(cap, h.videoorimage);
+  d.getOutputsNames();
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  t.Tracking(d.preOuts,d.curOuts);
+  t.DeletePerson();
+  t.DistanceCalculation();
+  d.DrawBoundingBox();
+  d.~Detector();
+  float test = 0;
+  EXPECT_GT(system1_tracker.distance[0], test);
 }
 /**
  * @brief Testing case for Deleted Person
