@@ -229,12 +229,6 @@ TEST(DetectorTest, DetectorTestDestructor) {
  */
 Tracker system1_tracker;
 
-
-TEST(Number, TrackingFunctionCheck) {
-
-  
-  EXPECT_EQ(t.Trackingcheck, 1); }
-
 /**
  * @brief Construct a new TEST object
  * To check if the constructor is being called
@@ -274,6 +268,24 @@ TEST(Distance, DistanceCalculationCheck) {
   float test = 0;
   EXPECT_GT(system1_tracker.distance[0], test);
 }
+/**
+ * @brief Test case for Tracking Calculation
+ * 
+ */
+TEST(Number, TrackingFunctionCheck) {
+  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  h.LoadImage(a.GetVideoDirectory());
+  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
+  Detector d(cap, h.videoorimage);
+  d.getOutputsNames();
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  t.Tracking(d.preOuts,d.curOuts);
+  
+  EXPECT_EQ(t.Trackingcheck, 1); }
+
 /**
  * @brief Testing case for Deleted Person
  * 
