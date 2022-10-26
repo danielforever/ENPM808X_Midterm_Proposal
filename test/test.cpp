@@ -47,8 +47,7 @@ TEST(HumanTrackerTest, HumanTrackerDestructor) {
  * 
  */
 Camera Camera1;
-Camera Camera2;
-Camera Camera3;
+
 /**
  * @brief Testing for the Human Tracker Function against an image
  * 
@@ -73,22 +72,41 @@ TEST(Path, VideoPathCheck) {
  * @brief Testing the Video Loading 
  * 
  */
+Camera* Camera2 = new Camera;
+Camera* Camera3 = new Camera;
 std::string video_path = "assets/videos/double_person.mp4";
-cv::VideoCapture cap2 = Camera2.LoadVideo(video1.GetVideoDirectory(),"video");
-cv::VideoCapture cap3 = Camera3.LoadVideo(video1.GetVideoDirectory(),"video");
+std::string image_path = "assets/images/pedestrian_single.jpg";
+
+
 TEST(Number, VideoObjectCheck) {
-  Human_Tracker video2;
-  video2.SetVideoDirectory(video_path);
-  cv::VideoCapture cap = Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
-  EXPECT_EQ(Camera2.videoorimage, "video");
+  Human_Tracker* video2 = new Human_Tracker;
+  video2->SetVideoDirectory(video_path);
+  cv::VideoCapture cap = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
+  EXPECT_EQ(Camera2->videoorimage, "video");
 }
 /**
- * @brief Testing the Detector Constructor
+ * @brief Testing the Detector Constructor with the video route
  * 
  */
-TEST(Detector, DetectorConstructor1) {
-  Detector trackerObject(cap2,"video");
-  EXPECT_EQ(trackerObject.isInitialized, true);
+TEST(Detector, DetectorConstructorVideoTest) {
+  Human_Tracker* video2 = new Human_Tracker;
+  video2->SetVideoDirectory(video_path);
+  cv::VideoCapture cap2 = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
+  Detector* trackerObject = new Detector(cap2,"video");
+  EXPECT_EQ(trackerObject->outputFile, "result.avi");
+}
+
+/**
+ * @brief Testing the Detector Constructor with the image route
+ * 
+ */
+
+TEST(Detector, DetectorConstructorImageTest) {
+  Human_Tracker* image1 = new Human_Tracker;
+  image1->SetVideoDirectory(video_path);
+  cv::VideoCapture cap3 = Camera3->LoadVideo(image1->GetVideoDirectory(),"image");
+  Detector* trackerObject = new Detector(cap3,"image");
+  EXPECT_EQ(trackerObject->outputFile, "result.jpg");
 }
 
 /**
@@ -96,6 +114,9 @@ TEST(Detector, DetectorConstructor1) {
  * 
  */
 TEST(Detector, DetectorDestructor2) {
+  Human_Tracker* video2 = new Human_Tracker;
+  video2->SetVideoDirectory(video_path);
+  cv::VideoCapture cap2 = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
   Detector* trackerObject = new Detector(cap2,"video");
   delete trackerObject;
   EXPECT_EQ(trackerObject->isInitialized, false);
@@ -105,6 +126,9 @@ TEST(Detector, DetectorDestructor2) {
  * 
  */
 TEST(Detector, getOutputsNamesCheckReadFile) {
+  Human_Tracker* video2 = new Human_Tracker;
+  video2->SetVideoDirectory(video_path);
+  cv::VideoCapture cap2 = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
   Detector* detectorObject = new Detector(cap2,"video");
   detectorObject->getOutputsNames();
   ifstream in(detectorObject->fileName.c_str());
@@ -121,6 +145,9 @@ TEST(Detector, getOutputsNamesCheckReadFile) {
  * 
  */
 TEST(Detector, getOutputsNamesCheckFileContaint) {
+  Human_Tracker* video2 = new Human_Tracker;
+  video2->SetVideoDirectory(video_path);
+  cv::VideoCapture cap2 = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
   Detector* detectorObject = new Detector(cap2,"video");
   detectorObject->getOutputsNames();
   string classesFile = "../cfg/coco.names";

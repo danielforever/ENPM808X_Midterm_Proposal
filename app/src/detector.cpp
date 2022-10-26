@@ -23,7 +23,7 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
   this->cap = Cap;
   this->inputStype = Inputstype;
   isInitialized = true;
-  
+
 }
 void Detector::drawPred() {
 }
