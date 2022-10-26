@@ -28,14 +28,16 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
 void Detector::drawPred() {
 }
 
-void Detector::getOutputsNames() {}
+void Detector::getOutputsNames() {
+
+}
 /**
  * @brief Destroy the Detector:: Detector object
  *
  */
 bool Detector::DetectorSystem(const Mat& frame) { 
     return 0; }
-    
+
 Detector::~Detector() { isInitialized = false; }
 
 /**

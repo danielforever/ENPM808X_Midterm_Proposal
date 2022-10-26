@@ -123,15 +123,11 @@ TEST(Detector, getOutputsNamesCheckReadFile) {
 TEST(Detector, getOutputsNamesCheckFileContaint) {
   Detector* detectorObject = new Detector(cap2,"video");
   detectorObject->getOutputsNames();
-  ifstream in(detectorObject->fileName.c_str());
-  in.seekg(0, std::ios::end);
-  size_t size = in.tellg();
-  delete detectorObject;
   string classesFile = "../cfg/coco.names";
   ifstream ifs(classesFile.c_str());
-  ifs.seekg(0, std::ios::end);
-  size_t sizetest = ifs.tellg();
-  EXPECT_EQ(size, sizetest); 
+  string line;
+  while (getline(ifs, line)) classtest.push_back(line);
+  EXPECT_EQ(detectorObject->classes.size(), classtest.size()); 
 }
 /**
  * @brief Testing the DetectorSystem for Detector Class
