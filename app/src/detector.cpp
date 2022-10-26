@@ -35,6 +35,7 @@ void Detector::getOutputsNames() {}
  */
 bool Detector::DetectorSystem(const Mat& frame) { 
     return 0; }
+    
 Detector::~Detector() { isInitialized = false; }
 
 /**

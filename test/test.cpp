@@ -21,8 +21,8 @@
 
 Human_Tracker image1;
 Human_Tracker video1;
-Human_Tracker a;
-Camera h;
+
+
 
 
 
@@ -90,26 +90,62 @@ TEST(Detector, DetectorConstructor1) {
   Detector trackerObject(cap2,"video");
   EXPECT_EQ(trackerObject.isInitialized, true);
 }
+
 /**
  * @brief Testing the Detector Destructor 
  * 
  */
-// TEST(Detector, DetectorDestructor2) {
-//   Detector trackerObject(cap2,"video");
-//   trackerObject.~Detector();
-//   EXPECT_EQ(trackerObject.isInitialized, false);
-// }
+TEST(Detector, DetectorDestructor2) {
+  Detector* trackerObject = new Detector(cap2,"video");
+  delete trackerObject;
+  EXPECT_EQ(trackerObject->isInitialized, false);
+}
 /**
- * @brief Testing the Detection Counting Function for the single image
+ * @brief Read the label name from coco.names
+ * 
+ */
+TEST(Detector, getOutputsNamesCheckReadFile) {
+  Detector* detectorObject = new Detector(cap2,"video");
+  detectorObject->getOutputsNames();
+  ifstream in(detectorObject->fileName.c_str());
+  bool test = true;
+  if(!in){
+    test = false;
+  }
+  delete detectorObject;
+  EXPECT_EQ(test, true); 
+}
+
+/**
+ * @brief Test the label name is what we expect from coco.names
+ * 
+ */
+TEST(Detector, getOutputsNamesCheckFileContaint) {
+  Detector* detectorObject = new Detector(cap2,"video");
+  detectorObject->getOutputsNames();
+  ifstream in(detectorObject->fileName.c_str());
+  in.seekg(0, std::ios::end);
+  size_t size = in.tellg();
+  delete detectorObject;
+  string classesFile = "../cfg/coco.names";
+  ifstream ifs(classesFile.c_str());
+  ifs.seekg(0, std::ios::end);
+  size_t sizetest = ifs.tellg();
+  EXPECT_EQ(size, sizetest); 
+}
+/**
+ * @brief Testing the DetectorSystem for Detector Class
  * 
  */
 // TEST(Detector, DetectObjectCheck0) {
-//   a.SetVideoDirectory("assets/videos/double_person.mp4");
+//   Human_Tracker* a = new Human_Tracker;
+//   Camera* h = new Camera;
+//   a->SetVideoDirectory("assets/videos/double_person.mp4");
 
-//   h.LoadImage(a.GetVideoDirectory());
-//   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-//   Detector d(cap, h.videoorimage);
-//   Detector trackerObject(cap2,"video");
+//   h->LoadImage(a->GetVideoDirectory());
+//   cv::VideoCapture cap = h->LoadVideo(a->GetVideoDirectory(), "video");
+//   Detector* d = new Detector(cap, h->videoorimage);
+//   d->DetectorSystem
 //   EXPECT_EQ(trackerObject.isInitialized, 1);
 //   }
 
@@ -156,23 +192,7 @@ TEST(Detector, DetectorConstructor1) {
 
 //   EXPECT_EQ(test, 1); 
 // }
-/**
- * @brief get the label name from coc,names
- * 
- */
-// TEST(String, getOutputsNamesCheck) {
-//   a.SetVideoDirectory("assets/videos/double_person.mp4");
-//   h.LoadImage(a.GetVideoDirectory());
-//   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-//   Detector d(cap, h.videoorimage);
-//   d.getOutputsNames();
-//   ifstream in(d.fileName.c_str());
-//   bool test = true;
-//   if(!in){
-//     test = false;
-//   }
-//   EXPECT_EQ(test, true); 
-// }
+
 /**
  * @brief Bouding box testing 
  * 
