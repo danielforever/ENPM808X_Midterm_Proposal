@@ -126,6 +126,7 @@ TEST(Detector, getOutputsNamesCheckFileContaint) {
   string classesFile = "../cfg/coco.names";
   ifstream ifs(classesFile.c_str());
   string line;
+  vector<string> classtest;
   while (getline(ifs, line)) classtest.push_back(line);
   EXPECT_EQ(detectorObject->classes.size(), classtest.size()); 
 }
