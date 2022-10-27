@@ -66,7 +66,7 @@ void Detector::getOutputsNames() {
 
 Size Detector::boxSize() { 
 
-
+    return frame.size();
     }
 
 void Detector::drawPred(int classId, float conf, int left, int top, int right, int bottom) {
@@ -81,7 +81,7 @@ void Detector::drawPred(int classId, float conf, int left, int top, int right, i
 bool Detector::DetectorSystem(const Mat& Frame) { 
     this->frame = Frame;
     
-
+    return true;
 }
 
 Detector::~Detector() { isInitialized = false; }
@@ -95,6 +95,7 @@ Detector::~Detector() { isInitialized = false; }
 
 int Detector::DrawBoundingBox() {
 
+    return 0;
 }
 
 
