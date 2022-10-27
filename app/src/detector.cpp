@@ -26,7 +26,29 @@ using namespace std;
 Detector::Detector(VideoCapture Cap, const string& Inputstype) {
     this->cap = Cap;
     this-> inputStype = Inputstype;
-
+    this->net = readNetFromDarknet(modelConfiguration, modelWeights);
+    this->net.setPreferableBackend(DNN_BACKEND_OPENCV);
+    this->net.setPreferableTarget(DNN_TARGET_CPU);
+    VideoWriter video;
+    try {
+        if (this->inputStype == "image")
+        {
+            this->outputFile = "result.jpg";
+        }
+        else if (this->inputStype == "video")
+        {
+            cout<<"suceess read video."<<endl;
+            this->outputFile = "result.avi";
+        }
+        }
+        catch(...) {
+            cout << "Error: Did not detect any valid input file." << endl;
+        }
+        if (this->inputStype != "image") {
+            cout<<"image check!"<<endl;
+            video.open(this->outputFile, VideoWriter::fourcc('M', 'J', 'P', 'G'), 28, Size(this->cap.get(CAP_PROP_FRAME_WIDTH), this->cap.get(CAP_PROP_FRAME_HEIGHT)), true);
+            cout<<"image check!"<<endl;
+        }
     }
 
 void Detector::getOutputsNames() {

@@ -38,37 +38,43 @@ class Detector {
    *  @Param inputHeight Height of the input image
    *  @Param modelConfiguration yolov3.cfg directory
    *  @Param modelWeights yolov3.weights directory
+   *  @Param cocoFile coco.names directory
+   *  @Param outputFile The output of the file name
+   *  @Param inputStype separate video or image input type
    *  @Param classes store the coco.names classes
-   *  @Param objectClasses Store the object class into a vector
-   *  @Param outputFile string that store output directory
-   *  @Param objectConfidences Store the object confidence into a vector
+   *  @Param objectTrackingid Store the person id from tracking system into a vector
+   *  @Param confidences store the confidences result into vector
+   *  @Param boxes store the bounding box result into vector
+   *  @Param frameResult store the result frame
+   *  @Param names store the model names
    *  @Param cap store the video capture object
-   *  @Param inputStype store the video capture object
-   *  @Param cap store the video capture object
-   *
+   *  @Param outputFrame store the video capture object
+   *  @Param frame store the video capture object
+   *  @Param widthRatio store the video capture object
+   *  @Param heightRatio store the video capture object
+   *  @Param net store the video capture object
+   *  @Param newSize store the video capture object
+   * 
+   * 
    */
   float confThreshold = 0.6;
   float nmsThreshold = 0.6;  // Non-maximum suppression threshold
   int inputWidth = 416;      // Width of network's input image
   int inputHeight = 416;     // Height of network's input image
-  String modelConfiguration = "../cfg/yolov3.cfg";
-  String modelWeights = "../cfg/yolov3.weights";
-  vector<string> classes;
-  vector<string> objectClasses;
-  vector<string> objectTrackingid;
-  vector<string> objectTrackingdistance;
+  string modelConfiguration = "../cfg/yolov3.cfg";
+  string modelWeights = "../cfg/yolov3.weights";
+  string cocoFile = "../cfg/coco.names";
   string outputFile;
+  string inputStype;
+  vector<string> classes;
+  vector<string> objectTrackingid;
   vector<float> confidences;
   vector<Rect> boxes;
-  VideoCapture cap;
-  string inputStype;
-  vector<string> names;
-  VideoWriter video;
   vector<Mat> frameResult;
+  vector<string> names;
+  VideoCapture cap;
   Mat outputFrame;
   Mat frame;
-  string fileName = "../cfg/coco.names";
-  string str;
   int widthRatio;
   int heightRatio;
   Net net;
