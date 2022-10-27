@@ -53,6 +53,14 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
     }
 
 void Detector::getOutputsNames() {
+    ifstream in(this->cocoFile.c_str());
+    string str;
+    while (getline(in, str))
+    {
+        
+        if(str.size() > 0) this->classes.push_back(str);
+    }
+    cout<<"load coco.names"<<endl;
 
 }
 
