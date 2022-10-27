@@ -55,13 +55,13 @@ class Detector {
   String modelWeights = "../cfg/yolov3.weights";
   vector<string> classes;
   vector<string> objectClasses;
+  vector<string> objectTrackingid;
+  vector<string> objectTrackingdistance;
   string outputFile;
   vector<float> confidences;
   vector<Rect> boxes;
   VideoCapture cap;
   string inputStype;
-  vector<Mat> preOuts;
-  vector<Mat> curOuts;
   vector<string> names;
   VideoWriter video;
   vector<Mat> frameResult;
@@ -69,15 +69,10 @@ class Detector {
   Mat frame;
   string fileName = "../cfg/coco.names";
   string str;
-  int DrawBoundingBoxcheck = 0;
-  int resizecheck = 0;
-  int drawPredcheck = 0;
-  int left, top, right, bottom;
   int widthRatio;
   int heightRatio;
   Net net;
   Size newSize;
-  string label;
 
   /**
    *  @Brief Constructor

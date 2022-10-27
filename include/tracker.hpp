@@ -46,8 +46,6 @@ class Tracker{
     *  @Param deletePersoncheck check the deletePerson function
     * 
     */
-    vector<Mat> preOuts;
-    vector<Mat> curOuts;
     bool isInitialized = false;
     vector<int> curNameIds;
     vector<float> curConfidences;
@@ -56,8 +54,6 @@ class Tracker{
     vector<float> preConfidences;
     vector<Rect> preBoxes;
     vector<float> distance;
-    int Trackingcheck = 0;
-    int deletePersoncheck = 0;
 
     /**
      *  @Brief Constructor for Tracker
@@ -73,12 +69,12 @@ class Tracker{
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    int Tracking(const vector<Mat>& Frameresult);
+    vector<string> Tracking(const vector<float>& Confidences, const vector<Rect>& Boxes);
     /**
      *  @Brief Calculate the distance for the detected object
      *
      */
-    int DistanceCalculation();
+    vector<float> DistanceCalculation();
     /**
      *  @Brief Delete the Object Person that existed in the perivous image
      *

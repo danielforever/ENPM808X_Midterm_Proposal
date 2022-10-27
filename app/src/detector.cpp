@@ -49,6 +49,7 @@ void Detector::drawPred(int classId, float conf, int left, int top, int right, i
  */
 bool Detector::DetectorSystem(const Mat& Frame) { 
     this->frame = Frame;
+    
 
 }
 

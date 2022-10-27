@@ -21,13 +21,13 @@ Tracker::~Tracker() {
  * 
  * @return int 
  */
-int Tracker::Tracking(const vector<Mat>& Frameresult) { return 0; }
+vector<string> Tracker::Tracking(const vector<Mat>& Frameresult) { return 0; }
 /**
  * @brief 
  * 
  * @return int 
  */
-int Tracker::DistanceCalculation() { 
+vector<float> Tracker::DistanceCalculation() { 
         return 0; }
 /**
  * @brief 
