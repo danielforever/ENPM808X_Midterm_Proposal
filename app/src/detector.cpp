@@ -67,6 +67,5 @@ int Detector::DrawBoundingBox() {
 
 
 void Detector::CleanAndDisplay(){
-    this->confidences.clear();
-    this->boxes.clear();
+
 }

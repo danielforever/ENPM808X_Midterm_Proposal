@@ -233,11 +233,6 @@ TEST(Number, DrawBoundingBoxCheck) {
 }
 
 /**
- * @brief Test the center point for the detected object
- * 
- */
-
-/**
  * @brief Testing the Tracker
  * 
  */
