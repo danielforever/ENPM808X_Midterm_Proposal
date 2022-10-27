@@ -77,7 +77,7 @@ Camera Camera3;
 
 
 
-TEST(Number, VideoObjectCheck) {
+TEST(CameraTest, VideoObjectCheck) {
   Human_Tracker video2;
   std::string video_path = "assets/videos/double_person.mp4";
   video2.SetVideoDirectory(video_path);
@@ -90,7 +90,7 @@ TEST(Number, VideoObjectCheck) {
  * @brief Testing the Detector Constructor with the video route
  * 
  */
-TEST(Detector, DetectorConstructorVideoTest) {
+TEST(DetectorTest, DetectorConstructorVideoTest) {
   Human_Tracker video2;
   std::string video_path = "assets/videos/double_person.mp4";
   video2.SetVideoDirectory(video_path);
@@ -105,7 +105,7 @@ TEST(Detector, DetectorConstructorVideoTest) {
  * 
  */
 
-TEST(Detector, DetectorConstructorImageTest) {
+TEST(DetectorTest, DetectorConstructorImageTest) {
   Human_Tracker image1;
   std::string image_path = "assets/images/pedestrian_single.jpg";
   image1.SetVideoDirectory(image_path);
@@ -118,7 +118,7 @@ TEST(Detector, DetectorConstructorImageTest) {
  * @brief Testing the Detector Destructor 
  * 
  */
-TEST(Detector, DetectorDestructor2) {
+TEST(DetectorTest, DetectorDestructor2) {
   Human_Tracker video2;
   std::string video_path = "assets/videos/double_person.mp4";
   video2.SetVideoDirectory(video_path);
@@ -132,7 +132,7 @@ TEST(Detector, DetectorDestructor2) {
  * @brief Test the label name is what we expect from coco.names
  * 
  */
-TEST(Detector, getOutputsNamesCheckReadFile) {
+TEST(DetectorTest, getOutputsNamesCheckReadFile) {
   Human_Tracker b;
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
@@ -148,7 +148,7 @@ TEST(Detector, getOutputsNamesCheckReadFile) {
  * @brief Read the label name size is equal to coco.names
  * 
  */
-TEST(Detector, getOutputsNamesCheckFileContaint) {
+TEST(DetectorTest, getOutputsNamesCheck) {
   Human_Tracker video2;
   std::string video_path = "assets/videos/double_person.mp4";
   video2.SetVideoDirectory(video_path);
@@ -167,7 +167,7 @@ TEST(Detector, getOutputsNamesCheckFileContaint) {
  * @brief Testing the layername match to what we expected in DetectorSystem function
  * 
  */
-TEST(Detector, DetectObjectCheck0) {
+TEST(DetectorTest, DetectObjectCheck0) {
   Human_Tracker b;
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
@@ -184,7 +184,7 @@ TEST(Detector, DetectObjectCheck0) {
  * 
  */
 
-TEST(FrameSize, boxSizeWidthCheck) {
+TEST(DetectorTest, FrameboxSizeWidthCheck) {
   Human_Tracker b;
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
@@ -201,7 +201,7 @@ TEST(FrameSize, boxSizeWidthCheck) {
  * 
  */
 
-TEST(FrameSize, boxSizeHeightCheck) {
+TEST(DetectorTest, DrawBoundingBoxHeightCheck) {
   Human_Tracker b;
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
@@ -218,7 +218,7 @@ TEST(FrameSize, boxSizeHeightCheck) {
  */
 
 
-TEST(Number, DrawBoundingBoxCheck) {
+TEST(DetectorTest, DrawBoundingBoxWidthCheck) {
   Human_Tracker b;
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
@@ -231,7 +231,49 @@ TEST(Number, DrawBoundingBoxCheck) {
 
   EXPECT_EQ(d.boxes[0].width, 63); 
 }
+/**
+ * @brief Test does the function clean the detected object
+ * 
+ */
+TEST(DetectorTest,ClearBoxCheck) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  d.DrawBoundingBox();
+  d.CleanAndDisplay();
+  int value = 1;
+  if (d.boxes.empty()){
+    value = 0;
+  }
+  EXPECT_EQ(value, 0);
+}
 
+/**
+ * @brief Test the center point for the detected object
+ * 
+ */
+TEST(DetectorTest, CleanAndDisplayCheck) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  d.DrawBoundingBox();
+  d.CleanAndDisplay();
+  int value = 1;
+  if (d.confidences.empty()){
+    value = 0;
+  }
+  EXPECT_EQ(value, 0);
+}
 /**
  * @brief Testing the Tracker
  * 
