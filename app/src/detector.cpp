@@ -33,6 +33,7 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
     try {
         if (this->inputStype == "image")
         {
+            cout<<"suceess read image."<<endl;
             this->outputFile = "result.jpg";
         }
         else if (this->inputStype == "video")
