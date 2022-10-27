@@ -141,7 +141,11 @@ TEST(DetectorTest, getOutputsNamesCheckReadFile) {
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
-  EXPECT_EQ(d.classes[0], "person");
+  string test; 
+  if(!d.classes.empty()){
+    test = d.classes[0];
+  }
+  EXPECT_EQ(test, "person");
 }
 
 /**
@@ -176,7 +180,11 @@ TEST(DetectorTest, DetectObjectCheck0) {
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
-  EXPECT_EQ(d.names[0], "yolo_82");
+  string test;
+  if(!d.names.empty()){
+    test = d.names[0];
+  }
+  EXPECT_EQ(test, "yolo_82");
   }
 
 /**
@@ -228,8 +236,12 @@ TEST(DetectorTest, DrawBoundingBoxWidthCheck) {
   d.cap >> frame;
   d.DetectorSystem(frame);
   d.DrawBoundingBox();
+  int test;
+  if(!d.boxes.empty()){
+    test = d.boxes[0].width;
+  }
 
-  EXPECT_EQ(d.boxes[0].width, 63); 
+  EXPECT_EQ(test, 63); 
 }
 /**
  * @brief Test does the function clean the detected object
@@ -240,11 +252,7 @@ TEST(DetectorTest,ClearBoxCheck) {
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
-  d.getOutputsNames();
-  d.cap >> frame;
-  d.DetectorSystem(frame);
-  d.DrawBoundingBox();
+  d.boxes.push_back(Rect(1, 1, 1, 1));
   d.CleanAndDisplay();
   int value = 1;
   if (d.boxes.empty()){
@@ -262,11 +270,7 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
-  d.getOutputsNames();
-  d.cap >> frame;
-  d.DetectorSystem(frame);
-  d.DrawBoundingBox();
+  d.confidences.push_back(0);
   d.CleanAndDisplay();
   int value = 1;
   if (d.confidences.empty()){
