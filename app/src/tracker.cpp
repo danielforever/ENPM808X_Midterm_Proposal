@@ -21,14 +21,15 @@ Tracker::~Tracker() {
  * 
  * @return int 
  */
-vector<string> Tracker::Tracking(const vector<Mat>& Frameresult) { return 0; }
+vector<string> Tracker::Tracking(const vector<float>& Confidences, const vector<Rect>& Boxes) { 
+        return this->curName; }
 /**
  * @brief 
  * 
  * @return int 
  */
 vector<float> Tracker::DistanceCalculation() { 
-        return 0; }
+        return this->distance; }
 /**
  * @brief 
  * 

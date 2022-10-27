@@ -47,10 +47,10 @@ class Tracker{
     * 
     */
     bool isInitialized = false;
-    vector<int> curNameIds;
+    vector<string> curName;
     vector<float> curConfidences;
     vector<Rect> curBoxes;
-    vector<int> preNameIds;
+    vector<string> preName;
     vector<float> preConfidences;
     vector<Rect> preBoxes;
     vector<float> distance;
