@@ -65,8 +65,24 @@ void Detector::getOutputsNames() {
 }
 
 Size Detector::boxSize() { 
+    int width = this->frame.cols;
+    int height = this->frame.rows;
+    float ratio = float(416)/max(width, height);
+    this->widthRatio = int(round(width * ratio));
+    this->heightRatio = int(round(height * ratio));
+    int newWidth = ((416 - this->widthRatio) % 32 )/2;
+    int newHeight = ((416 - this->heightRatio) % 32 )/2;
+    int left = int(round(newWidth - 0.1));
+    int right = int(round(newWidth + 0.1));
+    int top = int(round(newHeight - 0.1));
+    int bottom = int(round(newHeight + 0.1));
+    cout<<"widthRatio: "<<this->widthRatio<<endl;
+    cout<<"heightRatio: "<<this->heightRatio<<endl;
 
-    return frame.size();
+    cv::resize(this->frame, this->frame, cv::Size(this->widthRatio, this->heightRatio), 0, 0, 1); 
+    Scalar value(127.5, 127.5, 127.5);
+    cv::copyMakeBorder(this->frame, this->frame, top, bottom, left, right, cv::BORDER_CONSTANT, value);
+    return this->frame.size();
     }
 
 void Detector::drawPred(int classId, float conf, int left, int top, int right, int bottom) {
@@ -82,7 +98,7 @@ bool Detector::DetectorSystem(const Mat& Frame) {
     this->frame = Frame;
     
     return true;
-}
+    }
 
 Detector::~Detector() { isInitialized = false; }
 
