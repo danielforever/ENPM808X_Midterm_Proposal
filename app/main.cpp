@@ -19,11 +19,13 @@
 
 int main() {
   Human_Tracker a;
-  a.SetVideoDirectory("../assets/videos/double_person.mp4");
+  Human_Tracker b;
+  a.SetVideoDirectory("../assets/videos/single_person.mp4");
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
-  h.LoadImage(a.GetVideoDirectory());
-  cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-  Detector d(cap, h.videoorimage);
+  //h.LoadImage(a.GetVideoDirectory());
+  //Detector d(h.LoadVideo(a.GetVideoDirectory(), "video"), h.videoorimage);
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
   Tracker t;
   Mat frame;
   d.getOutputsNames();
@@ -39,6 +41,7 @@ int main() {
     t.DeletePerson();
     t.DistanceCalculation();
     d.DrawBoundingBox();
+    d.CleanAndDisplay();
 
   }
 

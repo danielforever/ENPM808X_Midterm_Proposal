@@ -56,7 +56,8 @@ class Detector {
   vector<string> classes;
   vector<string> objectClasses;
   string outputFile;
-  vector<float> objectConfidences;
+  vector<float> confidences;
+  vector<Rect> boxes;
   VideoCapture cap;
   string inputStype;
   vector<Mat> preOuts;
@@ -64,15 +65,16 @@ class Detector {
   vector<string> names;
   VideoWriter video;
   vector<Mat> frameResult;
-  Mat frame, blob;
-  string fileName;
+  Mat outputFrame;
+  Mat frame;
+  string fileName = "../cfg/coco.names";
   string str;
   int DrawBoundingBoxcheck = 0;
   int resizecheck = 0;
   int drawPredcheck = 0;
   int left, top, right, bottom;
-  int resizeWidth;
-  int resizeheight;
+  int widthRatio;
+  int heightRatio;
   Net net;
   Size newSize;
   string label;
@@ -95,15 +97,16 @@ class Detector {
    */
   int DrawBoundingBox();
 
-  int resize();
+  Size boxSize();
 
-  void drawPred();
+  void drawPred(int classId, float conf, int left, int top, int right, int bottom);
 
   void getOutputsNames();
   /**
    *  @Brief Distructor for the Dectector class
    *
    */
+  void CleanAndDisplay();
   ~Detector();
 
 };

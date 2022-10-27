@@ -53,7 +53,7 @@ Camera Camera1;
  * 
  */
 TEST(Path, ImagePathCheck) {
-  std::string image_path = "assets/images/pedestrian_single.jpg";
+  std::string image_path = "../assets/images/pedestrian_single.jpg";
   image1.SetVideoDirectory(image_path);
   std::string path_test = image1.GetVideoDirectory();
   EXPECT_EQ(path_test, image_path);
@@ -72,28 +72,32 @@ TEST(Path, VideoPathCheck) {
  * @brief Testing the Video Loading 
  * 
  */
-Camera* Camera2 = new Camera;
-Camera* Camera3 = new Camera;
-std::string video_path = "assets/videos/double_person.mp4";
-std::string image_path = "assets/images/pedestrian_single.jpg";
+
+Camera Camera3;
+
 
 
 TEST(Number, VideoObjectCheck) {
-  Human_Tracker* video2 = new Human_Tracker;
-  video2->SetVideoDirectory(video_path);
-  cv::VideoCapture cap = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
-  EXPECT_EQ(Camera2->videoorimage, "video");
+  Human_Tracker video2;
+  std::string video_path = "assets/videos/double_person.mp4";
+  video2.SetVideoDirectory(video_path);
+  Camera Camera2;
+  Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
+  
+  EXPECT_EQ(Camera2.videoorimage, "video");
 }
 /**
  * @brief Testing the Detector Constructor with the video route
  * 
  */
 TEST(Detector, DetectorConstructorVideoTest) {
-  Human_Tracker* video2 = new Human_Tracker;
-  video2->SetVideoDirectory(video_path);
-  cv::VideoCapture cap2 = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
-  Detector* trackerObject = new Detector(cap2,"video");
-  EXPECT_EQ(trackerObject->outputFile, "result.avi");
+  Human_Tracker video2;
+  std::string video_path = "assets/videos/double_person.mp4";
+  video2.SetVideoDirectory(video_path);
+  Camera Camera2;
+  cv::VideoCapture cap3 = Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
+  Detector trackerObject(cap3,"video");
+  EXPECT_EQ(trackerObject.outputFile, "result.avi");
 }
 
 /**
@@ -102,11 +106,12 @@ TEST(Detector, DetectorConstructorVideoTest) {
  */
 
 TEST(Detector, DetectorConstructorImageTest) {
-  Human_Tracker* image1 = new Human_Tracker;
-  image1->SetVideoDirectory(video_path);
-  cv::VideoCapture cap3 = Camera3->LoadVideo(image1->GetVideoDirectory(),"image");
-  Detector* trackerObject = new Detector(cap3,"image");
-  EXPECT_EQ(trackerObject->outputFile, "result.jpg");
+  Human_Tracker image1;
+  std::string image_path = "assets/images/pedestrian_single.jpg";
+  image1.SetVideoDirectory(image_path);
+  cv::VideoCapture cap3 = Camera3.LoadVideo(image1.GetVideoDirectory(),"image");
+  Detector trackerObject(cap3,"image");
+  EXPECT_EQ(trackerObject.outputFile, "result.jpg");
 }
 
 /**
@@ -114,152 +119,140 @@ TEST(Detector, DetectorConstructorImageTest) {
  * 
  */
 TEST(Detector, DetectorDestructor2) {
-  Human_Tracker* video2 = new Human_Tracker;
-  video2->SetVideoDirectory(video_path);
-  cv::VideoCapture cap2 = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
-  Detector* trackerObject = new Detector(cap2,"video");
-  delete trackerObject;
-  EXPECT_EQ(trackerObject->isInitialized, false);
+  Human_Tracker video2;
+  std::string video_path = "assets/videos/double_person.mp4";
+  video2.SetVideoDirectory(video_path);
+  Camera Camera2;
+  cv::VideoCapture cap2 = Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
+  Detector trackerObject(cap2,"video");
+  //trackerObject.~Detector();
+  EXPECT_EQ(trackerObject.isInitialized, false);
 }
-/**
- * @brief Read the label name from coco.names
- * 
- */
-TEST(Detector, getOutputsNamesCheckReadFile) {
-  Human_Tracker* video2 = new Human_Tracker;
-  video2->SetVideoDirectory(video_path);
-  cv::VideoCapture cap2 = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
-  Detector* detectorObject = new Detector(cap2,"video");
-  detectorObject->getOutputsNames();
-  ifstream in(detectorObject->fileName.c_str());
-  bool test = true;
-  if(!in){
-    test = false;
-  }
-  delete detectorObject;
-  EXPECT_EQ(test, true); 
-}
-
 /**
  * @brief Test the label name is what we expect from coco.names
  * 
  */
+TEST(Detector, getOutputsNamesCheckReadFile) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  EXPECT_EQ(d.classes[0], "person");
+}
+
+/**
+ * @brief Read the label name size is equal to coco.names
+ * 
+ */
 TEST(Detector, getOutputsNamesCheckFileContaint) {
-  Human_Tracker* video2 = new Human_Tracker;
-  video2->SetVideoDirectory(video_path);
-  cv::VideoCapture cap2 = Camera2->LoadVideo(video2->GetVideoDirectory(),"video");
-  Detector* detectorObject = new Detector(cap2,"video");
-  detectorObject->getOutputsNames();
+  Human_Tracker video2;
+  std::string video_path = "assets/videos/double_person.mp4";
+  video2.SetVideoDirectory(video_path);
+  Camera Camera2;
+  cv::VideoCapture cap2 = Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
+  Detector detectorObject(cap2,"video");
+  detectorObject.getOutputsNames();
   string classesFile = "../cfg/coco.names";
   ifstream ifs(classesFile.c_str());
   string line;
   vector<string> classtest;
   while (getline(ifs, line)) classtest.push_back(line);
-  EXPECT_EQ(detectorObject->classes.size(), classtest.size()); 
+  EXPECT_EQ(detectorObject.classes.size(), classtest.size()); 
 }
 /**
- * @brief Testing the DetectorSystem for Detector Class
+ * @brief Testing the layername match to what we expected in DetectorSystem function
  * 
  */
-// TEST(Detector, DetectObjectCheck0) {
-//   Human_Tracker* a = new Human_Tracker;
-//   Camera* h = new Camera;
-//   a->SetVideoDirectory("assets/videos/double_person.mp4");
-
-//   h->LoadImage(a->GetVideoDirectory());
-//   cv::VideoCapture cap = h->LoadVideo(a->GetVideoDirectory(), "video");
-//   Detector* d = new Detector(cap, h->videoorimage);
-//   d->DetectorSystem
-//   EXPECT_EQ(trackerObject.isInitialized, 1);
-//   }
+TEST(Detector, DetectObjectCheck0) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  EXPECT_EQ(d.names[0], "yolo_82");
+  }
 
 /**
- * @brief Coordinate system transformation tests 
+ * @brief Test the portion of width that needed to be resize 
  * 
  */
 
-//   Mat frame1;
-//   Tracker t;
-
-// TEST(FrameSize, resizeCheck) {
-//   a.SetVideoDirectory("assets/videos/double_person.mp4");
-//   h.LoadImage(a.GetVideoDirectory());
-//   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-//   Detector d(cap, h.videoorimage);
-//   d.cap >> frame1;
-//   int width = frame1.cols;
-//   int height = frame1.rows;
-//   float yoloPixel = 416.0;
-//   float maxPixel = max(width, height);
-//   float ratio = yoloPixel/maxPixel;
-//   int test = int(((416 - int(round(width * ratio))) % 32 )/2);
-//   EXPECT_EQ(d.resizeWidth, test);
-// }
-/**
- * @brief Bouding box testing 
- * 
- */
-
-// String modelConfiguration = "cfg/yolov3.cfg";
-// String modelWeights = "cfg/yolov3.weights";
-// Mat frame, blob;
-
-// TEST(Number, DrawBoundingBoxCheck) {
-//   std::string image_path = "assets/videos/double_person.mp4";
-//   a.SetVideoDirectory(image_path);
-//   h.LoadImage(a.GetVideoDirectory());
-//   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-//   Detector d(cap, h.videoorimage);
-//   d.cap >> frame;
-//   d.DetectorSystem(frame);
-//   int test = d.DrawBoundingBoxcheck;
-
-//   EXPECT_EQ(test, 1); 
-// }
+TEST(FrameSize, boxSizeWidthCheck) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  EXPECT_EQ(d.widthRatio, 416);
+}
 
 /**
- * @brief Bouding box testing 
+ * @brief Test the portion of width that needed to be resize 
  * 
  */
-// TEST(checkFlag, drawPredCheck) {
-//   a.SetVideoDirectory("assets/videos/double_person.mp4");
-//   h.LoadImage(a.GetVideoDirectory());
-//   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-//   Detector d(cap, h.videoorimage);
-//   d.getOutputsNames();
-//   Mat frame;
-//   d.getOutputsNames();
-//   d.cap >> frame;
-//   d.DetectorSystem(frame);
-//   t.Tracking(d.preOuts,d.curOuts);
-    
-//   t.DeletePerson();
-//   t.DistanceCalculation();
-//   d.DrawBoundingBox();
 
-//   EXPECT_EQ(d.drawPredcheck, 1);
-// }
+TEST(FrameSize, boxSizeHeightCheck) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  EXPECT_EQ(d.heightRatio, 277);
+}
 /**
- * @brief Test case for Detector destructor
+ * @brief Test the coordinate of the ounding box saved in the boxes member 
  * 
  */
-// TEST(DetectorTest, DetectorTestDestructor) {
-//   a.SetVideoDirectory("assets/videos/double_person.mp4");
-//   h.LoadImage(a.GetVideoDirectory());
-//   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-//   Detector d(cap, h.videoorimage);
-//   d.getOutputsNames();
-//   Mat frame;
-//   d.getOutputsNames();
-//   d.cap >> frame;
-//   d.DetectorSystem(frame);
-//   t.Tracking(d.preOuts,d.curOuts);
-//   t.DeletePerson();
-//   t.DistanceCalculation();
-//   d.DrawBoundingBox();
-//   d.~Detector();
-//   EXPECT_EQ(d.isInitialized, false);
-// }
+
+
+TEST(Number, DrawBoundingBoxCheck) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  d.DrawBoundingBox();
+
+  EXPECT_EQ(d.boxes[0].width, 63); 
+}
+
+/**
+ * @brief Test the center point for the detected object
+ * 
+ */
+TEST(checkClean, CleanAndDisplayCheck) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  d.DrawBoundingBox();
+  d.CleanAndDisplay();
+  int value = 1;
+  if (d.boxes.empty()){
+    value = 0;
+  }
+  EXPECT_EQ(value, 0);
+}
 /**
  * @brief Testing the Tracker
  * 
