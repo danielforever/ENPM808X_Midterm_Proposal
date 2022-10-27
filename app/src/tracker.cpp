@@ -21,7 +21,7 @@ Tracker::~Tracker() {
  * 
  * @return int 
  */
-int Tracker::Tracking(const vector<Mat>& Preouts,const vector<Mat>& Curouts) { return 0; }
+int Tracker::Tracking(const vector<Mat>& Frameresult) { return 0; }
 /**
  * @brief 
  * 

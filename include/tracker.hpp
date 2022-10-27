@@ -73,7 +73,7 @@ class Tracker{
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    int Tracking(const vector<Mat>& Preouts,const vector<Mat>& Curouts);
+    int Tracking(const vector<Mat>& Frameresult);
     /**
      *  @Brief Calculate the distance for the detected object
      *
