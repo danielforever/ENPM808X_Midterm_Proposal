@@ -236,23 +236,7 @@ TEST(Number, DrawBoundingBoxCheck) {
  * @brief Test the center point for the detected object
  * 
  */
-TEST(checkClean, CleanAndDisplayCheck) {
-  Human_Tracker b;
-  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
-  Camera h;
-  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
-  d.getOutputsNames();
-  d.cap >> frame;
-  d.DetectorSystem(frame);
-  d.DrawBoundingBox();
-  d.CleanAndDisplay();
-  int value = 1;
-  if (d.boxes.empty()){
-    value = 0;
-  }
-  EXPECT_EQ(value, 0);
-}
+
 /**
  * @brief Testing the Tracker
  * 
