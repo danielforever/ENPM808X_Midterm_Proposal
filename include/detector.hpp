@@ -72,6 +72,7 @@ class Detector {
   vector<Rect> boxes;
   vector<Mat> frameResult;
   vector<string> names;
+  vector<int> classIds;
   VideoCapture cap;
   Mat outputFrame;
   Mat frame;

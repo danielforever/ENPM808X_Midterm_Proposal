@@ -133,22 +133,6 @@ bool Detector::DetectorSystem(const Mat& Frame) {
             this->names[i] = layersNames[outLayers[i] - 1];
     }
     this->net.forward(this->frameResult, this->names);
-    cout << "Detect system off" << endl;
-    return true;
-    }
-
-Detector::~Detector() { isInitialized = false; }
-
-/**
- * @brief
- *
- * @return true
- * @return false
- */
-
-int Detector::DrawBoundingBox() {
-    vector<int> classIds;
-    cout << "bounding box check1" << endl;
     for (size_t i = 0; i < this->frameResult.size(); ++i)
     {
         float* result = (float*)this->frameResult[i].data;
@@ -168,7 +152,7 @@ int Detector::DrawBoundingBox() {
                 int top = centerY - height / 2;
                 int right = centerX + width / 2;
                 int bottom = centerY + height / 2;                
-                classIds.push_back(classIdPoint.x);
+                this->classIds.push_back(classIdPoint.x);
                 cout << "centerX: " << centerX << endl;
                 cout << "centerY: " << centerY << endl;
                 cout << "width: " << width << endl;
@@ -182,6 +166,19 @@ int Detector::DrawBoundingBox() {
             }
         }
     }
+    return true;
+    }
+
+Detector::~Detector() { isInitialized = false; }
+
+/**
+ * @brief
+ *
+ * @return true
+ * @return false
+ */
+
+int Detector::DrawBoundingBox() {
     cout << this->boxes.size() << endl;
     vector<int> index;
     NMSBoxes(this->boxes, this->confidences, this->confThreshold, this->nmsThreshold, index);
@@ -189,7 +186,7 @@ int Detector::DrawBoundingBox() {
     {
         int idx = index[i];
         Rect box = this->boxes[idx];
-        drawPred(classIds[idx], this->confidences[idx], box.x, box.x + box.width, box.y, box.y + box.height);
+        drawPred(this->classIds[idx], this->confidences[idx], box.x, box.x + box.width, box.y, box.y + box.height);
    }
 
     return 0;
@@ -206,4 +203,5 @@ void Detector::CleanAndDisplay(){
     imshow("Display", frame);
     this->confidences.clear();
     this->boxes.clear();
+    this->classIds.clear();
 }
