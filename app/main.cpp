@@ -24,8 +24,8 @@ int main() {
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
   //h.LoadImage(a.GetVideoDirectory());
-  //Detector d(h.LoadVideo(a.GetVideoDirectory(), "video"), h.videoorimage);
-  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Detector d(h.LoadVideo(a.GetVideoDirectory(), "video"), h.videoorimage);
+  //Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
   Tracker t;
   Mat frame;
   d.getOutputsNames();

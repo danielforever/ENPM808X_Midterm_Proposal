@@ -99,10 +99,10 @@ bool Detector::DetectorSystem(const Mat& Frame) {
     cout<<"Detect system on"<<endl;
     
     cv::cvtColor(this->frame, this->frame, COLOR_BGR2RGB);
-
+    cout << "Before Resize:" << this->frame.cols << " " << this->frame.rows << endl;
     this->newSize = this->boxSize();
     cout << "After Resize:" << this->newSize.width << " " << this->newSize.height << endl;
-    cout << "Before Resize:" << this->frame.cols << " " << this->frame.rows << endl;
+    
     Mat blob;
     blobFromImage(this->frame, blob, 1/255.0, Size(this->inputWidth, this->newSize.height), Scalar(0,0,0), true, false); 
     this->net.setInput(blob);
