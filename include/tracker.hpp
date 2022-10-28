@@ -32,18 +32,14 @@ using namespace std;
 class Tracker{
  public:
     /**
-    *  @Brief preOuts previous detected result of the vector
-    *  @Param curOuts current detected result of the vector
     *  @Param isInitialized check if the system is initial
-    *  @Param curNameIds store name id 
+    *  @Param curName store name id 
     *  @Param curConfidences store confident 
     *  @Param curBoxes store the bounding box information
-    *  @Param preNameIds store pervious name id 
+    *  @Param preName store pervious name id 
     *  @Param preConfidences store pervious confident
     *  @Param preBoxes store pervious the bounding box information
     *  @Param distance store distance information
-    *  @Param Trackingcheck store the checking information for tracking function
-    *  @Param deletePersoncheck check the deletePerson function
     * 
     */
     bool isInitialized = false;
@@ -69,16 +65,10 @@ class Tracker{
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    vector<string> Tracking(const vector<float>& Confidences, const vector<Rect>& Boxes);
+    vector<string> Tracking(const vector<Rect>& Boxes);
     /**
-     *  @Brief Calculate the distance for the detected object
+     *  @Brief Calculate the distance between two dots for the detected object
      *
      */
     vector<float> DistanceCalculation();
-    /**
-     *  @Brief Delete the Object Person that existed in the perivous image
-     *
-     */
-    int DeletePerson();
-
 };

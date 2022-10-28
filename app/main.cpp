@@ -39,9 +39,7 @@ int main() {
       break;
     }
     d.DetectorSystem(frame);
-    t.Tracking(d.confidences,d.boxes);
-    
-    t.DeletePerson();
+    t.Tracking(d.boxes);
     t.DistanceCalculation();
     d.DrawBoundingBox();
     d.CleanAndDisplay();

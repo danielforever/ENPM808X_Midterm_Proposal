@@ -17,22 +17,16 @@ Tracker::~Tracker() {
 }
 
 /**
- * @brief Tracking constructor
+ * @brief Tracking system
  * 
- * @return int 
+ * @return vector<string> 
  */
-vector<string> Tracker::Tracking(const vector<float>& Confidences, const vector<Rect>& Boxes) { 
+vector<string> Tracker::Tracking(const vector<Rect>& Boxes) { 
         return this->curName; }
 /**
  * @brief 
  * 
- * @return int 
+ * @return vector<float> 
  */
 vector<float> Tracker::DistanceCalculation() { 
         return this->distance; }
-/**
- * @brief 
- * 
- * @return int 
- */
-int Tracker::DeletePerson() { return 0; }
