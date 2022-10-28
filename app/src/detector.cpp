@@ -96,7 +96,30 @@ void Detector::drawPred(int classId, float conf, int left, int top, int right, i
  */
 bool Detector::DetectorSystem(const Mat& Frame) { 
     this->frame = Frame;
+    cout<<"Detect system on"<<endl;
     
+    cv::cvtColor(this->frame, this->frame, COLOR_BGR2RGB);
+
+    this->newSize = this->boxSize();
+    cout << "After Resize:" << this->newSize.width << " " << this->newSize.height << endl;
+    cout << "Before Resize:" << this->frame.cols << " " << this->frame.rows << endl;
+    Mat blob;
+    blobFromImage(this->frame, blob, 1/255.0, Size(this->inputWidth, this->newSize.height), Scalar(0,0,0), true, false); 
+    this->net.setInput(blob);
+        
+    
+    if (this->names.empty()){
+        
+        vector<int> outLayers = this->net.getUnconnectedOutLayers();
+        
+        vector<String> layersNames = this->net.getLayerNames();
+       
+        this->names.resize(outLayers.size());
+        for (size_t i = 0; i < outLayers.size(); ++i)
+            this->names[i] = layersNames[outLayers[i] - 1];
+    }
+    this->net.forward(this->frameResult, this->names);
+    cout<<"Detect system off"<<endl;
     return true;
     }
 
