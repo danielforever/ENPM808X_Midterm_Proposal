@@ -197,5 +197,13 @@ int Detector::DrawBoundingBox() {
 
 
 void Detector::CleanAndDisplay(){
-
+    Mat detectedFrame;
+    this->frame.convertTo(detectedFrame, CV_8U);
+    cv::cvtColor(detectedFrame,detectedFrame, COLOR_RGB2BGR);
+    if (this->inputStype == "image") imwrite(this->outputFile, detectedFrame);
+    else this->video.write(detectedFrame);
+        
+    imshow("Display", frame);
+    this->confidences.clear();
+    this->boxes.clear();
 }
