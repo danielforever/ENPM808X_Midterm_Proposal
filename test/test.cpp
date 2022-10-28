@@ -335,5 +335,63 @@ TEST(TrackerTest, TrackingFunctionCase1Check) {
   }
   
   EXPECT_EQ(test, 0); }
-
+/**
+ * @brief Test case2 for Tracking Calculation
+ * 
+ */
+TEST(TrackerTest, TrackingFunctionCase2Check) {
+  Tracker tracker1;
+  vector<Rect> testBox;
+  vector<int> testReturn;
+  testBox.push_back(Rect(200,200,100,100));
+  tracker1.preid.push_back(0);
+  tracker1.PreCenterPoint.emplace_back(249,249);
+  testReturn = tracker1.Tracking(testBox);
+  int test = 100;
+  if(!testReturn.empty()){
+    test = testReturn[0];
+  }
+  
+  EXPECT_EQ(test, 0); }
+/**
+ * @brief Test case3 for Tracking Calculation
+ * 
+ */
+TEST(TrackerTest, TrackingFunctionCase3Check) {
+  Tracker tracker1;
+  vector<Rect> testBox;
+  vector<int> testReturn;
+  testBox.push_back(Rect(200,200,100,100));
+  tracker1.preid.push_back(0);
+  tracker1.PreCenterPoint.emplace_back(255,255);
+  tracker1.preid.push_back(1);
+  tracker1.PreCenterPoint.emplace_back(249,249);
+  testReturn = tracker1.Tracking(testBox);
+  int test = 100;
+  if(!testReturn.empty()){
+    test = testReturn[0];
+  }
+  
+  EXPECT_EQ(test, 1); }
+/**
+ * @brief Test case4 for Tracking Calculation
+ * 
+ */
+TEST(TrackerTest, TrackingFunctionCase4Check) {
+  Tracker tracker1;
+  vector<Rect> testBox;
+  vector<int> testReturn;
+  testBox.push_back(Rect(200,200,100,100));
+  tracker1.preid.push_back(0);
+  tracker1.PreCenterPoint.emplace_back(150,150);
+  tracker1.preid.push_back(1);
+  tracker1.PreCenterPoint.emplace_back(100,100);
+  tracker1.assignid = 2;
+  testReturn = tracker1.Tracking(testBox);
+  int test = 100;
+  if(!testReturn.empty()){
+    test = testReturn[0];
+  }
+  
+  EXPECT_EQ(test, 2); }
 
