@@ -298,8 +298,8 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
  * To check if the constructor is being called
  */
 TEST(TrackerTest, TrackerConstructor) {
-  Tracker trackerObject;
-  EXPECT_EQ(trackerObject.isInitialized, true);
+  Tracker tracker1;
+  EXPECT_EQ(tracker1.isInitialized, true);
 }
 /**
  * @brief Test case for tracker destructor
