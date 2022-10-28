@@ -106,7 +106,6 @@ TEST(DetectorTest, DetectorConstructorVideoTest) {
  */
 
 TEST(DetectorTest, DetectorConstructorImageTest) {
-  Human_Tracker image1;
   std::string image_path = "assets/images/pedestrian_single.jpg";
   image1.SetVideoDirectory(image_path);
   cv::VideoCapture cap3 = Camera3.LoadVideo(image1.GetVideoDirectory(),"image");

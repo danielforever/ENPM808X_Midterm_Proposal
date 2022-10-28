@@ -25,7 +25,7 @@ using namespace std;
  */
 Detector::Detector(VideoCapture Cap, const string& Inputstype) {
     this->cap = Cap;
-    this-> inputStype = Inputstype;
+    this->inputStype = Inputstype;
     this->net = readNetFromDarknet(modelConfiguration, modelWeights);
     this->net.setPreferableBackend(DNN_BACKEND_OPENCV);
     this->net.setPreferableTarget(DNN_TARGET_CPU);
@@ -46,9 +46,9 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
             cout << "Error: Did not detect any valid input file." << endl;
         }
         if (this->inputStype != "image") {
-            cout<<"image check!"<<endl;
+            cout << "image check!" << endl;
             video.open(this->outputFile, VideoWriter::fourcc('M', 'J', 'P', 'G'), 28, Size(this->cap.get(CAP_PROP_FRAME_WIDTH), this->cap.get(CAP_PROP_FRAME_HEIGHT)), true);
-            cout<<"image check!"<<endl;
+            cout << "image check!" << endl;
         }
     }
 
@@ -60,7 +60,7 @@ void Detector::getOutputsNames() {
         
         if(str.size() > 0) this->classes.push_back(str);
     }
-    cout<<"load coco.names"<<endl;
+    cout << "load coco.names" << endl;
 
 }
 
@@ -76,8 +76,8 @@ Size Detector::boxSize() {
     int right = int(round(newWidth + 0.1));
     int top = int(round(newHeight - 0.1));
     int bottom = int(round(newHeight + 0.1));
-    cout<<"widthRatio: "<<this->widthRatio<<endl;
-    cout<<"heightRatio: "<<this->heightRatio<<endl;
+    cout << "widthRatio: " << this->widthRatio<<endl;
+    cout << "heightRatio: " << this->heightRatio<<endl;
 
     cv::resize(this->frame, this->frame, cv::Size(this->widthRatio, this->heightRatio), 0, 0, 1); 
     Scalar value(127.5, 127.5, 127.5);
@@ -85,7 +85,7 @@ Size Detector::boxSize() {
     return this->frame.size();
     }
 
-void Detector::drawPred(int classId, float conf, int left, int top, int right, int bottom) {
+void Detector::drawPred(int classId, float conf, int left, int right, int top, int bottom) {
 
  }
 
@@ -96,6 +96,7 @@ void Detector::drawPred(int classId, float conf, int left, int top, int right, i
  */
 bool Detector::DetectorSystem(const Mat& Frame) { 
     this->frame = Frame;
+    Mat blob;
     cout<<"Detect system on"<<endl;
     
     cv::cvtColor(this->frame, this->frame, COLOR_BGR2RGB);
@@ -103,11 +104,10 @@ bool Detector::DetectorSystem(const Mat& Frame) {
     this->newSize = this->boxSize();
     cout << "After Resize:" << this->newSize.width << " " << this->newSize.height << endl;
     
-    Mat blob;
+
     blobFromImage(this->frame, blob, 1/255.0, Size(this->inputWidth, this->newSize.height), Scalar(0,0,0), true, false); 
     this->net.setInput(blob);
         
-    
     if (this->names.empty()){
         
         vector<int> outLayers = this->net.getUnconnectedOutLayers();
@@ -119,7 +119,7 @@ bool Detector::DetectorSystem(const Mat& Frame) {
             this->names[i] = layersNames[outLayers[i] - 1];
     }
     this->net.forward(this->frameResult, this->names);
-    cout<<"Detect system off"<<endl;
+    cout << "Detect system off" << endl;
     return true;
     }
 
@@ -133,6 +133,50 @@ Detector::~Detector() { isInitialized = false; }
  */
 
 int Detector::DrawBoundingBox() {
+    vector<int> classIds;
+    cout << "bounding box check1" << endl;
+    for (size_t i = 0; i < this->frameResult.size(); ++i)
+    {
+        float* result = (float*)this->frameResult[i].data;
+        for (int j = 0; j < this->frameResult[i].rows; ++j, result += this->frameResult[i].cols)
+        {
+            Mat scores = this->frameResult[i].row(j).colRange(5, this->frameResult[i].cols);
+            Point classIdPoint;
+            double confidence;
+            minMaxLoc(scores, 0, &confidence, 0, &classIdPoint);
+            if (confidence > this->confThreshold and classIdPoint.x==0)
+            {
+                int centerX = (int)(result[0] * frame.cols);
+                int centerY = (int)(result[1] * frame.rows);
+                int width = (int)(result[2] * frame.cols);
+                int height = (int)(result[3] * frame.rows);
+                int left = centerX - width / 2;
+                int top = centerY - height / 2;
+                int right = centerX + width / 2;
+                int bottom = centerY + height / 2;                
+                classIds.push_back(classIdPoint.x);
+                cout << "centerX: " << centerX << endl;
+                cout << "centerY: " << centerY << endl;
+                cout << "width: " << width << endl;
+                cout << "height: " << height << endl;  
+                cout << "left: " << left << endl;
+                cout << "right: " << right << endl;
+                cout << "top: " << top << endl;   
+                cout << "bottom: " << bottom << endl;                                  
+                this->confidences.push_back((float)confidence); 
+                this->boxes.push_back(Rect(left, top, width, height));
+            }
+        }
+    }
+    cout << this->boxes.size() << endl;
+    vector<int> index;
+    NMSBoxes(this->boxes, this->confidences, this->confThreshold, this->nmsThreshold, index);
+    for (size_t i = 0; i < index.size(); ++i)
+    {
+        int idx = index[i];
+        Rect box = this->boxes[idx];
+        drawPred(classIds[idx], this->confidences[idx], box.x, box.x + box.width, box.y, box.y + box.height);
+   }
 
     return 0;
 }
