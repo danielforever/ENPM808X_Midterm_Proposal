@@ -79,6 +79,7 @@ class Detector {
   int heightRatio;
   Net net;
   Size newSize;
+  VideoWriter video;
 
   /**
    *  @Brief Constructor

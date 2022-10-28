@@ -29,7 +29,7 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
     this->net = readNetFromDarknet(modelConfiguration, modelWeights);
     this->net.setPreferableBackend(DNN_BACKEND_OPENCV);
     this->net.setPreferableTarget(DNN_TARGET_CPU);
-    VideoWriter video;
+    
     try {
         if (this->inputStype == "image")
         {
@@ -47,7 +47,7 @@ Detector::Detector(VideoCapture Cap, const string& Inputstype) {
         }
         if (this->inputStype != "image") {
             cout << "image check!" << endl;
-            video.open(this->outputFile, VideoWriter::fourcc('M', 'J', 'P', 'G'), 28, Size(this->cap.get(CAP_PROP_FRAME_WIDTH), this->cap.get(CAP_PROP_FRAME_HEIGHT)), true);
+            this->video.open(this->outputFile, VideoWriter::fourcc('M', 'J', 'P', 'G'), 28, Size(this->cap.get(CAP_PROP_FRAME_WIDTH), this->cap.get(CAP_PROP_FRAME_HEIGHT)), true);
             cout << "image check!" << endl;
         }
     }

@@ -251,12 +251,17 @@ TEST(DetectorTest,ClearBoxCheck) {
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  d.boxes.push_back(Rect(1, 1, 1, 1));
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  d.DrawBoundingBox();
   d.CleanAndDisplay();
   int value = 1;
   if (d.boxes.empty()){
     value = 0;
   }
+  cout<<"check:"<< d.boxes[0].x<<endl;
   EXPECT_EQ(value, 0);
 }
 
@@ -269,7 +274,12 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  d.confidences.push_back(0);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  d.DrawBoundingBox();
+  d.CleanAndDisplay();
   d.CleanAndDisplay();
   int value = 1;
   if (d.confidences.empty()){
