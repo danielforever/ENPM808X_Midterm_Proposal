@@ -72,5 +72,5 @@ class Tracker{
      *  @Brief Calculate the distance between two dots for the detected object
      *
      */
-    int DistanceCalculation( int x1, int x2, int y1, int y2);
+    float DistanceCalculation( int x1, int x2, int y1, int y2);
 };
