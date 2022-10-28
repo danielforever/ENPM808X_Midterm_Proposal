@@ -317,7 +317,8 @@ TEST(TrackerTest, TrackerDestructor) {
 TEST(TrackerTest, DistanceCalculationCheck) {
   Tracker tracker1;
   float test = 5;
-  EXPECT_GT(tracker1.DistanceCalculation(5,2,9,5), test);
+  
+  EXPECT_EQ(tracker1.DistanceCalculation(5,2,9,5), test);
 }
 /**
  * @brief Test case1 for Tracking Calculation

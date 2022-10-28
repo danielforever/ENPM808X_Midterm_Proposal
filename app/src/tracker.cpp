@@ -30,4 +30,4 @@ vector<int> Tracker::Tracking(const vector<Rect>& Boxes) {
  * @return vector<float> 
  */
 float Tracker::DistanceCalculation( int x1, int x2, int y1, int y2) { 
-        return 0.0; }
+        return 0; }
