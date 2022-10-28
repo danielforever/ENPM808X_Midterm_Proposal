@@ -70,6 +70,7 @@ class Detector {
   vector<string> objectTrackingid;
   vector<float> confidences;
   vector<Rect> boxes;
+  vector<Rect> trackerBoxes;
   vector<Mat> frameResult;
   vector<string> names;
   vector<int> classIds;
@@ -81,6 +82,7 @@ class Detector {
   Net net;
   Size newSize;
   VideoWriter video;
+  vector<int> index;
 
   /**
    *  @Brief Constructor

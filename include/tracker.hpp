@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include<cmath>
 
 #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/dnn.hpp>
@@ -33,23 +34,24 @@ class Tracker{
  public:
     /**
     *  @Param isInitialized check if the system is initial
-    *  @Param curName store name id 
-    *  @Param curConfidences store confident 
+    *  @Param curid store name id 
     *  @Param curBoxes store the bounding box information
-    *  @Param preName store pervious name id 
-    *  @Param preConfidences store pervious confident
-    *  @Param preBoxes store pervious the bounding box information
-    *  @Param distance store distance information
+    *  @Param preid store pervious name id 
+    *  @Param allDistance store distance information
+    *  @Param curCenterPoint store the center point of the objects
+    *  @Param assignid keep track of the id assigned
     * 
     */
     bool isInitialized = false;
-    vector<string> curName;
-    vector<float> curConfidences;
+    vector<int> curid;
     vector<Rect> curBoxes;
-    vector<string> preName;
-    vector<float> preConfidences;
-    vector<Rect> preBoxes;
-    vector<float> distance;
+    vector<int> preid;
+    vector<int> checkDistance;
+    vector<int> checkid;
+    vector<int> keepid;
+    vector<pair<int,int>> curCenterPoint;
+    vector<pair<int,int>> PreCenterPoint;
+    int assignid = 0;
 
     /**
      *  @Brief Constructor for Tracker
@@ -65,10 +67,10 @@ class Tracker{
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    vector<string> Tracking(const vector<Rect>& Boxes);
+    vector<int> Tracking(const vector<Rect>& Boxes);
     /**
      *  @Brief Calculate the distance between two dots for the detected object
      *
      */
-    vector<float> DistanceCalculation();
+    int DistanceCalculation( int x1, int x2, int y1, int y2);
 };

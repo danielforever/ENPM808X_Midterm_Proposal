@@ -297,10 +297,10 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
  * @brief Construct a new TEST object
  * To check if the constructor is being called
  */
-// TEST(TrackerTest, TrackerConstructor) {
-//   Tracker trackerObject;
-//   EXPECT_EQ(trackerObject.isInitialized, true);
-// }
+TEST(TrackerTest, TrackerConstructor) {
+  Tracker trackerObject;
+  EXPECT_EQ(trackerObject.isInitialized, true);
+}
 /**
  * @brief Test case for tracker destructor
  * 
@@ -350,22 +350,3 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
   
 //   EXPECT_EQ(t.Trackingcheck, 1); }
 
-/**
- * @brief Testing case for Deleted Person
- * 
- */
-// TEST(Number, DeletePersonCheck) {
-//   a.SetVideoDirectory("assets/videos/double_person.mp4");
-//   h.LoadImage(a.GetVideoDirectory());
-//   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-//   Detector d(cap, h.videoorimage);
-//   d.getOutputsNames();
-//   Mat frame;
-//   d.getOutputsNames();
-//   d.cap >> frame;
-//   d.DetectorSystem(frame);
-//   t.Tracking(d.preOuts,d.curOuts);
-//   t.DeletePerson();
-
-//   EXPECT_EQ(system1_tracker.DeletePerson(), 3);
-// }

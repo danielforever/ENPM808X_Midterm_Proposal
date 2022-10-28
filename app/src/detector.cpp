@@ -87,7 +87,7 @@ Size Detector::boxSize() {
 
 void Detector::drawPred(int classId, float confidence, int left, int right, int top, int bottom) {
     rectangle(this->frame, Point(left, top), Point(right, bottom), Scalar(255, 178, 50), 3);
-    
+    cout<<"bounding box check2"<<endl;
     string label = format("%.2f", confidence);
     cout << "classId: " <<classId << endl;
     if (!this->classes.empty() and classId==0)
@@ -114,9 +114,9 @@ bool Detector::DetectorSystem(const Mat& Frame) {
     cout<<"Detect system on"<<endl;
     
     cv::cvtColor(this->frame, this->frame, COLOR_BGR2RGB);
-    cout << "Before Resize:" << this->frame.cols << " " << this->frame.rows << endl;
+    //cout << "Before Resize:" << this->frame.cols << " " << this->frame.rows << endl;
     this->newSize = this->boxSize();
-    cout << "After Resize:" << this->newSize.width << " " << this->newSize.height << endl;
+    //cout << "After Resize:" << this->newSize.width << " " << this->newSize.height << endl;
     
 
     blobFromImage(this->frame, blob, 1/255.0, Size(this->inputWidth, this->newSize.height), Scalar(0,0,0), true, false); 
@@ -166,6 +166,9 @@ bool Detector::DetectorSystem(const Mat& Frame) {
             }
         }
     }
+    NMSBoxes(this->boxes, this->confidences, this->confThreshold, this->nmsThreshold, this->index);
+    for (auto i: this->index)
+        this->trackerBoxes.push_back(this->boxes[i]);
     return true;
     }
 
@@ -180,11 +183,12 @@ Detector::~Detector() { isInitialized = false; }
 
 int Detector::DrawBoundingBox() {
     cout << this->boxes.size() << endl;
-    vector<int> index;
-    NMSBoxes(this->boxes, this->confidences, this->confThreshold, this->nmsThreshold, index);
-    for (size_t i = 0; i < index.size(); ++i)
+
+    
+    for (size_t i = 0; i < this->index.size(); ++i)
     {
-        int idx = index[i];
+        cout<<"check times"<<endl;
+        int idx = this->index[i];
         Rect box = this->boxes[idx];
         drawPred(this->classIds[idx], this->confidences[idx], box.x, box.x + box.width, box.y, box.y + box.height);
    }
