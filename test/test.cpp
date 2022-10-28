@@ -305,11 +305,11 @@ TEST(TrackerTest, TrackerConstructor) {
  * @brief Test case for tracker destructor
  * 
  */
-// TEST(TrackerTest, TrackerDestructor) {
-//   Tracker trackerObject;
-//   trackerObject.~Tracker();
-//   EXPECT_EQ(trackerObject.isInitialized, false);
-// }
+TEST(TrackerTest, TrackerDestructor) {
+  Tracker trackerObject;
+  trackerObject.~Tracker();
+  EXPECT_EQ(trackerObject.isInitialized, false);
+}
 /**
  * @brief Test case for Distance Calculation
  * 
