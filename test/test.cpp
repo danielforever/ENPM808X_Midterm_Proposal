@@ -314,24 +314,11 @@ TEST(TrackerTest, TrackerConstructor) {
  * @brief Test case for Distance Calculation
  * 
  */
-// TEST(Distance, DistanceCalculationCheck) {
-//   a.SetVideoDirectory("assets/videos/double_person.mp4");
-//   h.LoadImage(a.GetVideoDirectory());
-//   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-//   Detector d(cap, h.videoorimage);
-//   d.getOutputsNames();
-//   Mat frame;
-//   d.getOutputsNames();
-//   d.cap >> frame;
-//   d.DetectorSystem(frame);
-//   t.Tracking(d.preOuts,d.curOuts);
-//   t.DeletePerson();
-//   t.DistanceCalculation();
-//   d.DrawBoundingBox();
-//   d.~Detector();
-//   float test = 0;
-//   EXPECT_GT(system1_tracker.distance[0], test);
-// }
+TEST(TrackerTest, DistanceCalculationCheck) {
+  Tracker tracker1;
+  float test = 5;
+  EXPECT_GT(tracker1.DistanceCalculation(5,2,9,5), test);
+}
 /**
  * @brief Test case for Tracking Calculation
  * 
