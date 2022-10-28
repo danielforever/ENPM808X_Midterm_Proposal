@@ -320,20 +320,20 @@ TEST(TrackerTest, DistanceCalculationCheck) {
   EXPECT_GT(tracker1.DistanceCalculation(5,2,9,5), test);
 }
 /**
- * @brief Test case for Tracking Calculation
+ * @brief Test case1 for Tracking Calculation
  * 
  */
-// TEST(Number, TrackingFunctionCheck) {
-//   a.SetVideoDirectory("assets/videos/double_person.mp4");
-//   h.LoadImage(a.GetVideoDirectory());
-//   cv::VideoCapture cap = h.LoadVideo(a.GetVideoDirectory(), "video");
-//   Detector d(cap, h.videoorimage);
-//   d.getOutputsNames();
-//   Mat frame;
-//   d.getOutputsNames();
-//   d.cap >> frame;
-//   d.DetectorSystem(frame);
-//   t.Tracking(d.preOuts,d.curOuts);
+TEST(TrackerTest, TrackingFunctionCase1Check) {
+  Tracker tracker1;
+  vector<Rect> testBox;
+  vector<int> testReturn;
+  testBox.push_back(Rect(200,200,100,100));
+  testReturn = tracker1.Tracking(testBox);
+  int test = 100;
+  if(!testReturn.empty()){
+    test = testReturn[0];
+  }
   
-//   EXPECT_EQ(t.Trackingcheck, 1); }
+  EXPECT_EQ(test, 0); }
+
 
