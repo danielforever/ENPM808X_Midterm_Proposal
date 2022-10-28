@@ -85,9 +85,23 @@ Size Detector::boxSize() {
     return this->frame.size();
     }
 
-void Detector::drawPred(int classId, float conf, int left, int right, int top, int bottom) {
-
- }
+void Detector::drawPred(int classId, float confidence, int left, int right, int top, int bottom) {
+    rectangle(this->frame, Point(left, top), Point(right, bottom), Scalar(255, 178, 50), 3);
+    
+    string label = format("%.2f", confidence);
+    cout << "classId: " <<classId << endl;
+    if (!this->classes.empty() and classId==0)
+    {
+        cout<<"bounding box check3"<<endl;
+        label = this->classes[classId] + ":" + label;
+    }
+    
+    int baseLine;
+    Size labelSize = getTextSize(label, FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
+    top = max(top, labelSize.height);
+    rectangle(this->frame, Point(left, top - round(1.5*labelSize.height)), Point(left + round(1.5*labelSize.width), top + baseLine), Scalar(255, 255, 255), FILLED);
+    putText(this->frame, label, Point(left, top), FONT_HERSHEY_SIMPLEX, 0.75, Scalar(0,0,0),1);
+    }
 
 
 /**

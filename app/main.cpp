@@ -42,7 +42,10 @@ int main() {
     t.DistanceCalculation();
     d.DrawBoundingBox();
     d.CleanAndDisplay();
-
+    Mat detectedFrame;
+    d.frame.convertTo(detectedFrame, CV_8U);
+    cv::cvtColor(detectedFrame,detectedFrame, COLOR_RGB2BGR);
+    imshow( "Frame", detectedFrame ); 
   }
 
   return 0;
