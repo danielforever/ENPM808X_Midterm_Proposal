@@ -418,10 +418,7 @@ TEST(TrackerTest, CoordinateTransformCase1Check) {
   }
   d.DrawBoundingBox();
   d.CleanAndDisplay();
-  
-
-  
-  EXPECT_EQ(value, -20); }
+  EXPECT_EQ(value, -0.2); }
 /**
  * @brief Test case2 for Coordinate Transform
  * 
@@ -447,4 +444,4 @@ TEST(TrackerTest, CoordinateTransformCase2Check) {
   d.CleanAndDisplay();
 
   
-  EXPECT_GT(value1, value2); }
+  EXPECT_GT(value2, value1); }

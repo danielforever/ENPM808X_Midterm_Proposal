@@ -17,6 +17,7 @@ Tracker::~Tracker() {
 }
 
 array<double, 3> Tracker::CoordinateTransform(int inpx, int iny){
+
         array<double, 3> result = {};
         return result;
 }
