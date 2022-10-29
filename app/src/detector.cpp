@@ -157,7 +157,7 @@ bool Detector::DetectorSystem(const Mat& Frame) {
                 cout << "centerX: " << centerX << endl;
                 cout << "centerY: " << centerY << endl;
                 // cout << "width: " << width << endl;
-                // cout << "height: " << height << endl;  
+                //cout << "height: " << height << endl;  
                 // cout << "left: " << left << endl;
                 // cout << "right: " << right << endl;
                 // cout << "top: " << top << endl;   

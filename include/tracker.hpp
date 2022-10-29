@@ -13,7 +13,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include<cmath>
+#include <cmath>
+#include <array>
 
 #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/dnn.hpp>
@@ -73,8 +74,11 @@ class Tracker{
      *
      */
     float DistanceCalculation( int x1, int x2, int y1, int y2);
-
-    
+    /**
+     *  @Brief Transform the coordinate to robot's reference frame
+     *
+     */
+    array<float, 3> CoordinateTransform(int x, int y);
 
 
 };

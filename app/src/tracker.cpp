@@ -16,6 +16,12 @@ Tracker::~Tracker() {
         this->isInitialized = false;
 }
 
+array<float, 3> Tracker::CoordinateTransform(int x, int y){
+        array<float, 3> result = {};
+        return result;
+}
+
+
 /**
  * @brief Tracking system
  * 
@@ -42,7 +48,6 @@ vector<int> Tracker::Tracking(const vector<Rect>& Boxes) {
                 }
         }
         else{
-                cout << "NEVER?" <<endl;
                 for (int i=0; i < Boxes.size(); i++){
                         centerX = Boxes[i].x + Boxes[i].width/2;
                         centerY = Boxes[i].y + Boxes[i].height/2;
