@@ -78,23 +78,25 @@ Size Detector::boxSize() {
     int bottom = int(round(newHeight + 0.1));
     // cout << "widthRatio: " << this->widthRatio<<endl;
     // cout << "heightRatio: " << this->heightRatio<<endl;
-
+    
     cv::resize(this->frame, this->frame, cv::Size(this->widthRatio, this->heightRatio), 0, 0, 1); 
     Scalar value(127.5, 127.5, 127.5);
     cv::copyMakeBorder(this->frame, this->frame, top, bottom, left, right, cv::BORDER_CONSTANT, value);
     return this->frame.size();
     }
 
-void Detector::drawPred(int left, int right, int top, int bottom, int idname) {
+void Detector::drawPred(int left, int right, int top, int bottom, int idname, double x, double y, double z) {
     rectangle(this->frame, Point(left, top), Point(right, bottom), Scalar(255, 178, 50), 3);
     cout<<"bounding box check2"<<endl;
-    string label = "Person" + to_string(idname);
     
+    string label1 = "Person" + to_string(idname);
+    string label2 = "( " + to_string(x) + "," + to_string(y) + "," + to_string(z) + ")";
     int baseLine;
-    Size labelSize = getTextSize(label, FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
+    Size labelSize = getTextSize(label2, FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
     top = max(top, labelSize.height);
     rectangle(this->frame, Point(left, top - round(1.5*labelSize.height)), Point(left + round(1.5*labelSize.width), top + baseLine), Scalar(255, 255, 255), FILLED);
-    putText(this->frame, label, Point(left, top), FONT_HERSHEY_SIMPLEX, 0.75, Scalar(0,0,0),1);
+    putText(this->frame, label1, Point(left, top-10), FONT_HERSHEY_SIMPLEX, 0.30, Scalar(0,0,0),1);
+    putText(this->frame, label2, Point(left, top), FONT_HERSHEY_SIMPLEX, 0.30, Scalar(0,0,0),1);
     }
 
 
@@ -179,7 +181,7 @@ int Detector::DrawBoundingBox() {
         cout<<"check times"<<endl;
         int idx = this->index[i];
         Rect box = this->boxes[idx];
-        drawPred(box.x, box.x + box.width, box.y, box.y + box.height, this->objectTrackingid[i]);
+        drawPred(box.x, box.x + box.width, box.y, box.y + box.height, this->objectTrackingid[i], this->roboticRefFrame[i].at(0), this->roboticRefFrame[i].at(1), this->roboticRefFrame[i].at(2));
    }
 
     return 0;
@@ -192,8 +194,9 @@ void Detector::CleanAndDisplay(){
     cv::cvtColor(detectedFrame,detectedFrame, COLOR_RGB2BGR);
     if (this->inputStype == "image") imwrite(this->outputFile, detectedFrame);
     else this->video.write(detectedFrame);
-        
+    cv::resize(detectedFrame, detectedFrame, cv::Size(detectedFrame.cols * 1.5, detectedFrame.rows * 1.5), 0, 0, 1); 
     imshow("Display", detectedFrame);
+    //resizeWindow("Display", 500,500);
     this->confidences.clear();
     this->boxes.clear();
     this->classIds.clear();

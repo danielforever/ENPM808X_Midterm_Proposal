@@ -43,6 +43,7 @@ int main() {
     }
     d.DetectorSystem(frame);
     d.objectTrackingid = t.Tracking(d.trackerBoxes);
+    d.roboticRefFrame = t.roboticRefFrame;
     d.DrawBoundingBox();
     d.CleanAndDisplay();
   }

@@ -74,6 +74,7 @@ class Detector {
   vector<Mat> frameResult;
   vector<string> names;
   vector<int> classIds;
+  vector<array<double, 3>> roboticRefFrame;
   VideoCapture cap;
   Mat outputFrame;
   Mat frame;
@@ -104,7 +105,7 @@ class Detector {
 
   Size boxSize();
 
-  void drawPred(int left, int right, int top, int bottom, int idname);
+  void drawPred(int left, int right, int top, int bottom, int idname, double x, double y, double z);
 
   void getOutputsNames();
   /**
