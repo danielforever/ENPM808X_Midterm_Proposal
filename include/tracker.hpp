@@ -78,7 +78,7 @@ class Tracker{
      *  @Brief Transform the coordinate to robot's reference frame
      *
      */
-    array<float, 3> CoordinateTransform(int x, int y);
+    array<double, 3> CoordinateTransform(int x, int y);
 
 
 };

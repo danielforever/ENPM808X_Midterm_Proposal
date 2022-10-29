@@ -16,8 +16,8 @@ Tracker::~Tracker() {
         this->isInitialized = false;
 }
 
-array<float, 3> Tracker::CoordinateTransform(int x, int y){
-        array<float, 3> result = {};
+array<double, 3> Tracker::CoordinateTransform(int x, int y){
+        array<double, 3> result = {};
         return result;
 }
 
