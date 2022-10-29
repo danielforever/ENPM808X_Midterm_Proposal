@@ -85,7 +85,7 @@ Size Detector::boxSize() {
     return this->frame.size();
     }
 
-void Detector::drawPred(int classId, float confidence, int left, int right, int top, int bottom, int idname) {
+void Detector::drawPred(int left, int right, int top, int bottom, int idname) {
     rectangle(this->frame, Point(left, top), Point(right, bottom), Scalar(255, 178, 50), 3);
     cout<<"bounding box check2"<<endl;
     string label = "Person" + to_string(idname);
@@ -179,7 +179,7 @@ int Detector::DrawBoundingBox() {
         cout<<"check times"<<endl;
         int idx = this->index[i];
         Rect box = this->boxes[idx];
-        drawPred(this->classIds[idx], this->confidences[idx], box.x, box.x + box.width, box.y, box.y + box.height, this->objectTrackingid[i]);
+        drawPred(box.x, box.x + box.width, box.y, box.y + box.height, this->objectTrackingid[i]);
    }
 
     return 0;

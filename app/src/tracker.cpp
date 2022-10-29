@@ -38,7 +38,6 @@ vector<int> Tracker::Tracking(const vector<Rect>& Boxes) {
         this->curBoxes = Boxes;
         int centerX;
         int centerY; 
-        float coorDistance = 0;   
         cout<< "preid: " <<this->preid.size()<<endl;   
         cout<< "Step1" <<endl;   
         if(!this->roboticRefFrame.empty()){
@@ -68,7 +67,7 @@ vector<int> Tracker::Tracking(const vector<Rect>& Boxes) {
                 for (int i=0; i < this->curCenterPoint.size(); i++){
                         cout << "curCenterPoint" << this->curCenterPoint.size() << endl;
                         for (int j = 0; j < this->PreCenterPoint.size(); j++){
-                                coorDistance = this->DistanceCalculation(this->curCenterPoint[i].first, this->PreCenterPoint[j].first, this->curCenterPoint[i].second, this->PreCenterPoint[j].second);
+                                float coorDistance = this->DistanceCalculation(this->curCenterPoint[i].first, this->PreCenterPoint[j].first, this->curCenterPoint[i].second, this->PreCenterPoint[j].second);
                                 cout << "coorDistance: " << coorDistance <<endl;
                                 if(coorDistance < 15.0){
                                         //compare with other
