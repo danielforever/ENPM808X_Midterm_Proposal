@@ -93,7 +93,6 @@ vector<int> Tracker::Tracking(const vector<Rect>& Boxes) {
                 this->assignid = this->PreCenterPoint.size();
         }
         this->PreCenterPoint.clear();
-
         this->PreCenterPoint = this->curCenterPoint;
         this->curCenterPoint.clear();
         this->preid.clear();

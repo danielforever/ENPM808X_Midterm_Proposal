@@ -434,4 +434,4 @@ TEST(TrackerTest, CoordinateTransformCase2Check) {
   d.CleanAndDisplay();
 
   
-  EXPECT_GT(t.roboticRefFrame[1].at(1), t.roboticRefFrame[0].at(1)); }
+  EXPECT_GT( t.roboticRefFrame[0].at(1), t.roboticRefFrame[1].at(1)); }
