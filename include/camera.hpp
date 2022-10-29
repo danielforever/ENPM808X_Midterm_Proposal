@@ -12,11 +12,12 @@
  */
 
 #include <iostream>
+#include <string>
+#include <vector>
 #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 #include <opencv4/opencv2/imgcodecs.hpp>
-#include <string>
-#include <vector>
+
 
 /**
  * @Brief  A class that read images or videos from the directory
