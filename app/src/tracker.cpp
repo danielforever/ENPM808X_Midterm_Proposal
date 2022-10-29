@@ -17,7 +17,6 @@ Tracker::~Tracker() {
 }
 
 array<double, 3> Tracker::CoordinateTransform(int inpx, int iny){
-
         array<double, 3> result = {};
         return result;
 }
@@ -94,6 +93,7 @@ vector<int> Tracker::Tracking(const vector<Rect>& Boxes) {
                 this->assignid = this->PreCenterPoint.size();
         }
         this->PreCenterPoint.clear();
+
         this->PreCenterPoint = this->curCenterPoint;
         this->curCenterPoint.clear();
         this->preid.clear();

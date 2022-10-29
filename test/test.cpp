@@ -406,19 +406,15 @@ TEST(TrackerTest, CoordinateTransformCase1Check) {
   b.SetVideoDirectory("../assets/videos/double_simple.mp4");
   Camera h;
   Tracker t;
-  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "video"), h.videoorimage);
   Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
   d.objectTrackingid = t.Tracking(d.trackerBoxes);
-  int value = 0;
-  if(!t.roboticRefFrame.empty()){
-    value = t.roboticRefFrame[0].at(2);
-  }
   d.DrawBoundingBox();
   d.CleanAndDisplay();
-  EXPECT_EQ(value, -0.2); }
+  EXPECT_EQ(t.roboticRefFrame[0].at(2), -0.2); }
 /**
  * @brief Test case2 for Coordinate Transform
  * 
@@ -428,20 +424,14 @@ TEST(TrackerTest, CoordinateTransformCase2Check) {
   b.SetVideoDirectory("../assets/videos/double_simple.mp4");
   Camera h;
   Tracker t;
-  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "video"), h.videoorimage);
   Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
   d.objectTrackingid = t.Tracking(d.trackerBoxes);
-  int value1 = 0;
-  int value2 = 0;
-  if(!t.roboticRefFrame.empty()){
-    value1 = t.roboticRefFrame[0].at(1);
-    value2 = t.roboticRefFrame[1].at(1);
-  }
   d.DrawBoundingBox();
   d.CleanAndDisplay();
 
   
-  EXPECT_GT(value2, value1); }
+  EXPECT_GT(t.roboticRefFrame[1].at(1), t.roboticRefFrame[0].at(1)); }
