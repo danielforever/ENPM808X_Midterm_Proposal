@@ -27,8 +27,8 @@ int main() {
   Camera h;
   //h.LoadImage(a.GetVideoDirectory());
   //Detector d(h.LoadVideo(a.GetVideoDirectory(), "video"), h.videoorimage);
-  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  //Detector d(h.LoadVideo(c.GetVideoDirectory(), "video"), h.videoorimage);
+  //Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Detector d(h.LoadVideo(c.GetVideoDirectory(), "video"), h.videoorimage);
   Tracker t;
   Mat frame;
   d.getOutputsNames();
@@ -39,7 +39,7 @@ int main() {
       break;
     }
     d.DetectorSystem(frame);
-    t.Tracking(d.trackerBoxes);
+    d.objectTrackingid = t.Tracking(d.trackerBoxes);
     d.DrawBoundingBox();
     d.CleanAndDisplay();
   }

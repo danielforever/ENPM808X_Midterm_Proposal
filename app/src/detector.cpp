@@ -76,8 +76,8 @@ Size Detector::boxSize() {
     int right = int(round(newWidth + 0.1));
     int top = int(round(newHeight - 0.1));
     int bottom = int(round(newHeight + 0.1));
-    cout << "widthRatio: " << this->widthRatio<<endl;
-    cout << "heightRatio: " << this->heightRatio<<endl;
+    // cout << "widthRatio: " << this->widthRatio<<endl;
+    // cout << "heightRatio: " << this->heightRatio<<endl;
 
     cv::resize(this->frame, this->frame, cv::Size(this->widthRatio, this->heightRatio), 0, 0, 1); 
     Scalar value(127.5, 127.5, 127.5);
@@ -85,15 +85,15 @@ Size Detector::boxSize() {
     return this->frame.size();
     }
 
-void Detector::drawPred(int classId, float confidence, int left, int right, int top, int bottom) {
+void Detector::drawPred(int classId, float confidence, int left, int right, int top, int bottom, int idname) {
     rectangle(this->frame, Point(left, top), Point(right, bottom), Scalar(255, 178, 50), 3);
     cout<<"bounding box check2"<<endl;
-    string label = format("%.2f", confidence);
+    string label = to_string(idname);
     cout << "classId: " <<classId << endl;
     if (!this->classes.empty() and classId==0)
     {
         cout<<"bounding box check3"<<endl;
-        label = this->classes[classId] + ":" + label;
+        label = label + ":";
     }
     
     int baseLine;
@@ -155,12 +155,12 @@ bool Detector::DetectorSystem(const Mat& Frame) {
                 this->classIds.push_back(classIdPoint.x);
                 cout << "centerX: " << centerX << endl;
                 cout << "centerY: " << centerY << endl;
-                cout << "width: " << width << endl;
-                cout << "height: " << height << endl;  
-                cout << "left: " << left << endl;
-                cout << "right: " << right << endl;
-                cout << "top: " << top << endl;   
-                cout << "bottom: " << bottom << endl;                                  
+                // cout << "width: " << width << endl;
+                // cout << "height: " << height << endl;  
+                // cout << "left: " << left << endl;
+                // cout << "right: " << right << endl;
+                // cout << "top: " << top << endl;   
+                // cout << "bottom: " << bottom << endl;                                  
                 this->confidences.push_back((float)confidence); 
                 this->boxes.push_back(Rect(left, top, width, height));
             }
@@ -169,17 +169,12 @@ bool Detector::DetectorSystem(const Mat& Frame) {
     NMSBoxes(this->boxes, this->confidences, this->confThreshold, this->nmsThreshold, this->index);
     for (auto i: this->index)
         this->trackerBoxes.push_back(this->boxes[i]);
+    
     return true;
     }
 
 Detector::~Detector() { isInitialized = false; }
 
-/**
- * @brief
- *
- * @return true
- * @return false
- */
 
 int Detector::DrawBoundingBox() {
     cout << this->boxes.size() << endl;
@@ -190,7 +185,7 @@ int Detector::DrawBoundingBox() {
         cout<<"check times"<<endl;
         int idx = this->index[i];
         Rect box = this->boxes[idx];
-        drawPred(this->classIds[idx], this->confidences[idx], box.x, box.x + box.width, box.y, box.y + box.height);
+        drawPred(this->classIds[idx], this->confidences[idx], box.x, box.x + box.width, box.y, box.y + box.height, this->objectTrackingid[i]);
    }
 
     return 0;
@@ -204,8 +199,10 @@ void Detector::CleanAndDisplay(){
     if (this->inputStype == "image") imwrite(this->outputFile, detectedFrame);
     else this->video.write(detectedFrame);
         
-    imshow("Display", frame);
+    imshow("Display", detectedFrame);
     this->confidences.clear();
     this->boxes.clear();
     this->classIds.clear();
+    this->trackerBoxes.clear();
+    this->objectTrackingid.clear();
 }

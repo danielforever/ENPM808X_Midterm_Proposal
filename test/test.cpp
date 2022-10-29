@@ -229,6 +229,7 @@ TEST(DetectorTest, DrawBoundingBoxWidthCheck) {
   Human_Tracker b;
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
+  Tracker t;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
   Mat frame;
   d.getOutputsNames();
@@ -250,6 +251,7 @@ TEST(DetectorTest,ClearBoxCheck) {
   Human_Tracker b;
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
+  Tracker t;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
   Mat frame;
   d.getOutputsNames();
@@ -273,13 +275,14 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
   Human_Tracker b;
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
+  Tracker t;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
   Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
+  d.objectTrackingid = t.Tracking(d.trackerBoxes);
   d.DrawBoundingBox();
-  d.CleanAndDisplay();
   d.CleanAndDisplay();
   int value = 1;
   if (d.confidences.empty()){
@@ -291,7 +294,7 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
  * @brief Testing the Tracker
  * 
  */
-// Tracker system1_tracker;
+
 
 /**
  * @brief Construct a new TEST object

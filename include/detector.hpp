@@ -58,7 +58,7 @@ class Detector {
    * 
    */
   float confThreshold = 0.6;
-  float nmsThreshold = 0.6;  // Non-maximum suppression threshold
+  float nmsThreshold = 0.3;  // Non-maximum suppression threshold
   int inputWidth = 416;      // Width of network's input image
   int inputHeight = 416;     // Height of network's input image
   string modelConfiguration = "../cfg/yolov3.cfg";
@@ -67,7 +67,7 @@ class Detector {
   string outputFile;
   string inputStype;
   vector<string> classes;
-  vector<string> objectTrackingid;
+  vector<int> objectTrackingid;
   vector<float> confidences;
   vector<Rect> boxes;
   vector<Rect> trackerBoxes;
@@ -104,7 +104,7 @@ class Detector {
 
   Size boxSize();
 
-  void drawPred(int classId, float conf, int left, int top, int right, int bottom);
+  void drawPred(int classId, float conf, int left, int top, int right, int bottom, int idname);
 
   void getOutputsNames();
   /**
