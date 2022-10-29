@@ -17,7 +17,6 @@ Tracker::~Tracker() {
 }
 
 array<double, 3> Tracker::CoordinateTransform(int inpx, int iny){
-
         array<double, 3> result = {};
         return result;
 }
@@ -35,6 +34,9 @@ vector<int> Tracker::Tracking(const vector<Rect>& Boxes) {
         float coorDistance = 0;   
         cout<< "preid: " <<this->preid.size()<<endl;   
         cout<< "Step1" <<endl;   
+        if(!this->roboticRefFrame.empty()){
+                this->roboticRefFrame.clear(); 
+        }
         if(this->preid.empty()){
                 cout<< "Step2" <<endl; 
                 for (int i=0; i < this->curBoxes.size(); i++){
