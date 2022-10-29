@@ -1,3 +1,5 @@
+#ifndef INCLUDE_DETECTOR_HPP_
+#define INCLUDE_DETECTOR_HPP_
 /**
  * @file detector.hpp
  * @author Shantanu Aman Po-Yu
@@ -20,10 +22,7 @@
 #include <string>
 #include <vector>
 
-using namespace cv;
-using namespace cv::dnn;
-using namespace std;
-using namespace std::chrono;
+
 /**
  * @Brief  A class that detect and add Person object for the vector
  */
@@ -62,29 +61,29 @@ class Detector {
   float nmsThreshold = 0.3;  // Non-maximum suppression threshold
   int inputWidth = 416;      // Width of network's input image
   int inputHeight = 416;     // Height of network's input image
-  string modelConfiguration = "../cfg/yolov3.cfg";
-  string modelWeights = "../cfg/yolov3.weights";
-  string cocoFile = "../cfg/coco.names";
-  string outputFile;
-  string inputStype;
-  vector<string> classes;
-  vector<int> objectTrackingid;
-  vector<float> confidences;
-  vector<Rect> boxes;
-  vector<Rect> trackerBoxes;
-  vector<Mat> frameResult;
-  vector<string> names;
-  vector<int> classIds;
-  vector<array<double, 3>> roboticRefFrame;
-  VideoCapture cap;
-  Mat outputFrame;
-  Mat frame;
+  std::string modelConfiguration = "../cfg/yolov3.cfg";
+  std::string modelWeights = "../cfg/yolov3.weights";
+  std::string cocoFile = "../cfg/coco.names";
+  std::string outputFile;
+  std::string inputStype;
+  std::vector<std::string> classes;
+  std::vector<int> objectTrackingid;
+  std::vector<float> confidences;
+  std::vector<cv::Rect> boxes;
+  std::vector<cv::Rect> trackerBoxes;
+  std::vector<cv::Mat> frameResult;
+  std::vector<std::string> names;
+  std::vector<int> classIds;
+  std::vector<std::array<double, 3>> roboticRefFrame;
+  cv::VideoCapture cap;
+  cv::Mat outputFrame;
+  cv::Mat frame;
   int widthRatio;
   int heightRatio;
-  Net net;
-  Size newSize;
-  VideoWriter video;
-  vector<int> index;
+  cv::dnn:Net net;
+  cv::Size newSize;
+  cv::VideoWriter video;
+  std::vector<int> index;
 
   /**
    *  @Brief Constructor
@@ -92,19 +91,19 @@ class Detector {
    *  @Param PersonVectorDetector Save all the detected people into vector
    *
    */
-  Detector(VideoCapture Cap, const string& InputType);
+  Detector(cv::VideoCapture Cap, const std::string& InputType);
   /**
    *  @Brief Send to object regonition system
    *
    */
-  bool DetectorSystem(const Mat& frame);
+  bool DetectorSystem(const cv::Mat& frame);
   /**
    *  @Brief Draw bounding box for the image and filter the low confident
    *
    */
   int DrawBoundingBox();
 
-  Size boxSize();
+  cv::Size boxSize();
 
   void drawPred(int left, int right, int top, int bottom, int idname, double x, double y, double z);
 
@@ -117,3 +116,4 @@ class Detector {
   ~Detector();
 
 };
+#endif  // INCLUDE_DETECTOR_HPP_

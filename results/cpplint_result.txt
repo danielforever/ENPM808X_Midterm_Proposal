@@ -1,5 +1,12 @@
 Done processing ./app/main.cpp
-Done processing ./app/src/perception.cpp
-Done processing ./include/perception.hpp
+Done processing ./app/src/camera.cpp
+Done processing ./app/src/detector.cpp
+Done processing ./app/src/human_tracker.cpp
+Done processing ./app/src/tracker.cpp
+Done processing ./include/camera.hpp
+Done processing ./include/detector.hpp
+Done processing ./include/human_tracker.hpp
+Done processing ./include/tracker.hpp
 Done processing ./test/main.cpp
 Done processing ./test/test.cpp
+Total errors found: 225

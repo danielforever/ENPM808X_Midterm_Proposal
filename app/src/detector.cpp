@@ -16,39 +16,37 @@
 #include <opencv4/opencv2/imgproc/imgproc.hpp>
 
 
-using namespace cv;
-using namespace dnn;
 using namespace std;
 /**
  * @brief Construct a new Detector:: Detector object
  *
  */
-Detector::Detector(VideoCapture Cap, const string& Inputstype) {
+Detector::Detector(cv::VideoCapture Cap, const std::string& Inputstype) {
     this->cap = Cap;
     this->inputStype = Inputstype;
-    this->net = readNetFromDarknet(modelConfiguration, modelWeights);
-    this->net.setPreferableBackend(DNN_BACKEND_OPENCV);
-    this->net.setPreferableTarget(DNN_TARGET_CPU);
+    this->net = cv::dnn::dnn4_v20220524::readNetFromDarknet(modelConfiguration, modelWeights);
+    this->net.setPreferableBackend(dnn::DNN_BACKEND_OPENCV);
+    this->net.setPreferableTarget(dnn::DNN_TARGET_CPU);
     
     try {
         if (this->inputStype == "image")
         {
-            cout<<"suceess read image."<<endl;
+            std::cout << "suceess read image." << std::endl;
             this->outputFile = "result.jpg";
         }
         else if (this->inputStype == "video")
         {
-            cout<<"suceess read video."<<endl;
+            std::cout << "suceess read video." << std::endl;
             this->outputFile = "result.avi";
         }
         }
         catch(...) {
-            cout << "Error: Did not detect any valid input file." << endl;
+            std::cout << "Error: Did not detect any valid input file." << std::endl;
         }
         if (this->inputStype != "image") {
-            cout << "image check!" << endl;
+            std::cout << "image check!" << std::endl;
             this->video.open(this->outputFile, VideoWriter::fourcc('M', 'J', 'P', 'G'), 28, Size(this->cap.get(CAP_PROP_FRAME_WIDTH), this->cap.get(CAP_PROP_FRAME_HEIGHT)), true);
-            cout << "image check!" << endl;
+            std::cout << "image check!" << std::endl;
         }
     }
 
@@ -60,7 +58,7 @@ void Detector::getOutputsNames() {
         
         if(str.size() > 0) this->classes.push_back(str);
     }
-    cout << "load coco.names" << endl;
+    std::cout << "load coco.names" << std::endl;
 
 }
 
@@ -76,8 +74,6 @@ Size Detector::boxSize() {
     int right = int(round(newWidth + 0.1));
     int top = int(round(newHeight - 0.1));
     int bottom = int(round(newHeight + 0.1));
-    // cout << "widthRatio: " << this->widthRatio<<endl;
-    // cout << "heightRatio: " << this->heightRatio<<endl;
     
     cv::resize(this->frame, this->frame, cv::Size(this->widthRatio, this->heightRatio), 0, 0, 1); 
     Scalar value(127.5, 127.5, 127.5);
@@ -87,16 +83,16 @@ Size Detector::boxSize() {
 
 void Detector::drawPred(int left, int right, int top, int bottom, int idname, double x, double y, double z) {
     rectangle(this->frame, Point(left, top), Point(right, bottom), Scalar(255, 178, 50), 3);
-    cout<<"bounding box check2"<<endl;
+    std::cout << "bounding box check2" << endl;
     
     string label1 = "Person" + to_string(idname);
     string label2 = "( " + to_string(x) + "," + to_string(y) + "," + to_string(z) + ")";
     int baseLine;
-    Size labelSize = getTextSize(label2, FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
+    cv::Size labelSize = getTextSize(label2, FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
     top = max(top, labelSize.height);
-    rectangle(this->frame, Point(left, top - round(1.5*labelSize.height)), Point(left + round(1.5*labelSize.width), top + baseLine), Scalar(255, 255, 255), FILLED);
-    putText(this->frame, label1, Point(left, top-10), FONT_HERSHEY_SIMPLEX, 0.30, Scalar(0,0,0),1);
-    putText(this->frame, label2, Point(left, top), FONT_HERSHEY_SIMPLEX, 0.30, Scalar(0,0,0),1);
+    rectangle(this->frame, Point(left, top - round(1.5*labelSize.height)), Point(left + round(1.5*labelSize.width), top + baseLine), Scalar(255, 255, 255), cv::FILLED);
+    putText(this->frame, label1, Point(left, top-10), cv::FONT_HERSHEY_SIMPLEX, 0.30, cv::Scalar(0,0,0),1);
+    putText(this->frame, label2, Point(left, top), cv::FONT_HERSHEY_SIMPLEX, 0.30, cv::Scalar(0,0,0),1);
     }
 
 
@@ -106,23 +102,20 @@ void Detector::drawPred(int left, int right, int top, int bottom, int idname, do
  */
 bool Detector::DetectorSystem(const Mat& Frame) { 
     this->frame = Frame;
-    Mat blob;
-    cout<<"Detect system on"<<endl;
+    cv::Mat blob;
+    std::cout <<" Detect system on" << std::endl;
     
-    cv::cvtColor(this->frame, this->frame, COLOR_BGR2RGB);
-    //cout << "Before Resize:" << this->frame.cols << " " << this->frame.rows << endl;
+    cv::cvtColor(this->frame, this->frame, cv::COLOR_BGR2RGB);
     this->newSize = this->boxSize();
-    //cout << "After Resize:" << this->newSize.width << " " << this->newSize.height << endl;
-    
 
-    blobFromImage(this->frame, blob, 1/255.0, Size(this->inputWidth, this->newSize.height), Scalar(0,0,0), true, false); 
+    cv::dnn::dnn4_v20220524::blobFromImage(this->frame, blob, 1/255.0, Size(this->inputWidth, this->newSize.height), cv::Scalar(0,0,0), true, false); 
     this->net.setInput(blob);
         
     if (this->names.empty()){
         
-        vector<int> outLayers = this->net.getUnconnectedOutLayers();
+        std::vector<int> outLayers = this->net.getUnconnectedOutLayers();
         
-        vector<String> layersNames = this->net.getLayerNames();
+        std::vector<std::string> layersNames = this->net.getLayerNames();
        
         this->names.resize(outLayers.size());
         for (size_t i = 0; i < outLayers.size(); ++i)
@@ -134,10 +127,10 @@ bool Detector::DetectorSystem(const Mat& Frame) {
         float* result = (float*)this->frameResult[i].data;
         for (int j = 0; j < this->frameResult[i].rows; ++j, result += this->frameResult[i].cols)
         {
-            Mat scores = this->frameResult[i].row(j).colRange(5, this->frameResult[i].cols);
-            Point classIdPoint;
+            cv::Mat scores = this->frameResult[i].row(j).colRange(5, this->frameResult[i].cols);
+            cv::Point classIdPoint;
             double confidence;
-            minMaxLoc(scores, 0, &confidence, 0, &classIdPoint);
+            cv::minMaxLoc(scores, 0, &confidence, 0, &classIdPoint);
             if (confidence > this->confThreshold and classIdPoint.x==0)
             {
                 int centerX = (int)(result[0] * frame.cols);
@@ -149,20 +142,14 @@ bool Detector::DetectorSystem(const Mat& Frame) {
                 int right = centerX + width / 2;
                 int bottom = centerY + height / 2;                
                 this->classIds.push_back(classIdPoint.x);
-                cout << "centerX: " << centerX << endl;
-                cout << "centerY: " << centerY << endl;
-                // cout << "width: " << width << endl;
-                //cout << "height: " << height << endl;  
-                // cout << "left: " << left << endl;
-                // cout << "right: " << right << endl;
-                // cout << "top: " << top << endl;   
-                // cout << "bottom: " << bottom << endl;                                  
+                std::cout << "centerX: " << centerX << std::endl;
+                std::cout << "centerY: " << centerY << std::endl;                               
                 this->confidences.push_back((float)confidence); 
-                this->boxes.push_back(Rect(left, top, width, height));
+                this->boxes.push_back(cv::Rect(left, top, width, height));
             }
         }
     }
-    NMSBoxes(this->boxes, this->confidences, this->confThreshold, this->nmsThreshold, this->index);
+    cv::dnn::NMSBoxes(this->boxes, this->confidences, this->confThreshold, this->nmsThreshold, this->index);
     for (auto i: this->index)
         this->trackerBoxes.push_back(this->boxes[i]);
     
@@ -178,9 +165,9 @@ int Detector::DrawBoundingBox() {
     
     for (size_t i = 0; i < this->index.size(); ++i)
     {
-        cout<<"check times"<<endl;
+        std::cout << "check times" << std::endl;
         int idx = this->index[i];
-        Rect box = this->boxes[idx];
+        cv::Rect box = this->boxes[idx];
         drawPred(box.x, box.x + box.width, box.y, box.y + box.height, this->objectTrackingid[i], this->roboticRefFrame[i].at(0), this->roboticRefFrame[i].at(1), this->roboticRefFrame[i].at(2));
    }
 
@@ -188,15 +175,14 @@ int Detector::DrawBoundingBox() {
 }
 
 
-void Detector::CleanAndDisplay(){
-    Mat detectedFrame;
+void Detector::CleanAndDisplay() {
+    cv::Mat detectedFrame;
     this->frame.convertTo(detectedFrame, CV_8U);
-    cv::cvtColor(detectedFrame,detectedFrame, COLOR_RGB2BGR);
-    if (this->inputStype == "image") imwrite(this->outputFile, detectedFrame);
+    cv::cvtColor(detectedFrame,detectedFrame, cv::COLOR_RGB2BGR);
+    if (this->inputStype == "image") cv::imwrite(this->outputFile, detectedFrame);
     else this->video.write(detectedFrame);
     cv::resize(detectedFrame, detectedFrame, cv::Size(detectedFrame.cols * 1.5, detectedFrame.rows * 1.5), 0, 0, 1); 
     imshow("Display", detectedFrame);
-    //resizeWindow("Display", 500,500);
     this->confidences.clear();
     this->boxes.clear();
     this->classIds.clear();

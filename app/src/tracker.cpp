@@ -3,6 +3,9 @@
 #include <opencv4/opencv2/highgui.hpp>
 #include "../../include/tracker.hpp"
 
+using namespace cv;
+using namespace cv::dnn;
+using namespace std;
 
 
 /**
