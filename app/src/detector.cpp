@@ -173,7 +173,7 @@ int Detector::DrawBoundingBox() {
   return 0;
 }
 
-void Detector::CleanAndDisplay() {
+cv::Mat Detector::CleanAndDisplay() {
   cv::Mat detectedFrame;
   this->frame.convertTo(detectedFrame, CV_8U);
   cv::cvtColor(detectedFrame, detectedFrame, cv::COLOR_RGB2BGR);
@@ -184,10 +184,11 @@ void Detector::CleanAndDisplay() {
   cv::resize(detectedFrame, detectedFrame,
              cv::Size(detectedFrame.cols * 1.5, detectedFrame.rows * 1.5), 0, 0,
              1);
-  imshow("Display", detectedFrame);
+  
   this->confidences.clear();
   this->boxes.clear();
   this->classIds.clear();
   this->trackerBoxes.clear();
   this->objectTrackingid.clear();
+  return detectedFrame;
 }

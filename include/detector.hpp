@@ -112,7 +112,7 @@ class Detector {
    *  @Brief Distructor for the Dectector class
    *
    */
-  void CleanAndDisplay();
+  cv::Mat CleanAndDisplay();
   ~Detector();
 };
 #endif  // INCLUDE_DETECTOR_HPP_

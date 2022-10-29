@@ -45,7 +45,7 @@ int main() {
     d.objectTrackingid = t.Tracking(d.trackerBoxes);
     d.roboticRefFrame = t.roboticRefFrame;
     d.DrawBoundingBox();
-    d.CleanAndDisplay();
+    imshow("Display", d.CleanAndDisplay());
   }
 
   return 0;
