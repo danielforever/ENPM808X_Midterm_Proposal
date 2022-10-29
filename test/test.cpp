@@ -235,6 +235,7 @@ TEST(DetectorTest, DrawBoundingBoxWidthCheck) {
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
+  d.objectTrackingid = t.Tracking(d.trackerBoxes);
   d.DrawBoundingBox();
   int test;
   if(!d.boxes.empty()){
@@ -257,6 +258,7 @@ TEST(DetectorTest,ClearBoxCheck) {
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
+  d.objectTrackingid = t.Tracking(d.trackerBoxes);
   d.DrawBoundingBox();
   d.CleanAndDisplay();
   int value = 1;
@@ -337,7 +339,6 @@ TEST(TrackerTest, TrackingFunctionCase1Check) {
   if(!testReturn.empty()){
     test = testReturn[0];
   }
-  
   EXPECT_EQ(test, 0); }
 /**
  * @brief Test case2 for Tracking Calculation
@@ -355,7 +356,6 @@ TEST(TrackerTest, TrackingFunctionCase2Check) {
   if(!testReturn.empty()){
     test = testReturn[0];
   }
-  
   EXPECT_EQ(test, 0); }
 /**
  * @brief Test case3 for Tracking Calculation
@@ -374,8 +374,7 @@ TEST(TrackerTest, TrackingFunctionCase3Check) {
   int test = 100;
   if(!testReturn.empty()){
     test = testReturn[0];
-  }
-  
+  } 
   EXPECT_EQ(test, 1); }
 /**
  * @brief Test case4 for Tracking Calculation
