@@ -23,7 +23,7 @@
 
 
 /**
- * @Brief  A class that detect and add Person object for the vector
+ * @brief  A class that detect and add Person object for the vector
  */
 class Detector {
  public:
