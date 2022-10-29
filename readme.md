@@ -35,6 +35,8 @@ The focus of the project is to develope best practices for Software Develpoement
 **Programming Language:** `C++`  
 **Memory Profiling:** `Valgrind`  
 **Documentaton:** `Doxygen`  
+### Results
+![alt text](./assets/Results.gif?raw=true "Human Detector Result")
 
 ***
 ### Deliverables
