@@ -11,20 +11,19 @@
 #pragma once
 
 #include <iostream>
+#include <math.h>
 #include <vector>
 #include <string>
 #include <cmath>
 #include <array>
-#include <math.h>
+#include <utility>
 
-#include <opencv4/opencv2/core.hpp>
+// #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/dnn.hpp>
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 
-using namespace cv;
-using namespace cv::dnn;
-using namespace std;
+
 
 #define PI 3.14159265
 
@@ -32,7 +31,7 @@ using namespace std;
  * @brief Class for Tracking the Humans
  * 
  */
-class Tracker{
+class Tracker {
  public:
     /**
     *  @Param isInitialized check if the system is initial
@@ -45,16 +44,16 @@ class Tracker{
     * 
     */
     bool isInitialized = false;
-    vector<int> curid;
-    vector<Rect> curBoxes;
-    vector<int> preid;
-    vector<int> checkDistance;
-    vector<int> checkid;
-    vector<int> keepid;
-    vector<pair<int,int>> curCenterPoint;
-    vector<pair<int,int>> PreCenterPoint;
+    std::vector<int> curid;
+    std::vector<Rect> curBoxes;
+    std::vector<int> preid;
+    std::vector<int> checkDistance;
+    std::vector<int> checkid;
+    std::vector<int> keepid;
+    std::vector<pair<int, int>> curCenterPoint;
+    std::vector<pair<int, int>> PreCenterPoint;
     int assignid = 0;
-    vector<array<double, 3>> roboticRefFrame;
+    std::vector<array<double, 3>> roboticRefFrame;
 
     /**
      *  @Brief Constructor for Tracker
@@ -70,17 +69,15 @@ class Tracker{
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    vector<int> Tracking(const vector<Rect>& Boxes);
+    std::vector<int> Tracking(const std::vector<Rect>& Boxes);
     /**
      *  @Brief Calculate the distance between two dots for the detected object
      *
      */
-    float DistanceCalculation( int x1, int x2, int y1, int y2);
+    float DistanceCalculation(int x1, int x2, int y1, int y2);
     /**
      *  @Brief Transform the coordinate to robot's reference frame
      *
      */
     array<double, 3> CoordinateTransform(int x, int y);
-
-
-};
+}
