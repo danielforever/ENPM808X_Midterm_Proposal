@@ -3,6 +3,7 @@
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](LICENSE.md)
 
 
+
 # MID_TERM_PROPOSAL_PHASE_1
 ***
 **Collaborators**

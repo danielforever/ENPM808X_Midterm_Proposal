@@ -13,7 +13,7 @@ name: Build
 on:
   # Triggered whenever push to the master branch
   push:
-    branches: [ "main" ]
+    branches: [ "main" ,"Midterm-Phase2"]
 
   # Triggered whenever a pull request is created on master
   pull_request:
@@ -41,6 +41,10 @@ jobs:
      
       - name: Dependency
         run: sudo apt install libopencv-dev
+
+      - name: Download Yolo Configuration Files
+        working-directory: ${{github.workspace}}/cfg
+        run: wget https://pjreddie.com/media/files/yolov3.weights
 
         
       # Run CMake to setup compilation flags
