@@ -11,7 +11,6 @@
  *
  */
 
-#include <chrono>
 #include <fstream>
 #include <iostream>
 #include <opencv4/opencv2/core.hpp>
@@ -21,7 +20,6 @@
 #include <opencv4/opencv2/imgproc/imgproc.hpp>
 #include <string>
 #include <vector>
-
 
 /**
  * @Brief  A class that detect and add Person object for the vector
@@ -41,7 +39,8 @@ class Detector {
    *  @Param outputFile The output of the file name
    *  @Param inputStype separate video or image input type
    *  @Param classes store the coco.names classes
-   *  @Param objectTrackingid Store the person id from tracking system into a vector
+   *  @Param objectTrackingid Store the person id from tracking system into a
+   * vector
    *  @Param confidences store the confidences result into vector
    *  @Param boxes store the bounding box result into vector
    *  @Param frameResult store the result frame
@@ -54,8 +53,8 @@ class Detector {
    *  @Param heightRatio store the video capture object
    *  @Param net store the video capture object
    *  @Param newSize store the video capture object
-   * 
-   * 
+   *
+   *
    */
   float confThreshold = 0.6;
   float nmsThreshold = 0.3;  // Non-maximum suppression threshold
@@ -80,7 +79,7 @@ class Detector {
   cv::Mat frame;
   int widthRatio;
   int heightRatio;
-  cv::dnn:Net net;
+  cv::dnn::Net net;
   cv::Size newSize;
   cv::VideoWriter video;
   std::vector<int> index;
@@ -105,7 +104,8 @@ class Detector {
 
   cv::Size boxSize();
 
-  void drawPred(int left, int right, int top, int bottom, int idname, double x, double y, double z);
+  void drawPred(int left, int right, int top, int bottom, int idname, double x,
+                double y, double z);
 
   void getOutputsNames();
   /**
@@ -114,6 +114,5 @@ class Detector {
    */
   void CleanAndDisplay();
   ~Detector();
-
 };
 #endif  // INCLUDE_DETECTOR_HPP_

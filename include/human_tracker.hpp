@@ -1,3 +1,5 @@
+#ifndef INCLUDE_HUMAN_TRACKER_HPP_
+#define INCLUDE_HUMAN_TRACKER_HPP_
 /**
  * @file human_tracker.hpp
  * @author Shantanu Aman Po-Yu
@@ -42,3 +44,4 @@ class Human_Tracker {
    */
   ~Human_Tracker();
 };
+#endif  // INCLUDE_HUMAN_TRACKER_HPP_
