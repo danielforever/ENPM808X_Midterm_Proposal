@@ -17,7 +17,14 @@ Tracker::~Tracker() {
 }
 
 array<double, 3> Tracker::CoordinateTransform(int inpx, int iny){
-        array<double, 3> result = {};
+        double z = -0.2;
+        double p = 90.5 + (iny - 208)*70/416.0;
+        double a = 45 - (inpx- 128)*90/256.0;
+        double r = z/cos(p * PI / 180.0);
+        double Invr = r * sin(p * PI / 180.0);
+        double x = Invr * cos(a * PI / 180.0);
+        double y = Invr * sin(a * PI / 180.0);
+        array<double, 3> result = {x, y, z};
         return result;
 }
 
@@ -93,6 +100,12 @@ vector<int> Tracker::Tracking(const vector<Rect>& Boxes) {
                 this->assignid = this->PreCenterPoint.size();
         }
         this->PreCenterPoint.clear();
+        for (int i=0; i < this->curCenterPoint.size(); i++){
+                cout<< "id: " << this->curid[i] <<endl;
+                cout << "2dx: " << this->curCenterPoint[i].first << " 2dy: " << this->curCenterPoint[i].second << endl;
+                this->roboticRefFrame.push_back(this->CoordinateTransform(this->curCenterPoint[i].first,this->curCenterPoint[i].second));
+                cout << "3dx: " << this->roboticRefFrame[i].at(0) << " 3dy: " << this->roboticRefFrame[i].at(1) << " 3dz: " << this->roboticRefFrame[i].at(2) << endl;
+        }
         this->PreCenterPoint = this->curCenterPoint;
         this->curCenterPoint.clear();
         this->preid.clear();
