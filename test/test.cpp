@@ -236,6 +236,7 @@ TEST(DetectorTest, DrawBoundingBoxWidthCheck) {
   d.cap >> frame;
   d.DetectorSystem(frame);
   d.objectTrackingid = t.Tracking(d.trackerBoxes);
+  d.roboticRefFrame = t.roboticRefFrame;
   d.DrawBoundingBox();
   int test;
   if(!d.boxes.empty()){
@@ -259,6 +260,7 @@ TEST(DetectorTest,ClearBoxCheck) {
   d.cap >> frame;
   d.DetectorSystem(frame);
   d.objectTrackingid = t.Tracking(d.trackerBoxes);
+  d.roboticRefFrame = t.roboticRefFrame;
   d.DrawBoundingBox();
   d.CleanAndDisplay();
   int value = 1;
@@ -284,6 +286,7 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
   d.cap >> frame;
   d.DetectorSystem(frame);
   d.objectTrackingid = t.Tracking(d.trackerBoxes);
+  d.roboticRefFrame = t.roboticRefFrame;
   d.DrawBoundingBox();
   d.CleanAndDisplay();
   int value = 1;
@@ -412,6 +415,7 @@ TEST(TrackerTest, CoordinateTransformCase1Check) {
   d.cap >> frame;
   d.DetectorSystem(frame);
   d.objectTrackingid = t.Tracking(d.trackerBoxes);
+  d.roboticRefFrame = t.roboticRefFrame;
   d.DrawBoundingBox();
   d.CleanAndDisplay();
   EXPECT_EQ(t.roboticRefFrame[0].at(2), -0.2); }
@@ -430,6 +434,7 @@ TEST(TrackerTest, CoordinateTransformCase2Check) {
   d.cap >> frame;
   d.DetectorSystem(frame);
   d.objectTrackingid = t.Tracking(d.trackerBoxes);
+  d.roboticRefFrame = t.roboticRefFrame;
   d.DrawBoundingBox();
   d.CleanAndDisplay();
 

@@ -47,6 +47,7 @@ class Detector {
    *  @Param boxes store the bounding box result into vector
    *  @Param frameResult store the result frame
    *  @Param names store the model names
+   *  @Param roboticRefFrame Store the x, y and z factor
    *  @Param cap store the video capture object
    *  @Param outputFrame store the video capture object
    *  @Param frame store the video capture object
