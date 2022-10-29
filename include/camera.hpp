@@ -3,7 +3,7 @@
 /**
  * @file camera.hpp
  * @author Shantanu Aman Po-Yu
- * @brief
+ * @brief Camera Class to initialize and set the camera settings
  * @version 0.1
  * @date 2022-10-21
  *
@@ -20,7 +20,8 @@
 
 
 /**
- * @Brief  A class that read images or videos from the directory
+ * @brief A class that read images or videos from the directory
+ * 
  */
 class Camera {
  private:
@@ -38,7 +39,15 @@ class Camera {
    *
    */
   std::string videoorimage;
+
   cv::VideoCapture cap;
+  /**
+   * @brief Reading the video or image from the directory
+   * 
+   * @param Videodirectory 
+   * @param VideoOrImage 
+   * @return cv::VideoCapture 
+   */
   cv::VideoCapture LoadVideo(std::string Videodirectory,
                              const std::string& VideoOrImage);
   Camera();

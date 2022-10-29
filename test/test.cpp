@@ -1,7 +1,7 @@
 /**
  * @file test.cpp
  * @Author(s) Po-Yu Huang, Aman Sharma, Shantanu
- * @brief
+ * @brief Test Suite 
  * @version 0.1
  * @date 2022-10-19
  *
@@ -16,10 +16,17 @@
 #include <detector.hpp>
 
 
-
-::testing::AssertionResult IsBetweenInclusive(int val, int a, int b)
-{
-    if((val >= a) && (val <= b))
+/**
+ * @brief A function for integrating the test for 
+ * verfiying test output within  a range.
+ * 
+ * @param val 
+ * @param a 
+ * @param b 
+ * @return ::testing::AssertionResult 
+ */
+::testing::AssertionResult IsBetweenInclusive(int val, int a, int b) {
+    if ((val >= a) && (val <= b))
         return ::testing::AssertionSuccess();
     else
         return ::testing::AssertionFailure()
@@ -90,8 +97,7 @@ TEST(CameraTest, VideoObjectCheck) {
   std::string video_path = "assets/videos/double_person.mp4";
   video2.SetVideoDirectory(video_path);
   Camera Camera2;
-  Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
-  
+  Camera2.LoadVideo(video2.GetVideoDirectory(), "video");
   EXPECT_EQ(Camera2.videoorimage, "video");
 }
 /**
@@ -103,8 +109,9 @@ TEST(DetectorTest, DetectorConstructorVideoTest) {
   std::string video_path = "assets/videos/double_person.mp4";
   video2.SetVideoDirectory(video_path);
   Camera Camera2;
-  cv::VideoCapture cap3 = Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
-  Detector trackerObject(cap3,"video");
+  cv::VideoCapture cap3 = Camera2.LoadVideo(
+                    video2.GetVideoDirectory(), "video");
+  Detector trackerObject(cap3, "video");
   EXPECT_EQ(trackerObject.outputFile, "result.avi");
 }
 
@@ -116,8 +123,9 @@ TEST(DetectorTest, DetectorConstructorVideoTest) {
 TEST(DetectorTest, DetectorConstructorImageTest) {
   std::string image_path = "assets/images/pedestrian_single.jpg";
   image1.SetVideoDirectory(image_path);
-  cv::VideoCapture cap3 = Camera3.LoadVideo(image1.GetVideoDirectory(),"image");
-  Detector trackerObject(cap3,"image");
+  cv::VideoCapture cap3 = Camera3.LoadVideo(
+                    image1.GetVideoDirectory(), "image");
+  Detector trackerObject(cap3, "image");
   EXPECT_EQ(trackerObject.outputFile, "result.jpg");
 }
 
@@ -130,9 +138,10 @@ TEST(DetectorTest, DetectorDestructor2) {
   std::string video_path = "assets/videos/double_person.mp4";
   video2.SetVideoDirectory(video_path);
   Camera Camera2;
-  cv::VideoCapture cap2 = Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
-  Detector trackerObject(cap2,"video");
-  //trackerObject.~Detector();
+  cv::VideoCapture cap2 = Camera2.LoadVideo(
+                             video2.GetVideoDirectory(), "video");
+  Detector trackerObject(cap2, "video");
+  // trackerObject.~Detector();
   EXPECT_EQ(trackerObject.isInitialized, false);
 }
 /**
@@ -148,8 +157,8 @@ TEST(DetectorTest, getOutputsNamesCheckReadFile) {
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
-  std::string test; 
-  if(!d.classes.empty()){
+  std::string test;
+  if (!d.classes.empty()) {
     test = d.classes[0];
   }
   EXPECT_EQ(test, "person");
@@ -164,15 +173,16 @@ TEST(DetectorTest, getOutputsNamesCheck) {
   std::string video_path = "assets/videos/double_person.mp4";
   video2.SetVideoDirectory(video_path);
   Camera Camera2;
-  cv::VideoCapture cap2 = Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
-  Detector detectorObject(cap2,"video");
+  cv::VideoCapture cap2 = Camera2.LoadVideo(
+                        video2.GetVideoDirectory(), "video");
+  Detector detectorObject(cap2, "video");
   detectorObject.getOutputsNames();
   std::string classesFile = "../cfg/coco.names";
   std::ifstream ifs(classesFile.c_str());
   std::string line;
   std::vector<std::string> classtest;
   while (getline(ifs, line)) classtest.push_back(line);
-  EXPECT_EQ(detectorObject.classes.size(), classtest.size()); 
+  EXPECT_EQ(detectorObject.classes.size(), classtest.size());
 }
 /**
  * @brief Testing the layername match to what we expected in DetectorSystem function
@@ -188,7 +198,7 @@ TEST(DetectorTest, DetectObjectCheck0) {
   d.cap >> frame;
   d.DetectorSystem(frame);
   std::string test;
-  if (!d.names.empty()){
+  if (!d.names.empty()) {
     test = d.names[0];
   }
   EXPECT_EQ(test, "yolo_82");
@@ -246,18 +256,18 @@ TEST(DetectorTest, DrawBoundingBoxWidthCheck) {
   d.objectTrackingid = t.Tracking(d.trackerBoxes);
   d.roboticRefFrame = t.roboticRefFrame;
   d.DrawBoundingBox();
-  int test;
-  if(!d.boxes.empty()){
+  int test = 0.0;
+  if (!d.boxes.empty()) {
     test = d.boxes[0].width;
   }
   EXPECT_TRUE(IsBetweenInclusive(test, 62, 70));
-  // EXPECT_EQ(test, 63); 
+  // EXPECT_EQ(test, 63);
 }
 /**
  * @brief Test does the function clean the detected object
  * 
  */
-TEST(DetectorTest,ClearBoxCheck) {
+TEST(DetectorTest, ClearBoxCheck) {
   Human_Tracker b;
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
@@ -272,10 +282,10 @@ TEST(DetectorTest,ClearBoxCheck) {
   d.DrawBoundingBox();
   d.CleanAndDisplay();
   int value = 1;
-  if (d.boxes.empty()){
+  if (d.boxes.empty()) {
     value = 0;
   }
-  std::cout<<"check:"<< d.boxes[0].x<<std::endl;
+  std::cout << "check:" << d.boxes[0].x << std::endl;
   EXPECT_EQ(value, 0);
 }
 
@@ -298,7 +308,7 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
   d.DrawBoundingBox();
   d.CleanAndDisplay();
   int value = 1;
-  if (d.confidences.empty()){
+  if (d.confidences.empty()) {
     value = 0;
   }
   EXPECT_EQ(value, 0);
@@ -333,8 +343,7 @@ TEST(TrackerTest, TrackerDestructor) {
 TEST(TrackerTest, DistanceCalculationCheck) {
   Tracker tracker1;
   float test = 5;
-  
-  EXPECT_EQ(tracker1.DistanceCalculation(5,2,9,5), test);
+  EXPECT_EQ(tracker1.DistanceCalculation(5, 2, 9, 5), test);
 }
 /**
  * @brief Test case1 for Tracking Calculation
@@ -344,10 +353,10 @@ TEST(TrackerTest, TrackingFunctionCase1Check) {
   Tracker tracker1;
   std::vector<cv::Rect> testBox;
   std::vector<int> testReturn;
-  testBox.push_back(cv::Rect(200,200,100,100));
+  testBox.push_back(cv::Rect(200, 200, 100, 100));
   testReturn = tracker1.Tracking(testBox);
   int test = 100;
-  if(!testReturn.empty()){
+  if (!testReturn.empty()) {
     test = testReturn[0];
   }
   EXPECT_EQ(test, 0); }
@@ -359,12 +368,12 @@ TEST(TrackerTest, TrackingFunctionCase2Check) {
   Tracker tracker1;
   std::vector<cv::Rect> testBox;
   std::vector<int> testReturn;
-  testBox.push_back(cv::Rect(200,200,100,100));
+  testBox.push_back(cv::Rect(200, 200, 100, 100));
   tracker1.preid.push_back(0);
-  tracker1.PreCenterPoint.emplace_back(249,249);
+  tracker1.PreCenterPoint.emplace_back(249, 249);
   testReturn = tracker1.Tracking(testBox);
   int test = 100;
-  if(!testReturn.empty()){
+  if (!testReturn.empty()) {
     test = testReturn[0];
   }
   EXPECT_EQ(test, 0); }
@@ -376,16 +385,16 @@ TEST(TrackerTest, TrackingFunctionCase3Check) {
   Tracker tracker1;
   std::vector<cv::Rect> testBox;
   std::vector<int> testReturn;
-  testBox.push_back(cv::Rect(200,200,100,100));
+  testBox.push_back(cv::Rect(200, 200, 100, 100));
   tracker1.preid.push_back(0);
-  tracker1.PreCenterPoint.emplace_back(255,255);
+  tracker1.PreCenterPoint.emplace_back(255, 255);
   tracker1.preid.push_back(1);
-  tracker1.PreCenterPoint.emplace_back(249,249);
+  tracker1.PreCenterPoint.emplace_back(249, 249);
   testReturn = tracker1.Tracking(testBox);
   int test = 100;
-  if(!testReturn.empty()){
+  if (!testReturn.empty()) {
     test = testReturn[0];
-  } 
+  }
   EXPECT_EQ(test, 1); }
 /**
  * @brief Test case4 for Tracking Calculation
@@ -395,18 +404,17 @@ TEST(TrackerTest, TrackingFunctionCase4Check) {
   Tracker tracker1;
   std::vector<cv::Rect> testBox;
   std::vector<int> testReturn;
-  testBox.push_back(cv::Rect(200,200,100,100));
+  testBox.push_back(cv::Rect(200, 200, 100, 100));
   tracker1.preid.push_back(0);
-  tracker1.PreCenterPoint.emplace_back(150,150);
+  tracker1.PreCenterPoint.emplace_back(150, 150);
   tracker1.preid.push_back(1);
-  tracker1.PreCenterPoint.emplace_back(100,100);
+  tracker1.PreCenterPoint.emplace_back(100, 100);
   tracker1.assignid = 2;
   testReturn = tracker1.Tracking(testBox);
   int test = 100;
-  if(!testReturn.empty()){
+  if (!testReturn.empty()) {
     test = testReturn[0];
   }
-  
   EXPECT_EQ(test, 2); }
 /**
  * @brief Test case1 for Coordinate Transform
@@ -445,6 +453,5 @@ TEST(TrackerTest, CoordinateTransformCase2Check) {
   d.roboticRefFrame = t.roboticRefFrame;
   d.DrawBoundingBox();
   d.CleanAndDisplay();
+  EXPECT_GT(t.roboticRefFrame[0].at(1), t.roboticRefFrame[1].at(1)); }
 
-  
-  EXPECT_GT( t.roboticRefFrame[0].at(1), t.roboticRefFrame[1].at(1)); }

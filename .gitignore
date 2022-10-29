@@ -7,7 +7,8 @@
 
 # Build artifacts
 build/
-
+doxygen/html/
+doxygen/latex/
 # Python
 *.pyc
 cfg/yolov3.weights

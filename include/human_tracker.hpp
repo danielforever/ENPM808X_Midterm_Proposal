@@ -3,7 +3,7 @@
 /**
  * @file human_tracker.hpp
  * @author Shantanu Aman Po-Yu
- * @brief 
+ * @brief Template for the Human_Tracker Class
  * @version 0.1
  * @date 2022-10-21
  * 
@@ -18,9 +18,9 @@
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 /**
- * @Brief  A class that starts the whole system
+ * @brief A  class that starts the whole system
+ * 
  */
-
 class Human_Tracker {
   /**
    *  @Brief Create a Human Tracker class
@@ -30,17 +30,25 @@ class Human_Tracker {
   bool isInitialized = false;
   std::string videodirectory = "";
   /**
-   *  @Brief Constructor
-   *
+   * @brief Construct a new Human_Tracker object
+   * 
    */
   Human_Tracker();
-  // Setter
+  /**
+   * @brief Set the Video Directory object
+   * 
+   * @param Videodirectory 
+   */
   void SetVideoDirectory(const std::string& Videodirectory);
-  // Getter
+  /**
+   * @brief Get the Video Directory object
+   * 
+   * @return std::string 
+   */
   std::string GetVideoDirectory();
   /**
-   *  @Brief Destructor
-   *
+   * @brief Destroy the Human_Tracker object
+   * 
    */
   ~Human_Tracker();
 };

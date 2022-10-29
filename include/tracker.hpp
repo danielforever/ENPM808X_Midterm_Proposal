@@ -9,9 +9,8 @@
  * 
  */
 #pragma once
-
-#include <iostream>
 #include <math.h>
+#include <iostream>
 #include <vector>
 #include <string>
 #include <cmath>
@@ -28,7 +27,7 @@
 #define PI 3.14159265
 
 /**
- * @brief Class for Tracking the Humans
+ * @brief A class for Tracking the Humans
  * 
  */
 class Tracker {
@@ -56,28 +55,38 @@ class Tracker {
     std::vector<std::array<double, 3>> roboticRefFrame;
 
     /**
-     *  @Brief Constructor for Tracker
-     *
+     * @brief Construct a new Tracker object
+     * 
      */
     Tracker();
     /**
-     *  @Brief Destructor for Tracker
-     *
+     * @brief Destroy the Tracker object
+     * 
      */
     ~Tracker();
     /**
-     *  @Brief Compare the coordinate to check whether this object had appeared
-     *
+     * @brief Compare the coordinate to check whether this object had appeared
+     * 
+     * @param Boxes 
+     * @return std::vector<int> 
      */
     std::vector<int> Tracking(const std::vector<cv::Rect>& Boxes);
     /**
-     *  @Brief Calculate the distance between two dots for the detected object
-     *
+     * @brief Calculate the distance between two dots for the detected object
+     * 
+     * @param x1 
+     * @param x2 
+     * @param y1 
+     * @param y2 
+     * @return float 
      */
     float DistanceCalculation(int x1, int x2, int y1, int y2);
     /**
-     *  @Brief Transform the coordinate to robot's reference frame
-     *
+     * @brief Transform the coordinate to robot's reference frame
+     * 
+     * @param x 
+     * @param y 
+     * @return std::array<double, 3> 
      */
     std::array<double, 3> CoordinateTransform(int x, int y);
 };

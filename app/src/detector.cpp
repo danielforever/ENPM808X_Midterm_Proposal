@@ -1,7 +1,7 @@
 /**
  * @file detector.hpp
  * @author Shantanu Aman Po-Yu
- * @brief
+ * @brief Implementation of Detector Class Methods
  * @version 0.1
  * @date 2022-10-21
  *
@@ -44,7 +44,10 @@ Detector::Detector(cv::VideoCapture Cap, const std::string& Inputstype) {
     std::cout << "image check!" << std::endl;
   }
 }
-
+/**
+ * @brief Reading the names of classes from coco.names
+ * 
+ */
 void Detector::getOutputsNames() {
   std::ifstream in(this->cocoFile.c_str());
   std::string str;
@@ -54,6 +57,12 @@ void Detector::getOutputsNames() {
   std::cout << "load coco.names" << std::endl;
 }
 
+
+/**
+ * @brief Resizing the width and height of the image
+ * 
+ * @return cv::Size 
+ */
 cv::Size Detector::boxSize() {
   int width = this->frame.cols;
   int height = this->frame.rows;
@@ -75,6 +84,19 @@ cv::Size Detector::boxSize() {
   return this->frame.size();
 }
 
+
+/**
+ * @brief Drawing the bounding box and lable on the frame.
+ * 
+ * @param left 
+ * @param right 
+ * @param top 
+ * @param bottom 
+ * @param idname 
+ * @param x 
+ * @param y 
+ * @param z 
+ */
 void Detector::drawPred(int left, int right, int top, int bottom, int idname,
                         double x, double y, double z) {
   rectangle(this->frame, cv::Point(left, top), cv::Point(right, bottom),
@@ -98,8 +120,12 @@ void Detector::drawPred(int left, int right, int top, int bottom, int idname,
 }
 
 /**
- * @brief Destroy the Detector:: Detector object
- *
+ * @brief Initialize the frame and send it to the YOLO model and
+ * store the bounding box of the detected object.
+ * 
+ * @param Frame 
+ * @return true 
+ * @return false 
  */
 bool Detector::DetectorSystem(const cv::Mat& Frame) {
   this->frame = Frame;
@@ -158,6 +184,10 @@ bool Detector::DetectorSystem(const cv::Mat& Frame) {
   return true;
 }
 
+/**
+ * @brief Destroy the Detector:: Detector object
+ * 
+ */
 Detector::~Detector() { isInitialized = false; }
 
 int Detector::DrawBoundingBox() {
@@ -173,6 +203,12 @@ int Detector::DrawBoundingBox() {
   return 0;
 }
 
+
+/**
+ * @brief Return the imageafter drawing and cleaning the bounding boxes
+ * 
+ * @return cv::Mat 
+ */
 cv::Mat Detector::CleanAndDisplay() {
   cv::Mat detectedFrame;
   this->frame.convertTo(detectedFrame, CV_8U);
@@ -184,7 +220,6 @@ cv::Mat Detector::CleanAndDisplay() {
   cv::resize(detectedFrame, detectedFrame,
              cv::Size(detectedFrame.cols * 1.5, detectedFrame.rows * 1.5), 0, 0,
              1);
-  
   this->confidences.clear();
   this->boxes.clear();
   this->classIds.clear();
