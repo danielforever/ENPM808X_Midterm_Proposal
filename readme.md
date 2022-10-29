@@ -1,5 +1,5 @@
 [![Build Status](https://github.com/danielforever/ENPM808X_Midterm_Proposal/actions/workflows/build_and_coveralls.yml/badge.svg)](https://github.com/danielforever/ENPM808X_Midterm_Proposal/actions/workflows/build_and_coveralls.yml)
-[![Coverage Status](https://coveralls.io/repos/github/danielforever/ENPM808X_Midterm_Proposal/badge.svg?branch=master)](https://coveralls.io/github/danielforever/ENPM808X_Midterm_Proposal?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/danielforever/ENPM808X_Midterm_Proposal/badge.svg?branch=main)](https://coveralls.io/github/danielforever/ENPM808X_Midterm_Proposal?branch=main)
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](LICENSE.md)
 
 
