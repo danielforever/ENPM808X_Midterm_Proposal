@@ -27,15 +27,15 @@ int main() {
   c.SetVideoDirectory("../assets/videos/double_simple.mp4");
   e.SetVideoDirectory("../assets/videos/double_person.mp4");
   Camera h;
-  //h.LoadImage(a.GetVideoDirectory());
-  //Detector d(h.LoadVideo(a.GetVideoDirectory(), "video"), h.videoorimage);
-  //Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  // h.LoadImage(a.GetVideoDirectory());
+  // Detector d(h.LoadVideo(a.GetVideoDirectory(), "video"), h.videoorimage);
+  // Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
   Detector d(h.LoadVideo(c.GetVideoDirectory(), "video"), h.videoorimage);
-  //Detector d(h.LoadVideo(e.GetVideoDirectory(), "video"), h.videoorimage);
+  // Detector d(h.LoadVideo(e.GetVideoDirectory(), "video"), h.videoorimage);
   Tracker t;
   Mat frame;
   d.getOutputsNames();
-  while (waitKey(1) < 0){
+  while (waitKey(1) < 0) {
     d.cap >> frame;
     if (frame.empty()) {
       waitKey(3000);
