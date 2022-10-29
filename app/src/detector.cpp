@@ -109,7 +109,7 @@ bool Detector::DetectorSystem(const cv::Mat& Frame) {
   cv::cvtColor(this->frame, this->frame, cv::COLOR_BGR2RGB);
   this->newSize = this->boxSize();
 
-  cv::dnn::dnn4_v20220524::blobFromImage(
+  cv::dnn::blobFromImage(
       this->frame, blob, 1 / 255.0,
       cv::Size(this->inputWidth, this->newSize.height), cv::Scalar(0, 0, 0),
       true, false);

@@ -33,12 +33,12 @@ int main() {
   Detector d(h.LoadVideo(c.GetVideoDirectory(), "video"), h.videoorimage);
   // Detector d(h.LoadVideo(e.GetVideoDirectory(), "video"), h.videoorimage);
   Tracker t;
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
-  while (waitKey(1) < 0) {
+  while (cv::waitKey(1) < 0) {
     d.cap >> frame;
     if (frame.empty()) {
-      waitKey(3000);
+      cv::waitKey(3000);
       break;
     }
     d.DetectorSystem(frame);

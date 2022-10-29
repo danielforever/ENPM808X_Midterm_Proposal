@@ -45,7 +45,7 @@ std::array<double, 3> Tracker::CoordinateTransform(int inpx, int iny) {
  * 
  * @return vector<string> 
  */
-std::vector<int> Tracker::Tracking(const vector<cv::Rect>& Boxes) {
+std::vector<int> Tracker::Tracking(const std::vector<cv::Rect>& Boxes) {
         this->curBoxes = Boxes;
         int centerX;
         int centerY;

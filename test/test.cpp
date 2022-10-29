@@ -136,11 +136,11 @@ TEST(DetectorTest, getOutputsNamesCheckReadFile) {
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
-  string test; 
+  std::string test; 
   if(!d.classes.empty()){
     test = d.classes[0];
   }
@@ -159,10 +159,10 @@ TEST(DetectorTest, getOutputsNamesCheck) {
   cv::VideoCapture cap2 = Camera2.LoadVideo(video2.GetVideoDirectory(),"video");
   Detector detectorObject(cap2,"video");
   detectorObject.getOutputsNames();
-  string classesFile = "../cfg/coco.names";
-  ifstream ifs(classesFile.c_str());
-  string line;
-  vector<string> classtest;
+  std::string classesFile = "../cfg/coco.names";
+  std::ifstream ifs(classesFile.c_str());
+  std::string line;
+  std::vector<std::string> classtest;
   while (getline(ifs, line)) classtest.push_back(line);
   EXPECT_EQ(detectorObject.classes.size(), classtest.size()); 
 }
@@ -175,11 +175,11 @@ TEST(DetectorTest, DetectObjectCheck0) {
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
-  string test;
+  std::string test;
   if(!d.names.empty()){
     test = d.names[0];
   }
@@ -196,7 +196,7 @@ TEST(DetectorTest, FrameboxSizeWidthCheck) {
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
@@ -213,7 +213,7 @@ TEST(DetectorTest, DrawBoundingBoxHeightCheck) {
   b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
   Camera h;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
@@ -231,7 +231,7 @@ TEST(DetectorTest, DrawBoundingBoxWidthCheck) {
   Camera h;
   Tracker t;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
@@ -255,7 +255,7 @@ TEST(DetectorTest,ClearBoxCheck) {
   Camera h;
   Tracker t;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
@@ -267,7 +267,7 @@ TEST(DetectorTest,ClearBoxCheck) {
   if (d.boxes.empty()){
     value = 0;
   }
-  cout<<"check:"<< d.boxes[0].x<<endl;
+  std::cout<<"check:"<< d.boxes[0].x<<std::endl;
   EXPECT_EQ(value, 0);
 }
 
@@ -281,7 +281,7 @@ TEST(DetectorTest, CleanAndDisplayCheck) {
   Camera h;
   Tracker t;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
@@ -334,9 +334,9 @@ TEST(TrackerTest, DistanceCalculationCheck) {
  */
 TEST(TrackerTest, TrackingFunctionCase1Check) {
   Tracker tracker1;
-  vector<Rect> testBox;
-  vector<int> testReturn;
-  testBox.push_back(Rect(200,200,100,100));
+  std::vector<cv::Rect> testBox;
+  std::vector<int> testReturn;
+  testBox.push_back(cv::Rect(200,200,100,100));
   testReturn = tracker1.Tracking(testBox);
   int test = 100;
   if(!testReturn.empty()){
@@ -349,9 +349,9 @@ TEST(TrackerTest, TrackingFunctionCase1Check) {
  */
 TEST(TrackerTest, TrackingFunctionCase2Check) {
   Tracker tracker1;
-  vector<Rect> testBox;
-  vector<int> testReturn;
-  testBox.push_back(Rect(200,200,100,100));
+  std::vector<cv::Rect> testBox;
+  std::vector<int> testReturn;
+  testBox.push_back(cv::Rect(200,200,100,100));
   tracker1.preid.push_back(0);
   tracker1.PreCenterPoint.emplace_back(249,249);
   testReturn = tracker1.Tracking(testBox);
@@ -366,9 +366,9 @@ TEST(TrackerTest, TrackingFunctionCase2Check) {
  */
 TEST(TrackerTest, TrackingFunctionCase3Check) {
   Tracker tracker1;
-  vector<Rect> testBox;
-  vector<int> testReturn;
-  testBox.push_back(Rect(200,200,100,100));
+  std::vector<cv::Rect> testBox;
+  std::vector<int> testReturn;
+  testBox.push_back(cv::Rect(200,200,100,100));
   tracker1.preid.push_back(0);
   tracker1.PreCenterPoint.emplace_back(255,255);
   tracker1.preid.push_back(1);
@@ -385,9 +385,9 @@ TEST(TrackerTest, TrackingFunctionCase3Check) {
  */
 TEST(TrackerTest, TrackingFunctionCase4Check) {
   Tracker tracker1;
-  vector<Rect> testBox;
-  vector<int> testReturn;
-  testBox.push_back(Rect(200,200,100,100));
+  std::vector<cv::Rect> testBox;
+  std::vector<int> testReturn;
+  testBox.push_back(cv::Rect(200,200,100,100));
   tracker1.preid.push_back(0);
   tracker1.PreCenterPoint.emplace_back(150,150);
   tracker1.preid.push_back(1);
@@ -410,7 +410,7 @@ TEST(TrackerTest, CoordinateTransformCase1Check) {
   Camera h;
   Tracker t;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "video"), h.videoorimage);
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);
@@ -429,7 +429,7 @@ TEST(TrackerTest, CoordinateTransformCase2Check) {
   Camera h;
   Tracker t;
   Detector d(h.LoadVideo(b.GetVideoDirectory(), "video"), h.videoorimage);
-  Mat frame;
+  cv::Mat frame;
   d.getOutputsNames();
   d.cap >> frame;
   d.DetectorSystem(frame);

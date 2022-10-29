@@ -45,15 +45,15 @@ class Tracker {
     */
     bool isInitialized = false;
     std::vector<int> curid;
-    std::vector<Rect> curBoxes;
+    std::vector<cv::Rect> curBoxes;
     std::vector<int> preid;
     std::vector<int> checkDistance;
     std::vector<int> checkid;
     std::vector<int> keepid;
-    std::vector<pair<int, int>> curCenterPoint;
-    std::vector<pair<int, int>> PreCenterPoint;
+    std::vector<std::pair<int, int>> curCenterPoint;
+    std::vector<std::pair<int, int>> PreCenterPoint;
     int assignid = 0;
-    std::vector<array<double, 3>> roboticRefFrame;
+    std::vector<std::array<double, 3>> roboticRefFrame;
 
     /**
      *  @Brief Constructor for Tracker
@@ -69,7 +69,7 @@ class Tracker {
      *  @Brief Compare the coordinate to check whether this object had appeared
      *
      */
-    std::vector<int> Tracking(const std::vector<Rect>& Boxes);
+    std::vector<int> Tracking(const std::vector<cv::Rect>& Boxes);
     /**
      *  @Brief Calculate the distance between two dots for the detected object
      *
@@ -79,5 +79,5 @@ class Tracker {
      *  @Brief Transform the coordinate to robot's reference frame
      *
      */
-    array<double, 3> CoordinateTransform(int x, int y);
-}
+    std::array<double, 3> CoordinateTransform(int x, int y);
+};
