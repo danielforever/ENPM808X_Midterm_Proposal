@@ -16,7 +16,8 @@ Tracker::~Tracker() {
         this->isInitialized = false;
 }
 
-array<double, 3> Tracker::CoordinateTransform(int x, int y){
+array<double, 3> Tracker::CoordinateTransform(int inpx, int iny){
+
         array<double, 3> result = {};
         return result;
 }
@@ -96,7 +97,7 @@ vector<int> Tracker::Tracking(const vector<Rect>& Boxes) {
         this->preid = this->curid;
         for (auto i: this->preid)
                 cout<<"test the id:" << i <<endl;
-        this->curid.clear();    
+        this->curid.clear();   
         return this->preid; 
 }
 /**

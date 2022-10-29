@@ -397,4 +397,51 @@ TEST(TrackerTest, TrackingFunctionCase4Check) {
   }
   
   EXPECT_EQ(test, 2); }
-
+/**
+ * @brief Test case1 for Coordinate Transform
+ * 
+ */
+TEST(TrackerTest, CoordinateTransformCase1Check) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Tracker t;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  d.objectTrackingid = t.Tracking(d.trackerBoxes);
+  d.DrawBoundingBox();
+  d.CleanAndDisplay();
+  int value = 0;
+  if(!t.roboticRefFrame.empty()){
+    int value = t.roboticRefFrame[0].at(2);
+  }
+  
+  EXPECT_EQ(value, -20); }
+/**
+ * @brief Test case2 for Coordinate Transform
+ * 
+ */
+TEST(TrackerTest, CoordinateTransformCase2Check) {
+  Human_Tracker b;
+  b.SetVideoDirectory("../assets/images/pedestrian_single.jpg");
+  Camera h;
+  Tracker t;
+  Detector d(h.LoadVideo(b.GetVideoDirectory(), "image"), h.videoorimage);
+  Mat frame;
+  d.getOutputsNames();
+  d.cap >> frame;
+  d.DetectorSystem(frame);
+  d.objectTrackingid = t.Tracking(d.trackerBoxes);
+  d.DrawBoundingBox();
+  d.CleanAndDisplay();
+  int value1 = 0;
+  int value2 = 0;
+  if(!t.roboticRefFrame.empty()){
+    int value1 = t.roboticRefFrame[0].at(1);
+    int value2 = t.roboticRefFrame[0].at(1);
+  }
+  
+  EXPECT_GT(value1, value2); }

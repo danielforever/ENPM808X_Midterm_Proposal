@@ -15,6 +15,7 @@
 #include <string>
 #include <cmath>
 #include <array>
+#include <math.h>
 
 #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/dnn.hpp>
@@ -25,7 +26,7 @@ using namespace cv;
 using namespace cv::dnn;
 using namespace std;
 
-
+#define PI 3.14159265
 
 /**
  * @brief Class for Tracking the Humans
@@ -53,6 +54,7 @@ class Tracker{
     vector<pair<int,int>> curCenterPoint;
     vector<pair<int,int>> PreCenterPoint;
     int assignid = 0;
+    vector<array<double, 3>> roboticRefFrame;
 
     /**
      *  @Brief Constructor for Tracker
