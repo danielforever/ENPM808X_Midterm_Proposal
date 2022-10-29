@@ -104,7 +104,7 @@ class Detector {
 
   Size boxSize();
 
-  void drawPred(int classId, float conf, int left, int top, int right, int bottom, int idname);
+  void drawPred(int left, int right, int top, int bottom, int idname);
 
   void getOutputsNames();
   /**

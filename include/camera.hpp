@@ -41,7 +41,6 @@ class Camera {
   string videoorimage;
   cv::VideoCapture cap;
   cv::VideoCapture LoadVideo(string Videodirectory, const string& VideoOrImage);
-  int LoadImage(string path);
   Camera();
   ~Camera();
 };
