@@ -1,3 +1,5 @@
+#ifndef INCLUDE_CAMERA_HPP_
+#define INCLUDE_CAMERA_HPP_
 /**
  * @file camera.hpp
  * @author Shantanu Aman Po-Yu
@@ -15,10 +17,6 @@
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <string>
 #include <vector>
-
-using namespace cv;
-using namespace std;
-using namespace std::chrono;
 
 /**
  * @Brief  A class that read images or videos from the directory
@@ -38,9 +36,11 @@ class Camera {
    *  @Param cap Load video into the VideoCapture
    *
    */
-  string videoorimage;
+  std::string videoorimage;
   cv::VideoCapture cap;
-  cv::VideoCapture LoadVideo(string Videodirectory, const string& VideoOrImage);
+  cv::VideoCapture LoadVideo(std::string Videodirectory,
+                             const std::string& VideoOrImage);
   Camera();
   ~Camera();
 };
+#endif  // INCLUDE_CAMERA_HPP_
