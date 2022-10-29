@@ -88,14 +88,7 @@ Size Detector::boxSize() {
 void Detector::drawPred(int classId, float confidence, int left, int right, int top, int bottom, int idname) {
     rectangle(this->frame, Point(left, top), Point(right, bottom), Scalar(255, 178, 50), 3);
     cout<<"bounding box check2"<<endl;
-    string label = to_string(idname);
-    //string label = "1";
-    cout << "classId: " <<classId << endl;
-    if (!this->classes.empty() and classId==0)
-    {
-        cout<<"bounding box check3"<<endl;
-        label = label + ":";
-    }
+    string label = "Person" + to_string(idname);
     
     int baseLine;
     Size labelSize = getTextSize(label, FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
