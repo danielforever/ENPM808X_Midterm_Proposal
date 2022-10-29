@@ -23,7 +23,7 @@
 Detector::Detector(cv::VideoCapture Cap, const std::string& Inputstype) {
   this->cap = Cap;
   this->inputStype = Inputstype;
-  this->net = cv::dnn::dnn4_v20220524::readNetFromDarknet(modelConfiguration,
+  this->net = cv::dnn::readNetFromDarknet(modelConfiguration,
                                                           modelWeights);
   this->net.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
   this->net.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
@@ -126,7 +126,7 @@ bool Detector::DetectorSystem(const cv::Mat& Frame) {
   }
   this->net.forward(this->frameResult, this->names);
   for (size_t i = 0; i < this->frameResult.size(); ++i) {
-    float* result = reinterpret_cast<float*>this->frameResult[i].data;
+    float* result = reinterpret_cast<float*>(this->frameResult[i].data);
     for (int j = 0; j < this->frameResult[i].rows;
          ++j, result += this->frameResult[i].cols) {
       cv::Mat scores =
@@ -146,7 +146,7 @@ bool Detector::DetectorSystem(const cv::Mat& Frame) {
         this->classIds.push_back(classIdPoint.x);
         std::cout << "centerX: " << centerX << std::endl;
         std::cout << "centerY: " << centerY << std::endl;
-        this->confidences.push_back(static_cast<float>confidence);
+        this->confidences.push_back(confidence);
         this->boxes.push_back(cv::Rect(left, top, width, height));
       }
     }
