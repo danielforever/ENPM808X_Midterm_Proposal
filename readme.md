@@ -44,7 +44,7 @@ The focus of the project is to develope best practices for Software Develpoement
 
 2. [Quad Chart](submission/quad_chart/Quad%20Chart.pdf)
 
-3. [Class Diagram](submission/uml/Class%20Dependancy.png)
+3. [Class Diagram](submission/uml/Final%20Class.png)
 
 4. [Activity Diagram](submission/uml/Activity%20Diagram.pdf)
 
