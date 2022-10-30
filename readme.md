@@ -3,7 +3,7 @@
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](LICENSE.md)
 
 
-# MID_TERM_PROPOSAL_PHASE_1
+# MID_TERM_PROPOSAL_PHASE_2
 ***
 **Collaborators**
 > - *Navigator*      **Aman Sharma** <ashrm007@umd.edu>
@@ -56,12 +56,12 @@ The focus of the project is to develope best practices for Software Develpoement
 ## Run cppcheck and cpplint
 Run cppcheck: Results are stored in `./results/cppcheck_process.txt`, `./results/cppcheck_result.txt` 
 
-`sh run_cppcheck.sh`
+`sh cppcheck.sh`
 
 
 Run cpplint: Results are stored in `./results/cpplint_result.txt`
 
-`sh run_cpplint.sh`
+`sh cpplint.sh`
 
 
 No cpp-lint and cpp-check issues were found.
@@ -83,7 +83,7 @@ Run the main human detection pipeline: `./app/shell-app`
 
 
 ***
-#Doxygen Generation  
+# Doxygen Generation  
 `cd doxygen`  
 `doxygen Doxyfile`
 
