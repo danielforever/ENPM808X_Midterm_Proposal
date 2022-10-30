@@ -52,6 +52,8 @@ The focus of the project is to develope best practices for Software Develpoement
 
 6. [Video Phase 1](https://youtu.be/Oaej38F-kNk)
 
+7. [Video Phase 2](https://youtu.be/DrEf_KXivNQ)
+
 ***
 ## Run cppcheck and cpplint
 Run cppcheck: Results are stored in `./results/cppcheck_process.txt`, `./results/cppcheck_result.txt` 
